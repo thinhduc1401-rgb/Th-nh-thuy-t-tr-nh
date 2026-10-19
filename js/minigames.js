@@ -45,9 +45,11 @@ function applyEventTheme(themeKey) {
         const menuQk = document.getElementById('menuContentQk');
         const mitchumBg = document.getElementById('mitchumBgVideo');
         const defBg = document.getElementById('defaultBgVideo');
+        const mbi = document.getElementById('mainBgImg');
         if (menuDhhp) menuDhhp.style.display = 'flex';
         if (menuQk) menuQk.style.display = 'none';
-        if (mitchumBg) { mitchumBg.style.display = 'block'; mitchumBg.play().catch(()=>{}); }
+        if (mitchumBg) { mitchumBg.style.display = 'none'; mitchumBg.pause(); }
+        if (mbi) { mbi.src = 'images/bg-school-cbq.jpg'; mbi.style.display = 'block'; }
         if (defBg) { defBg.style.display = 'none'; defBg.pause(); }
     }
 }

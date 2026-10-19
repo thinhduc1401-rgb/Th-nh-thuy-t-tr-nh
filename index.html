@@ -538,8 +538,8 @@
         }
 
         .slide-deck-container {
-            width: 100%;
-            height: 100%;
+            width: min(100%, calc((100vh - 30px) * 16 / 9));
+            height: auto;
             max-width: 1360px;
             max-height: calc(100vh - 30px);
             aspect-ratio: 16 / 9;
@@ -577,8 +577,91 @@
         .deck-slide img.slide-full-img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: fill;
             display: block;
+        }
+
+        /* ===== NÚT CHỌN ĐÁP ÁN TƯƠNG TÁC TRÊN SLIDE TRẮC NGHIỆM GDĐP ===== */
+        .gddp-quiz-opt-btn {
+            position: absolute;
+            z-index: 15;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background: rgba(255, 215, 0, 0.04);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            cursor: pointer;
+            padding: 0;
+            transition: all 0.18s cubic-bezier(0.2, 0.8, 0.2, 1);
+            outline: none;
+            box-sizing: border-box;
+        }
+        .gddp-quiz-opt-btn:hover {
+            background: rgba(245, 158, 11, 0.18);
+            border-color: #d97706;
+            box-shadow: 0 6px 20px rgba(217, 119, 6, 0.3), inset 0 0 12px rgba(255, 215, 0, 0.25);
+            transform: translateX(4px) scale(1.01);
+        }
+        .gddp-quiz-opt-btn:active {
+            transform: translateX(2px) scale(0.98);
+        }
+        .gddp-quiz-letter-badge {
+            width: clamp(26px, 2.7vw, 38px);
+            height: clamp(26px, 2.7vw, 38px);
+            border-radius: 9px;
+            background: linear-gradient(135deg, #854d0e 0%, #b45309 100%);
+            color: #fef3c7;
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-weight: 900;
+            font-size: clamp(13px, 1.4vw, 20px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.35), 0 0 0 2px #fde68a;
+            transition: all 0.18s ease;
+            flex-shrink: 0;
+            margin-left: 2px;
+        }
+        .gddp-quiz-opt-btn:hover .gddp-quiz-letter-badge {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: #ffffff;
+            transform: scale(1.12);
+            box-shadow: 0 0 16px rgba(245, 158, 11, 0.85), 0 0 0 2.5px #ffffff;
+        }
+        .gddp-feedback-action-btn {
+            position: absolute;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 25;
+            padding: 10px 24px;
+            border-radius: 999px;
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-weight: 900;
+            font-size: clamp(12px, 1.15vw, 15px);
+            letter-spacing: 0.8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            border: 2px solid #ffffff;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+            text-transform: uppercase;
+        }
+        .gddp-feedback-action-btn.correct {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.65), 0 8px 20px rgba(0,0,0,0.45);
+        }
+        .gddp-feedback-action-btn.wrong {
+            background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+            color: #ffffff;
+            box-shadow: 0 0 25px rgba(239, 68, 68, 0.65), 0 8px 20px rgba(0,0,0,0.45);
+        }
+        .gddp-feedback-action-btn:hover {
+            transform: translateX(-50%) translateY(-3px) scale(1.04);
         }
 
         /* Slide header */
@@ -791,6 +874,12 @@
             border-color: #3b82f6 !important;
             box-shadow: 0 0 35px rgba(59, 130, 246, 0.65) !important;
             background: rgba(10, 20, 45, 0.95) !important;
+            transform: translateY(-3px) scale(1.01);
+        }
+        .boss-card.gddp-boss.selected {
+            border-color: #10b981 !important;
+            box-shadow: 0 0 35px rgba(16, 185, 129, 0.65) !important;
+            background: rgba(6, 32, 28, 0.95) !important;
             transform: translateY(-3px) scale(1.01);
         }
 
@@ -1591,8 +1680,8 @@
     </video>
     <video class="bg-video" id="defaultBgVideo" autoplay muted loop playsinline style="display:none;"><source src="images/mode_quockhanh/bg-video.mp4?v=5" type="video/mp4"></video>
     
-    <img class="bg-video" id="mainBgImg" src="images/dhhp_stage_bg.jpg" alt="Đại học Hải Phòng Background" style="display:block;object-fit:cover;width:100%;height:100%;position:fixed;inset:0;z-index:0;">
-    <img class="bg-video" id="soloBgImg" src="images/dhhp_stage_bg.jpg" alt="Đại học Hải Phòng Background" style="display:none;object-fit:cover;width:100%;height:100%;position:fixed;inset:0;z-index:0;">
+    <img class="bg-video" id="mainBgImg" src="images/bg-school-cbq.jpg" alt="THPT Cao Bá Quát Background" style="display:block;object-fit:cover;width:100%;height:100%;position:fixed;inset:0;z-index:0;">
+    <img class="bg-video" id="soloBgImg" src="images/bg-school-cbq.jpg" alt="THPT Cao Bá Quát Background" style="display:none;object-fit:cover;width:100%;height:100%;position:fixed;inset:0;z-index:0;">
     <div class="overlay" id="mainOverlay"></div>
     <div class="scanlines"></div>
     
@@ -1711,7 +1800,7 @@
         </div>
         <div class="vs-countdown">
             <div class="countdown-label">ĐANG GHÉP TRẬN...</div>
-            <div class="countdown-num" id="countNum">10</div>
+            <div class="countdown-num" id="countNum">3</div>
             <div class="countdown-bar"><div class="countdown-fill" id="countFill" style="width:100%"></div></div>
         </div>
     </div>
@@ -1954,7 +2043,7 @@
                         <p class="text-[11px] text-white/70 font-semibold">Quản lý công việc & rèn luyện thể thao thông minh</p>
                     </div>
                 </div>
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-2" style="display:none !important;">
                     <button onclick="promptAdminThenSettings()" class="w-11 h-11 rounded-2xl bg-white/15 hover:bg-white/25 backdrop-blur-sm flex items-center justify-center text-white transition-all cursor-pointer border border-white/10" title="Cài đặt Admin">
                         <i class="fa-solid fa-gear text-lg"></i>
                     </button>
@@ -1973,66 +2062,67 @@
                     <p class="text-sm text-gray-400 font-semibold mt-1">Chọn tính năng bạn cần sử dụng</p>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
-                    <!-- Thu Quỹ -->
-                    <button onclick="switchView('viewFund')" class="dash-card bg-gradient-to-br from-indigo-500 via-indigo-600 to-blue-700 shadow-xl shadow-indigo-200/50">
+                    <!-- Thu Quỹ (Đã tắt) -->
+                    <button onclick="switchView('viewFund')" style="display:none !important;" class="dash-card bg-gradient-to-br from-indigo-500 via-indigo-600 to-blue-700 shadow-xl shadow-indigo-200/50">
                         <div>
                             <div class="dash-icon"><i class="fa-solid fa-piggy-bank"></i></div>
                             <div class="dash-title">Thu Quỹ</div>
                         </div>
                     </button>
-                    <!-- Ghép Nhóm -->
-                    <button onclick="openGroupAssignmentsList()" class="dash-card bg-gradient-to-br from-fuchsia-500 via-pink-600 to-rose-700 shadow-xl shadow-pink-200/50">
+                    <!-- Ghép Nhóm (Đã tắt) -->
+                    <button onclick="openGroupAssignmentsList()" style="display:none !important;" class="dash-card bg-gradient-to-br from-fuchsia-500 via-pink-600 to-rose-700 shadow-xl shadow-pink-200/50">
                         <span class="dash-badge"><i class="fa-solid fa-sparkles text-[9px]"></i> Mới</span>
                         <div>
                             <div class="dash-icon"><i class="fa-solid fa-users-rectangle"></i></div>
                             <div class="dash-title">Ghép Nhóm</div>
                         </div>
                     </button>
-                    <!-- Nhiệm Vụ -->
-                    <button onclick="switchView('viewTasks')" class="dash-card bg-gradient-to-br from-violet-500 via-violet-600 to-purple-800 shadow-xl shadow-purple-200/50">
+                    <!-- Nhiệm Vụ (Đã tắt) -->
+                    <button onclick="switchView('viewTasks')" style="display:none !important;" class="dash-card bg-gradient-to-br from-violet-500 via-violet-600 to-purple-800 shadow-xl shadow-purple-200/50">
                         <div>
                             <div class="dash-icon"><i class="fa-solid fa-list-check"></i></div>
                             <div class="dash-title">Nhiệm Vụ</div>
                         </div>
                     </button>
-                    <!-- Thông Báo -->
-                    <button onclick="switchView('viewAnnouncements')" class="dash-card bg-gradient-to-br from-amber-500 via-orange-500 to-orange-700 shadow-xl shadow-orange-200/50">
+                    <!-- Thông Báo (Đã tắt) -->
+                    <button onclick="switchView('viewAnnouncements')" style="display:none !important;" class="dash-card bg-gradient-to-br from-amber-500 via-orange-500 to-orange-700 shadow-xl shadow-orange-200/50">
                         <div>
                             <div class="dash-icon"><i class="fa-solid fa-bullhorn"></i></div>
                             <div class="dash-title">Thông Báo</div>
                         </div>
                     </button>
-                    <!-- Điểm Danh -->
-                    <button onclick="promptAdminThenViewAttendance()" class="dash-card bg-gradient-to-br from-emerald-500 via-emerald-600 to-teal-700 shadow-xl shadow-emerald-200/50">
+                    <!-- Điểm Danh (Đã tắt) -->
+                    <button onclick="promptAdminThenViewAttendance()" style="display:none !important;" class="dash-card bg-gradient-to-br from-emerald-500 via-emerald-600 to-teal-700 shadow-xl shadow-emerald-200/50">
                         <span class="dash-badge"><i class="fa-solid fa-lock text-[9px]"></i> Admin</span>
                         <div>
                             <div class="dash-icon"><i class="fa-solid fa-qrcode"></i></div>
                             <div class="dash-title">Điểm Danh</div>
                         </div>
                     </button>
-                    <!-- Lớp Học Online -->
-                    <button onclick="switchView('viewOnlineClass')" class="dash-card bg-gradient-to-br from-sky-500 via-blue-500 to-indigo-700 shadow-xl shadow-blue-200/50">
+                    <!-- Lớp Học Online (Đã tắt) -->
+                    <button onclick="switchView('viewOnlineClass')" style="display:none !important;" class="dash-card bg-gradient-to-br from-sky-500 via-blue-500 to-indigo-700 shadow-xl shadow-blue-200/50">
                         <div>
                             <div class="dash-icon"><i class="fa-solid fa-video"></i></div>
                             <div class="dash-title">Lớp Học Online</div>
                         </div>
                     </button>
-                    <!-- Thuyết Trình -->
-                    <button onclick="selectGameMode('mitchum')" class="dash-card bg-gradient-to-br from-cyan-500 via-cyan-600 to-blue-700 shadow-xl shadow-cyan-200/50">
+                    <!-- Thuyết Trình (TÍNH NĂNG DUY NHẤT ĐƯỢC BẬT) -->
+                    <button onclick="selectGameMode('mitchum')" class="col-span-2 dash-card bg-gradient-to-br from-cyan-500 via-cyan-600 to-blue-700 shadow-xl shadow-cyan-200/50">
                         <div>
                             <div class="dash-icon"><i class="fa-solid fa-display"></i></div>
                             <div class="dash-title">Thuyết Trình</div>
+                            <div class="dash-desc text-white/85 font-bold mt-1">Trình chiếu Slide & Bảo vệ đồ án</div>
                         </div>
                     </button>
-                    <!-- Giải Trí -->
-                    <button onclick="selectGameMode('gamehub')" class="dash-card bg-gradient-to-br from-rose-500 via-rose-600 to-pink-800 shadow-xl shadow-rose-200/50">
+                    <!-- Giải Trí (Đã tắt) -->
+                    <button onclick="selectGameMode('gamehub')" style="display:none !important;" class="dash-card bg-gradient-to-br from-rose-500 via-rose-600 to-pink-800 shadow-xl shadow-rose-200/50">
                         <div>
                             <div class="dash-icon"><i class="fa-solid fa-gamepad"></i></div>
                             <div class="dash-title">Giải Trí</div>
                         </div>
                     </button>
-                    <!-- Đồ Ăn Quanh Trường -->
-                    <button onclick="switchView('viewFoodNearby')" class="dash-card bg-gradient-to-br from-amber-500 via-orange-500 to-rose-600 shadow-xl shadow-orange-300/40">
+                    <!-- Đồ Ăn Quanh Trường (Đã tắt) -->
+                    <button onclick="switchView('viewFoodNearby')" style="display:none !important;" class="dash-card bg-gradient-to-br from-amber-500 via-orange-500 to-rose-600 shadow-xl shadow-orange-300/40">
                         <span class="dash-badge bg-rose-500 text-white font-black"><i class="fa-solid fa-fire text-[9px]"></i> Quán Ngon</span>
                         <div>
                             <div class="dash-icon"><i class="fa-solid fa-bowl-food"></i></div>
@@ -2040,8 +2130,8 @@
                             <div class="dash-desc text-white/80 font-bold">Soi map & gọi món 11A11</div>
                         </div>
                     </button>
-                    <!-- Tập Thể Thao -->
-                    <button onclick="switchView('viewGymWorkout')" class="dash-card bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-600 shadow-xl shadow-purple-300/40">
+                    <!-- Tập Thể Thao (Đã tắt) -->
+                    <button onclick="switchView('viewGymWorkout')" style="display:none !important;" class="dash-card bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-600 shadow-xl shadow-purple-300/40">
                         <span class="dash-badge bg-emerald-500 text-white font-black"><i class="fa-solid fa-dumbbell text-[9px]"></i> 4 Nhóm Cơ</span>
                         <div>
                             <div class="dash-icon"><i class="fa-solid fa-person-running"></i></div>
@@ -2049,8 +2139,8 @@
                             <div class="dash-desc text-white/80 font-bold">Hình ảnh GIF chuyển động</div>
                         </div>
                     </button>
-                    <!-- Tài Nguyên Editor: Text 3D Đổi Tên, SFX & Nhạc Nền -->
-                    <button onclick="switchView('viewSoundboard')" class="col-span-2 dash-card bg-gradient-to-r from-cyan-600 via-indigo-600 to-rose-600 shadow-xl shadow-indigo-300/40 flex items-center justify-between !p-5">
+                    <!-- Tài Nguyên Editor: Text 3D Đổi Tên, SFX & Nhạc Nền (Đã tắt) -->
+                    <button onclick="switchView('viewSoundboard')" style="display:none !important;" class="col-span-2 dash-card bg-gradient-to-r from-cyan-600 via-indigo-600 to-rose-600 shadow-xl shadow-indigo-300/40 flex items-center justify-between !p-5">
                         <div class="flex items-center gap-4">
                             <div class="dash-icon !mb-0 !w-12 !h-12 !rounded-xl bg-white/20"><i class="fa-solid fa-wand-magic-sparkles text-xl text-yellow-300"></i></div>
                             <div>
@@ -2065,8 +2155,8 @@
                             <i class="fa-solid fa-arrow-right"></i>
                         </div>
                     </button>
-                    <!-- Giải Bài & Viết Tay Vở Thật NEU -->
-                    <button onclick="switchView('viewNeuHandwritten')" class="col-span-2 dash-card bg-gradient-to-r from-violet-600 via-indigo-600 to-blue-700 shadow-xl shadow-indigo-300/40 flex items-center justify-between !p-5">
+                    <!-- Giải Bài & Viết Tay Vở Thật NEU (Đã tắt) -->
+                    <button onclick="switchView('viewNeuHandwritten')" style="display:none !important;" class="col-span-2 dash-card bg-gradient-to-r from-violet-600 via-indigo-600 to-blue-700 shadow-xl shadow-indigo-300/40 flex items-center justify-between !p-5">
                         <div class="flex items-center gap-4">
                             <div class="dash-icon !mb-0 !w-12 !h-12 !rounded-xl bg-white/20"><i class="fa-solid fa-pen-nib text-xl text-yellow-300"></i></div>
                             <div>
@@ -2081,8 +2171,8 @@
                             <i class="fa-solid fa-arrow-right"></i>
                         </div>
                     </button>
-                    <!-- Cài Đặt -->
-                    <button onclick="promptAdminThenSettings()" class="col-span-2 dash-card bg-gradient-to-r from-slate-700 via-gray-800 to-gray-900 shadow-xl shadow-gray-400/20 flex items-center justify-between !p-5">
+                    <!-- Cài Đặt (Đã tắt) -->
+                    <button onclick="promptAdminThenSettings()" style="display:none !important;" class="col-span-2 dash-card bg-gradient-to-r from-slate-700 via-gray-800 to-gray-900 shadow-xl shadow-gray-400/20 flex items-center justify-between !p-5">
                         <div class="flex items-center gap-4">
                             <div class="dash-icon !mb-0 !w-12 !h-12 !rounded-xl"><i class="fa-solid fa-sliders"></i></div>
                             <div>
@@ -4691,6 +4781,7 @@
     <script>
 
         const charData = [
+            { key: "mmb", name: "MMB", cls: "★ BIỆT ĐỘI THỊNH · HẢI · TÂN · NHẬT · MINH ★", str: 100, int: 100, spd: 100, mkt: 100, crt: 100, lck: 100, skill: "🐕🔥 HỢP THỂ 5 ANH EM SIÊU ĐẲNG", img: "images/characters/char_mmb.jpg", selectable: true },
             { key: "noophuocthinh", name: "NOO PHƯỚC THỊNH", cls: "★ BIỆT DANH: SHOPEE ★", str: 95, int: 92, spd: 96, mkt: 99, crt: 97, lck: 90, skill: "🎤 NOO PHƯỚC THỊNH (SHOPEE)", img: "images/characters/char_noophuocthinh.jpg", selectable: true },
             { key: "hungtran", name: "HÙNG TRẦN", cls: "★ HẦU GÁI MAID HUYỀN THOẠI ★", str: 85, int: 92, spd: 98, mkt: 95, crt: 95, lck: 92, skill: "💖 VÒNG XOÁY TRÁI TIM", img: "images/characters/char9.jpg", selectable: true },
             { key: "huyenlinh", name: "HUYỀN LINH", cls: "★ TIÊN NỮ PHONG HOA ★", str: 88, int: 97, spd: 94, mkt: 99, crt: 96, lck: 95, skill: "🌸🌬️ CUỒNG PHONG HOA ANH ĐÀO", img: "images/characters/char_huyenlinh.jpg", selectable: true },
@@ -4702,7 +4793,8 @@
             { key: "cophuong", name: "CÔ PHƯƠNG", cls: "★ CỐ VẤN HỌC TẬP TỐI CAO ★", str: 92, int: 99, spd: 90, mkt: 96, crt: 98, lck: 99, skill: "🌸 QUYỀN LỰC TỐI THƯỢNG · ĐIỂM DANH TẬN GỐC", img: "images/characters/char_cophuong.jpg", selectable: true },
             { key: "thaylong", name: "THẦY LONG", cls: "★ BẬC THẦY CONTENT MARKETING ★", str: 94, int: 98, spd: 93, mkt: 100, crt: 97, lck: 92, skill: "📝 VẠN LỜI SẮC BÉN · BẮT BẺ LOGIC", img: "images/characters/char_thaylong.jpg", selectable: true },
             { key: "thaytruong", name: "THẦY TRƯỜNG", cls: "★ TIỀN ĐẠO MEDIA XUẤT THẦN ★", str: 96, int: 95, spd: 99, mkt: 98, crt: 96, lck: 94, skill: "⚽ SÚT PHẢN BIỆN CHÁY LƯỚI · MEDIA ĐỈNH CAO", img: "images/characters/char_thaytruong.jpg", selectable: true },
-            { key: "comen", name: "CÔ MẾN", cls: "★ GIẢNG VIÊN FEBA · ĐH HẢI PHÒNG ★", str: 90, int: 100, spd: 92, mkt: 95, crt: 95, lck: 98, skill: "🎓 BẢO VỆ ĐỒ ÁN · KHOA KINH TẾ & QTKD", img: "images/characters/char_comen.jpg", selectable: true }
+            { key: "comen", name: "CÔ MẾN", cls: "★ GIẢNG VIÊN FEBA · ĐH HẢI PHÒNG ★", str: 90, int: 100, spd: 92, mkt: 95, crt: 95, lck: 98, skill: "🎓 BẢO VỆ ĐỒ ÁN · KHOA KINH TẾ & QTKD", img: "images/characters/char_comen.jpg", selectable: true },
+            { key: "gddp", name: "THUÝ NGÂN", cls: "★ BỘ MÔN GDĐP ★", str: 95, int: 100, spd: 95, mkt: 98, crt: 98, lck: 99, skill: "📚 GIÁO VIÊN BỘ MÔN GDĐP · THPT CAO BÁ QUÁT", img: "images/characters/char_gddp.jpg", selectable: true }
         ];
 
         let selectedChar=0, currentScreen='menu', menuIndex=0, charConfirmed=true, countdownTimer=null;
@@ -4736,6 +4828,7 @@
             document.getElementById('sSkill').textContent=c.skill;
             document.querySelectorAll('.char-cell').forEach((el,j)=>el.classList.toggle('active',j===i));
         }
+        selectChar(0);
 
         // ===== HỆ THỐNG CHIẾN ĐẤU & DI CHUYỂN NHÂN VẬT PIXEL =====
         let arenaCharPos = 0;
@@ -4998,6 +5091,13 @@
         // ===== HỆ THỐNG KHO DỮ LIỆU SLIDE & LỰA CHỌN BOSS PHẢN BIỆN =====
         // =========================================================================
         const bossList = {
+            gddp: {
+                id: 'gddp',
+                subject: 'BỘ MÔN GDĐP',
+                name: 'THUÝ NGÂN',
+                img: 'images/characters/char_gddp.jpg',
+                skill: '📚 GIÁO VIÊN BỘ MÔN GDĐP · THPT CAO BÁ QUÁT'
+            },
             comen: {
                 id: 'comen',
                 subject: 'GIÁO VIÊN FEBA',
@@ -5036,6 +5136,16 @@
         };
 
         const slideRepository = {
+            gddp: {
+                id: 'gddp',
+                name: 'THUYẾT TRÌNH GDĐP',
+                subject: 'BỘ MÔN GDĐP',
+                desc: 'Hồ sơ chọn thủ phủ Hà Nội & 10 câu hỏi trắc nghiệm Đông Dương',
+                count: 61,
+                prefix: 'images/mode_thuyettrinh/gddp_slides/slide_',
+                suffix: '.png',
+                recommendedBoss: 'gddp'
+            },
             congdien: {
                 id: 'congdien',
                 name: 'VĂN BẢN CÔNG ĐIỆN',
@@ -5097,8 +5207,127 @@
             }
         };
 
-        let selectedPresentationBoss = 'comen';
-        let currentSelectedDeckId = 'congdien';
+        // ===== HỆ THỐNG SOUND EFFECT CHUYỂN SLIDE (TỪ THƯ MỤC "chuyển slide") =====
+        const slideTransitionSfxFiles = [
+            'sound-effects/chuyen_slide/Deep Low Whoosh.wav',
+            'sound-effects/chuyen_slide/Fabric Whoosh.wav',
+            'sound-effects/chuyen_slide/Low Whoosh.wav',
+            'sound-effects/chuyen_slide/Pop Flash.wav',
+            'sound-effects/chuyen_slide/Quick Shutter 2.wav',
+            'sound-effects/chuyen_slide/Quick Shutter 3.wav'
+        ];
+        let slideTransitionSfxIndex = 0;
+        const slideTransitionAudioPool = slideTransitionSfxFiles.map(src => {
+            const a = new Audio(encodeURI(src));
+            a.preload = 'auto';
+            a.volume = 0.85;
+            return a;
+        });
+
+        function playSlideTransitionSfx(specificIdx = null){
+            try {
+                const idx = (specificIdx !== null && specificIdx >= 0 && specificIdx < slideTransitionAudioPool.length)
+                    ? specificIdx
+                    : (slideTransitionSfxIndex++ % slideTransitionAudioPool.length);
+                const sound = slideTransitionAudioPool[idx];
+                if(sound){
+                    sound.currentTime = 0;
+                    sound.play().catch(()=>{});
+                }
+            } catch(err){}
+        }
+
+        // ===== CẤU HÌNH 10 CÂU HỎI TRẮC NGHIỆM GDĐP (SLIDE 12 -> 61) =====
+        const gddpQuizConfig = {
+            12: { qNum: 1, correct: 'C', nextSlide: 17, boxes: {
+                A: { left: 9.8, top: 55.8, width: 42, height: 6.8 },
+                B: { left: 9.8, top: 62.8, width: 42, height: 6.8 },
+                C: { left: 9.8, top: 70.0, width: 42, height: 6.8 },
+                D: { left: 9.8, top: 77.0, width: 42, height: 6.8 }
+            }},
+            17: { qNum: 2, correct: 'C', nextSlide: 22, boxes: {
+                A: { left: 7.4, top: 53.6, width: 50, height: 7.0 },
+                B: { left: 7.4, top: 61.2, width: 50, height: 7.0 },
+                C: { left: 7.4, top: 68.8, width: 50, height: 7.0 },
+                D: { left: 7.4, top: 76.4, width: 50, height: 7.0 }
+            }},
+            22: { qNum: 3, correct: 'B', nextSlide: 27, boxes: {
+                A: { left: 8.9, top: 60.0, width: 42, height: 6.0 },
+                B: { left: 8.9, top: 66.6, width: 42, height: 6.0 },
+                C: { left: 8.9, top: 72.8, width: 42, height: 6.0 },
+                D: { left: 8.9, top: 79.4, width: 42, height: 6.0 }
+            }},
+            27: { qNum: 4, correct: 'B', nextSlide: 32, boxes: {
+                A: { left: 8.4, top: 55.6, width: 42, height: 6.5 },
+                B: { left: 8.4, top: 63.2, width: 42, height: 6.5 },
+                C: { left: 8.4, top: 70.8, width: 42, height: 6.5 },
+                D: { left: 8.4, top: 78.2, width: 42, height: 6.5 }
+            }},
+            32: { qNum: 5, correct: 'A', nextSlide: 37, boxes: {
+                A: { left: 9.5, top: 53.6, width: 44, height: 6.8 },
+                B: { left: 9.5, top: 61.2, width: 44, height: 6.8 },
+                C: { left: 9.5, top: 68.6, width: 44, height: 6.8 },
+                D: { left: 9.5, top: 75.8, width: 44, height: 6.8 }
+            }},
+            37: { qNum: 6, correct: 'C', nextSlide: 42, boxes: {
+                A: { left: 9.0, top: 53.0, width: 44, height: 6.8 },
+                B: { left: 9.0, top: 60.8, width: 44, height: 6.8 },
+                C: { left: 9.0, top: 68.6, width: 44, height: 6.8 },
+                D: { left: 9.0, top: 76.2, width: 44, height: 6.8 }
+            }},
+            42: { qNum: 7, correct: 'B', nextSlide: 47, boxes: {
+                A: { left: 8.7, top: 58.0, width: 44, height: 6.8 },
+                B: { left: 8.7, top: 66.2, width: 44, height: 6.8 },
+                C: { left: 8.7, top: 73.8, width: 44, height: 6.8 },
+                D: { left: 8.7, top: 81.2, width: 44, height: 6.8 }
+            }},
+            47: { qNum: 8, correct: 'C', nextSlide: 52, boxes: {
+                A: { left: 9.8, top: 65.4, width: 22, height: 7.4 },
+                B: { left: 33.5, top: 65.4, width: 22, height: 7.4 },
+                C: { left: 9.8, top: 76.4, width: 22, height: 7.4 },
+                D: { left: 33.5, top: 76.4, width: 22, height: 7.4 }
+            }},
+            52: { qNum: 9, correct: 'B', nextSlide: 57, boxes: {
+                A: { left: 8.5, top: 57.4, width: 45, height: 6.5 },
+                B: { left: 8.5, top: 64.8, width: 45, height: 6.5 },
+                C: { left: 8.5, top: 72.0, width: 45, height: 6.5 },
+                D: { left: 8.5, top: 79.2, width: 45, height: 6.5 }
+            }},
+            57: { qNum: 10, correct: 'C', nextSlide: 'END', boxes: {
+                A: { left: 8.0, top: 57.8, width: 48, height: 6.8 },
+                B: { left: 8.0, top: 65.2, width: 48, height: 6.8 },
+                C: { left: 8.0, top: 72.2, width: 48, height: 6.8 },
+                D: { left: 8.0, top: 79.2, width: 48, height: 6.8 }
+            }}
+        };
+
+        // Bản đồ tra cứu nhanh các trang nhận xét đáp án (13..16, 18..21, ..., 58..61)
+        const gddpQuizFeedbackMap = {};
+        Object.keys(gddpQuizConfig).forEach(qSlideStr => {
+            const qSlide = parseInt(qSlideStr, 10);
+            const cfg = gddpQuizConfig[qSlide];
+            ['A', 'B', 'C', 'D'].forEach((opt, idx) => {
+                const fbSlide = qSlide + idx + 1;
+                gddpQuizFeedbackMap[fbSlide] = {
+                    questionSlide: qSlide,
+                    qNum: cfg.qNum,
+                    option: opt,
+                    isCorrect: (opt === cfg.correct),
+                    nextSlide: cfg.nextSlide
+                };
+            });
+        });
+
+        function selectGddpAnswer(qSlide, optKey){
+            const cfg = gddpQuizConfig[qSlide];
+            if(!cfg) return;
+            const offsetMap = { A: 1, B: 2, C: 3, D: 4 };
+            const targetSlide = qSlide + (offsetMap[optKey] || 1);
+            goToDeckSlide(targetSlide);
+        }
+
+        let selectedPresentationBoss = 'gddp';
+        let currentSelectedDeckId = 'gddp';
         let customUploadedSlides = [];
 
         function openBossSelectModal(){
@@ -5110,7 +5339,9 @@
         function chooseBossCard(bossKey){
             selectedPresentationBoss = bossKey;
             // Tự động gợi ý bộ slide tương ứng:
-            if(bossKey === 'comen' || bossKey === 'covan'){
+            if(bossKey === 'gddp'){
+                currentSelectedDeckId = 'gddp';
+            } else if(bossKey === 'comen' || bossKey === 'covan'){
                 currentSelectedDeckId = 'congdien';
             } else if(bossKey === 'content'){
                 currentSelectedDeckId = 'pushpull';
@@ -5170,7 +5401,7 @@
 
         function updateBossModalUI(){
             // Highlight Boss card
-            ['comen', 'covan', 'content', 'media', 'cophuong'].forEach(k => {
+            ['gddp', 'comen', 'covan', 'content', 'media', 'cophuong'].forEach(k => {
                 const card = document.getElementById(`bossCard_${k}`);
                 const badge = document.getElementById(`badge_${k}`);
                 const isSel = (k === selectedPresentationBoss || (k === 'comen' && selectedPresentationBoss === 'covan') || (k === 'covan' && selectedPresentationBoss === 'comen'));
@@ -5179,17 +5410,17 @@
             });
 
             // Highlight Slide Deck card
-            ['congdien', 'cocoon', 'dmx', 'pushpull', 'bitis', 'custom'].forEach(d => {
+            ['gddp', 'congdien', 'cocoon', 'dmx', 'pushpull', 'bitis', 'custom'].forEach(d => {
                 const card = document.getElementById(`deckCard_${d}`);
                 if(card) card.classList.toggle('selected', d === currentSelectedDeckId);
             });
 
             // Update summary
-            const b = bossList[selectedPresentationBoss] || bossList.comen || bossList.media;
-            const deck = slideRepository[currentSelectedDeckId] || slideRepository.congdien || slideRepository.cocoon;
+            const b = bossList[selectedPresentationBoss] || bossList.gddp || bossList.comen || bossList.media;
+            const deck = slideRepository[currentSelectedDeckId] || slideRepository.gddp || slideRepository.congdien || slideRepository.cocoon;
             const summaryEl = document.getElementById('bossSelectSummaryTxt');
             if(summaryEl){
-                const bCol = b.id==='content' ? '#FF8800' : (b.id==='cophuong' ? '#FF69B4' : (b.id==='media' ? '#00D7FF' : '#38bdf8'));
+                const bCol = b.id==='gddp' ? '#10b981' : (b.id==='content' ? '#FF8800' : (b.id==='cophuong' ? '#FF69B4' : (b.id==='media' ? '#00D7FF' : '#38bdf8')));
                 summaryEl.innerHTML = `ĐANG CHỌN: <span style="color:${bCol};font-weight:900;">${b.name} (${b.subject})</span> · BỘ SLIDE: <span style="color:#FFD700;font-weight:900;">${deck.name} (${deck.count} TRANG)</span>`;
             }
         }
@@ -5210,7 +5441,7 @@
                 slides = customUploadedSlides;
                 totalDeckSlides = slides.length;
             } else {
-                const deck = slideRepository[deckId] || slideRepository.cocoon;
+                const deck = slideRepository[deckId] || slideRepository.gddp || slideRepository.cocoon;
                 totalDeckSlides = deck.count;
                 for(let i = 1; i <= deck.count; i++){
                     slides.push(`${deck.prefix}${i}${deck.suffix}`);
@@ -5218,14 +5449,61 @@
             }
 
             slides.forEach((src, idx) => {
+                const slideNum = idx + 1;
                 const div = document.createElement('div');
                 div.className = 'deck-slide' + (idx === 0 ? ' active' : '');
-                div.id = `deck-s-${idx + 1}`;
+                div.id = `deck-s-${slideNum}`;
                 const img = document.createElement('img');
                 img.src = src;
                 img.className = 'slide-full-img';
-                img.alt = `Slide ${idx + 1}`;
+                img.alt = `Slide ${slideNum}`;
                 div.appendChild(img);
+
+                // Nếu là bộ slide GDĐP và nằm ở các trang câu hỏi (12, 17, 22, 27, 32, 37, 42, 47, 52, 57)
+                if(deckId === 'gddp' && gddpQuizConfig[slideNum]){
+                    const qCfg = gddpQuizConfig[slideNum];
+                    ['A', 'B', 'C', 'D'].forEach(optKey => {
+                        const box = qCfg.boxes[optKey];
+                        if(!box) return;
+                        const btn = document.createElement('button');
+                        btn.type = 'button';
+                        btn.className = 'gddp-quiz-opt-btn';
+                        btn.style.left = box.left + '%';
+                        btn.style.top = box.top + '%';
+                        btn.style.width = box.width + '%';
+                        btn.style.height = box.height + '%';
+                        btn.title = `Chọn đáp án ${optKey} (Câu ${qCfg.qNum})`;
+                        btn.innerHTML = `<span class="gddp-quiz-letter-badge">${optKey}</span>`;
+                        btn.addEventListener('click', (ev) => {
+                            ev.stopPropagation();
+                            selectGddpAnswer(slideNum, optKey);
+                        });
+                        div.appendChild(btn);
+                    });
+                } else if(deckId === 'gddp' && gddpQuizFeedbackMap[slideNum]){
+                    // Trang nhận xét đáp án (Đúng / Sai) -> tạo nút điều hướng trực quan và cho phép bấm vào slide để đi tiếp
+                    const fb = gddpQuizFeedbackMap[slideNum];
+                    const actionBtn = document.createElement('button');
+                    actionBtn.type = 'button';
+                    actionBtn.className = 'gddp-feedback-action-btn ' + (fb.isCorrect ? 'correct' : 'wrong');
+                    if(fb.isCorrect){
+                        actionBtn.innerHTML = fb.nextSlide === 'END'
+                            ? `<span>🏆 CHÍNH XÁC! HOÀN THÀNH BÀI THUYẾT TRÌNH ▶</span>`
+                            : `<span>✅ CHÍNH XÁC! SANG CÂU ${fb.qNum + 1} (TRANG ${fb.nextSlide}) ▶</span>`;
+                    } else {
+                        actionBtn.innerHTML = `<span>↩ ĐÁP ÁN SAI · QUAY LẠI CÂU ${fb.qNum} (TRANG ${fb.questionSlide})</span>`;
+                    }
+                    actionBtn.addEventListener('click', (ev) => {
+                        ev.stopPropagation();
+                        nextDeckSlide();
+                    });
+                    div.appendChild(actionBtn);
+                    div.style.cursor = 'pointer';
+                    div.addEventListener('click', () => {
+                        nextDeckSlide();
+                    });
+                }
+
                 container.appendChild(div);
             });
 
@@ -5357,7 +5635,7 @@
                     mitchumBg.pause();
                     mitchumBg.style.display = 'none';
                     var mbi = document.getElementById('mainBgImg');
-                    if(mbi) { mbi.src = 'images/dhhp_stage_bg.jpg'; mbi.style.display = 'block'; }
+                    if(mbi) { mbi.src = 'images/bg-school-cbq.jpg'; mbi.style.display = 'block'; }
                 }
                 if(defBg) { defBg.style.display = 'none'; defBg.pause(); }
                 if(soloBg) soloBg.style.display = 'none';
@@ -5399,13 +5677,13 @@
             } else if(mode === 'mitchum' || mode === 'default'){
                 activeGameMode = 'mitchum';
                 if(mitchumBg) {
-                    mitchumBg.style.display = 'block';
-                    mitchumBg.play().catch(()=>{});
+                    mitchumBg.pause();
+                    mitchumBg.style.display = 'none';
                 }
                 var mbi = document.getElementById('mainBgImg');
                 if(mbi) {
-                    mbi.src = 'images/dhhp_stage_bg.jpg';
-                    mbi.style.display = 'none';
+                    mbi.src = 'images/bg-school-cbq.jpg';
+                    mbi.style.display = 'block';
                 }
                 if(defBg) { defBg.style.display = 'none'; defBg.pause(); }
                 if(soloBg) soloBg.style.display = 'none';
@@ -5415,7 +5693,7 @@
                 pixelateTransition(()=>{
                     showScreen('menu');
                     selMenu(0);
-                    showNotify('🏛️ Đã chuyển sang Cổng trường ĐH Hải Phòng · Đẳng Cấp Thuyết Trình!');
+                    showNotify('🏛️ Đã chuyển sang Đẳng Cấp Thuyết Trình!');
                 });
             } else if(mode === 'gamehub'){
                 activeGameMode = 'gamehub';
@@ -7066,16 +7344,16 @@
             }, true);
         }
 
-        // Đếm ngược 10s
+        // Đếm ngược 3s
         function startCountdown(){
             if(countdownTimer)clearInterval(countdownTimer);
-            let sec=10;
+            let sec=3;
             document.getElementById('countNum').textContent=sec;
             document.getElementById('countFill').style.width='100%';
             countdownTimer=setInterval(()=>{
                 sec--;
                 document.getElementById('countNum').textContent=sec;
-                document.getElementById('countFill').style.width=(sec/10*100)+'%';
+                document.getElementById('countFill').style.width=(sec/3*100)+'%';
                 if(sec<=0){
                     clearInterval(countdownTimer);
                     countdownTimer=null;
@@ -7088,9 +7366,10 @@
         }
 
         // SLIDE DECK LOGIC
-        function goToDeckSlide(n){
+        function goToDeckSlide(n, playSfx = true){
             if(n < 1) n = 1;
             if(n > totalDeckSlides) n = totalDeckSlides;
+            const changed = (currentDeckSlide !== n);
             currentDeckSlide = n;
 
             for(let i=1; i<=totalDeckSlides; i++){
@@ -7101,30 +7380,59 @@
             if(numEl) numEl.textContent = currentDeckSlide;
             const totalEl = document.getElementById('deckTotalSlides');
             if(totalEl) totalEl.textContent = totalDeckSlides;
+
+            if(playSfx && changed){
+                playSlideTransitionSfx();
+            }
+        }
+
+        function finishDeckPresentation(){
+            goToEndingScreen();
         }
 
         function nextDeckSlide(){
+            if(currentSelectedDeckId === 'gddp'){
+                // Nếu đang ở trang nhận xét đáp án (Đúng / Sai)
+                const fb = gddpQuizFeedbackMap[currentDeckSlide];
+                if(fb){
+                    if(fb.isCorrect){
+                        if(fb.nextSlide === 'END'){
+                            finishDeckPresentation();
+                        } else {
+                            goToDeckSlide(fb.nextSlide);
+                        }
+                    } else {
+                        // Đáp án SAI -> quay lại trang chọn đáp án của câu đó
+                        goToDeckSlide(fb.questionSlide);
+                    }
+                    return;
+                }
+                // Nếu đang ở trang đầu câu hỏi (12, 17, 22, 27, 32, 37, 42, 47, 52, 57)
+                if(gddpQuizConfig[currentDeckSlide]){
+                    showNotify('👆 Hãy ấn chọn đáp án A, B, C hoặc D trên slide!');
+                    return;
+                }
+            }
+
             if(currentDeckSlide < totalDeckSlides) {
                 goToDeckSlide(currentDeckSlide + 1);
             } else {
-                // Slide cuối → mở Vòng Quay May Mắn
-                if(typeof startLuckyWheelGame === 'function'){
-                    startLuckyWheelGame();
-                    // Lắng nghe phím Enter → chuyển sang đoạn kết
-                    window._wheelEnterHandler = function(e){
-                        if(e.key === 'Enter'){
-                            window.removeEventListener('keydown', window._wheelEnterHandler);
-                            goToEndingScreen();
-                        }
-                    };
-                    window.addEventListener('keydown', window._wheelEnterHandler);
-                } else {
-                    goToEndingScreen();
-                }
+                finishDeckPresentation();
             }
         }
 
         function prevDeckSlide(){
+            if(currentSelectedDeckId === 'gddp'){
+                const fb = gddpQuizFeedbackMap[currentDeckSlide];
+                if(fb){
+                    goToDeckSlide(fb.questionSlide);
+                    return;
+                }
+                if(gddpQuizConfig[currentDeckSlide] && currentDeckSlide > 12){
+                    goToDeckSlide(currentDeckSlide - 5);
+                    return;
+                }
+            }
             if(currentDeckSlide > 1) goToDeckSlide(currentDeckSlide - 1);
         }
 
@@ -7326,13 +7634,14 @@
                 if(e.key==='Escape')goBackToMenu();
             }else if(currentScreen==='present'){
                 if(e.key==='Escape'){goBackToMenu();charConfirmed=false;}
+                else if(currentSelectedDeckId === 'gddp' && gddpQuizConfig[currentDeckSlide] && ['a','A','1','b','B','2','c','C','3','d','D','4'].includes(e.key)){
+                    e.preventDefault();
+                    const keyMap = { a:'A', A:'A', '1':'A', b:'B', B:'B', '2':'B', c:'C', C:'C', '3':'C', d:'D', D:'D', '4':'D' };
+                    selectGddpAnswer(currentDeckSlide, keyMap[e.key]);
+                }
                 else if(e.key==='Enter'||e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' '){
                     e.preventDefault();
-                    if(currentDeckSlide >= totalDeckSlides){
-                        goToEndingScreen();
-                    } else {
-                        nextDeckSlide();
-                    }
+                    nextDeckSlide();
                 }
                 else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){
                     e.preventDefault();
@@ -7402,6 +7711,7 @@
 
         // Khởi động mặc định vào Chế độ Thu Quỹ Lớp (hoặc theo param URL)
         document.addEventListener('DOMContentLoaded', () => {
+            renderSlideDeckContainer('gddp');
             const params = new URLSearchParams(window.location.search);
             const m = params.get('mode');
             selectGameMode(m || 'thuquy', false);
@@ -7496,10 +7806,34 @@
                 <span style="font-size:11px;color:#88AACC;font-weight:500;">(Bấm để chọn giảng viên đối đầu)</span>
             </div>
 
-            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px;">
+            <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:18px;">
+                <!-- BOSS 0: THUÝ NGÂN (BỘ MÔN GDĐP) -->
+                <div class="boss-card gddp-boss selected" id="bossCard_gddp" onclick="chooseBossCard('gddp')">
+                    <div style="position:absolute;top:6px;right:8px;background:#10b981;color:#FFF;font-size:8px;font-weight:900;padding:2px 6px;border-radius:8px;display:block;letter-spacing:0.5px;box-shadow:0 0 8px #10b981;" id="badge_gddp">✓ ĐÃ CHỌN</div>
+                    
+                    <div style="background:linear-gradient(135deg,#10b981,#059669);color:#FFF;font-size:8.5px;font-weight:900;padding:2px 8px;border-radius:10px;letter-spacing:0.5px;margin-bottom:6px;box-shadow:0 0 8px rgba(16,185,129,0.5);text-transform:uppercase;">
+                        📚 BỘ MÔN GDĐP
+                    </div>
+                    <div style="width:66px;height:66px;border-radius:50%;border:2px solid #10b981;overflow:hidden;margin-bottom:6px;box-shadow:0 0 16px rgba(16,185,129,0.45);background:#000;">
+                        <img src="images/characters/char_gddp.jpg" alt="Thuý Ngân" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+                    </div>
+                    <div style="font-family:'Be Vietnam Pro',sans-serif;font-weight:900;font-size:15px;color:#34d399;letter-spacing:0.8px;margin-bottom:1px;text-shadow:0 0 8px rgba(52,211,153,0.6);">
+                        THUÝ NGÂN
+                    </div>
+                    <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:8.5px;font-weight:800;color:#6ee7b7;margin-bottom:5px;letter-spacing:0.3px;">
+                        ★ BỘ MÔN GDĐP ★
+                    </div>
+                    <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:9px;color:#d1fae5;line-height:1.3;margin-bottom:6px;font-style:italic;background:rgba(0,0,0,0.35);padding:4px 6px;border-radius:6px;border-left:2.5px solid #10b981;width:100%;box-sizing:border-box;min-height:36px;display:flex;align-items:center;justify-content:center;">
+                        "Chuẩn bị bài thuyết trình thật kỹ và tự tin tỏa sáng nhé các em!"
+                    </div>
+                    <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:8.5px;font-weight:800;color:#34d399;letter-spacing:0.3px;">
+                        🌿 GIÁO DỤC ĐỊA PHƯƠNG
+                    </div>
+                </div>
+
                 <!-- BOSS 1: CÔ MẾN (GIÁO VIÊN FEBA · ĐH HẢI PHÒNG) -->
-                <div class="boss-card comen-boss selected" id="bossCard_comen" onclick="chooseBossCard('comen')">
-                    <div style="position:absolute;top:6px;right:8px;background:#3b82f6;color:#FFF;font-size:8px;font-weight:900;padding:2px 6px;border-radius:8px;display:block;letter-spacing:0.5px;box-shadow:0 0 8px #3b82f6;" id="badge_comen">✓ ĐÃ CHỌN</div>
+                <div class="boss-card comen-boss" id="bossCard_comen" onclick="chooseBossCard('comen')">
+                    <div style="position:absolute;top:6px;right:8px;background:#3b82f6;color:#FFF;font-size:8px;font-weight:900;padding:2px 6px;border-radius:8px;display:none;letter-spacing:0.5px;box-shadow:0 0 8px #3b82f6;" id="badge_comen">✓ ĐÃ CHỌN</div>
                     
                     <div style="background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#FFF;font-size:8.5px;font-weight:900;padding:2px 8px;border-radius:10px;letter-spacing:0.5px;margin-bottom:6px;box-shadow:0 0 8px rgba(59,130,246,0.5);text-transform:uppercase;">
                         🎓 GIÁO VIÊN FEBA
@@ -7604,8 +7938,24 @@
             </div>
 
             <div style="display:flex;gap:12px;justify-content:center;align-items:stretch;margin-bottom:18px;flex-wrap:wrap;">
+                <!-- DECK GDDP: THUYẾT TRÌNH GDĐP (61 SLIDE + 10 CÂU TRẮC NGHIỆM) -->
+                <div class="slide-deck-card selected" id="deckCard_gddp" onclick="chooseSlideDeck('gddp')">
+                    <div class="slide-deck-thumb">
+                        <img src="images/mode_thuyettrinh/gddp_slides/slide_1.png" alt="Thuyết trình GDĐP Slides">
+                    </div>
+                    <div style="background:rgba(16,185,129,0.2);color:#34d399;font-size:9px;font-weight:900;padding:2px 6px;border-radius:4px;margin-bottom:4px;border:1px solid rgba(16,185,129,0.45);letter-spacing:0.5px;">
+                        61 SLIDE · BỘ MÔN GDĐP
+                    </div>
+                    <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:12px;font-weight:900;color:#FFF;margin-bottom:2px;line-height:1.25;">
+                        THUYẾT TRÌNH GDĐP
+                    </div>
+                    <div style="font-size:9px;color:#A7F3D0;line-height:1.3;">
+                        Hồ sơ chọn thủ phủ Hà Nội & 10 câu hỏi tương tác
+                    </div>
+                </div>
+
                 <!-- DECK 0: VĂN BẢN CÔNG ĐIỆN - NHÓM 4 -->
-                <div class="slide-deck-card selected" id="deckCard_congdien" onclick="chooseSlideDeck('congdien')">
+                <div class="slide-deck-card" id="deckCard_congdien" onclick="chooseSlideDeck('congdien')">
                     <div class="slide-deck-thumb">
                         <img src="images/mode_thuyettrinh/congdien_slides/slide_1.png" alt="Công Điện Nhóm 4 Slides">
                     </div>
@@ -7703,7 +8053,7 @@
 
             <!-- DÒNG TRẠNG THÁI TỔNG QUAN LỰA CHỌN -->
             <div id="bossSelectSummaryTxt" style="font-family:'Be Vietnam Pro',sans-serif;font-size:12px;color:#A0E8FF;letter-spacing:0.5px;margin-bottom:14px;background:rgba(0,0,0,0.45);padding:8px 16px;border-radius:10px;border:1px solid rgba(0,215,255,0.25);text-align:center;">
-                ĐANG CHỌN: <span style="color:#38bdf8;font-weight:900;">CÔ MẾN (FEBA · QTKD)</span> · BỘ SLIDE: <span style="color:#FFD700;font-weight:900;">VĂN BẢN CÔNG ĐIỆN (11 TRANG)</span>
+                ĐANG CHỌN: <span style="color:#10b981;font-weight:900;">THUÝ NGÂN (BỘ MÔN GDĐP)</span> · BỘ SLIDE: <span style="color:#FFD700;font-weight:900;">THUYẾT TRÌNH GDĐP (61 TRANG)</span>
             </div>
 
             <!-- NÚT BẮT ĐẦU CHUẨN SẮC NÉT (KHÔNG BỊ LỖI CHỮ HOẶC BÓNG ĐỎ) -->
