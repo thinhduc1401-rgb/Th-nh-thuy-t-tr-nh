@@ -527,14 +527,17 @@
         .countdown-bar{width:300px;height:6px;background:rgba(255,255,255,0.1);border-radius:3px;margin-top:8px;overflow:hidden;}
         .countdown-fill{height:100%;background:linear-gradient(90deg,#FFD700,#FF0000);border-radius:3px;transition:width 1s linear;}
 
-        /* ===== MÀN 4: SLIDE THUYẾT TRÌNH CAO CẤP ===== */
+        /* ===== MÀN 4: SLIDE THUYẾT TRÌNH CAO CẤP + HIỆU ỨNG 3D MULTI-WINDOW SHOWCASE ===== */
         #presentScreen{
-            background: #090E17;
+            background: #05060b;
             padding: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
+            perspective: 1500px;
+            perspective-origin: 50% 48%;
+            overflow: hidden;
         }
 
         .slide-deck-container {
@@ -546,10 +549,18 @@
             background: #FFFFFF;
             border-radius: 14px;
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,215,0,0.2);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.85), 0 0 0 1px rgba(255,215,0,0.28), 0 0 60px rgba(59,130,246,0.18);
             position: relative;
+            z-index: 6;
             font-family: 'Plus Jakarta Sans', sans-serif;
             color: #1E293B;
+            transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+            transform-style: preserve-3d;
+        }
+        #presentScreen.hd-showcase-open .slide-deck-container {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.84) rotateX(18deg) rotateZ(-4deg) translateY(40px);
         }
 
         .deck-slide {
@@ -561,8 +572,8 @@
             justify-content: center;
             opacity: 0;
             pointer-events: none;
-            transform: scale(0.98);
-            transition: opacity 0.35s ease, transform 0.35s ease;
+            transform: perspective(1400px) rotateX(6deg) translateY(14px) scale(0.965);
+            transition: opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1), transform 0.48s cubic-bezier(0.22, 1, 0.36, 1);
             background: #FFFFFF;
             overflow: hidden;
         }
@@ -570,8 +581,22 @@
         .deck-slide.active {
             opacity: 1;
             pointer-events: all;
-            transform: scale(1);
+            transform: perspective(1400px) rotateX(0deg) translateY(0) scale(1);
             z-index: 2;
+        }
+        .deck-slide.active::after {
+            content: '';
+            position: absolute;
+            inset: -20% -40%;
+            pointer-events: none;
+            z-index: 9;
+            background: linear-gradient(112deg, transparent 43%, rgba(255, 240, 195, 0.26) 49%, rgba(255, 255, 255, 0.38) 50%, rgba(147, 197, 253, 0.2) 51%, transparent 57%);
+            transform: translateX(-75%);
+            animation: hdSlideGlintSweep 1.15s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        @keyframes hdSlideGlintSweep {
+            0% { transform: translateX(-75%); opacity: 0.95; }
+            100% { transform: translateX(75%); opacity: 0; }
         }
 
         .deck-slide img.slide-full-img {
@@ -579,6 +604,836 @@
             height: 100%;
             object-fit: fill;
             display: block;
+        }
+
+        /* ===== COSMIC BACKDROP & 3D FLOATING 6-WINDOW SHOWCASE (HTML-DEMO-INTRO) ===== */
+        .hd-cosmos-bg {
+            position: absolute;
+            inset: -10%;
+            z-index: 1;
+            pointer-events: none;
+            background:
+                radial-gradient(ellipse 65% 50% at 50% 46%, rgba(28, 42, 78, 0.55) 0%, rgba(12, 18, 36, 0.35) 45%, rgba(5, 6, 11, 0.96) 78%),
+                radial-gradient(ellipse 40% 30% at 72% 28%, rgba(88, 62, 138, 0.18) 0%, transparent 65%),
+                radial-gradient(ellipse 45% 32% at 24% 72%, rgba(32, 82, 128, 0.20) 0%, transparent 65%),
+                #05060b;
+        }
+        .hd-cosmos-nebula {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle 520px at 50% 48%, rgba(70, 95, 160, 0.25), transparent 70%),
+                radial-gradient(circle 360px at 36% 36%, rgba(42, 62, 118, 0.28), transparent 70%),
+                radial-gradient(circle 420px at 66% 58%, rgba(170, 128, 72, 0.10), transparent 72%),
+                radial-gradient(circle 280px at 22% 56%, rgba(38, 56, 98, 0.22), transparent 65%);
+            filter: blur(22px);
+        }
+        .hd-cosmos-rays {
+            position: absolute;
+            inset: 0;
+            opacity: 0.72;
+        }
+        #presentScreen .hd-vignette {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 2;
+            background:
+                radial-gradient(ellipse 78% 68% at 50% 48%, transparent 38%, rgba(3, 4, 8, 0.58) 76%, rgba(2, 3, 6, 0.92) 100%);
+        }
+        #presentScreen .hd-bottom-haze {
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 20%;
+            z-index: 2;
+            pointer-events: none;
+            background: linear-gradient(180deg, transparent 0%, rgba(4, 5, 9, 0.78) 100%);
+        }
+
+        /* 3D Showcase Overlay Container */
+        #hdShowcaseOverlay {
+            position: absolute;
+            inset: 0;
+            z-index: 12;
+            perspective: 1500px;
+            perspective-origin: 50% 48%;
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        #presentScreen.hd-showcase-open #hdShowcaseOverlay {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .hd-plane-wrap {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform-style: preserve-3d;
+            z-index: 2;
+        }
+        .hd-window-grid {
+            position: relative;
+            width: 1740px;
+            height: 830px;
+            display: grid;
+            grid-template-columns: repeat(3, 536px);
+            grid-template-rows: repeat(2, 380px);
+            gap: 44px 66px;
+            justify-content: center;
+            align-content: center;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+        .hd-win-slot {
+            position: relative;
+            width: 536px;
+            height: 380px;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            transition: filter 0.25s ease;
+        }
+        .hd-win-slot:hover {
+            filter: brightness(1.12) drop-shadow(0 0 28px rgba(251, 191, 36, 0.45));
+        }
+        .hd-win-slot[data-slot="0"] { transform: translate3d(-12px, -8px, 0px); }
+        .hd-win-slot[data-slot="1"] { transform: translate3d(0px, -16px, 18px); }
+        .hd-win-slot[data-slot="2"] { transform: translate3d(14px, -4px, -8px); }
+        .hd-win-slot[data-slot="3"] { transform: translate3d(-10px, 10px, 14px); }
+        .hd-win-slot[data-slot="4"] { transform: translate3d(4px, 14px, 26px); }
+        .hd-win-slot[data-slot="5"] { transform: translate3d(12px, 6px, 20px); }
+
+        .hd-win-slot .hd-win {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border-radius: 13px;
+            background: #141413;
+            overflow: hidden;
+            user-select: none;
+            color: #faf9f5;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            box-shadow:
+                0 30px 70px -15px rgba(0, 0, 0, 0.82),
+                0 12px 28px -8px rgba(0, 0, 0, 0.65),
+                0 0 0 1px rgba(255, 255, 255, 0.09),
+                0 0 40px -10px rgba(90, 135, 220, 0.14);
+        }
+        .hd-win-slot:hover .hd-win {
+            box-shadow:
+                0 30px 70px -15px rgba(0, 0, 0, 0.9),
+                0 0 0 2px rgba(251, 191, 36, 0.75),
+                0 0 45px rgba(251, 191, 36, 0.35);
+        }
+        .hd-win-slot .hd-view {
+            flex: 1;
+            aspect-ratio: auto;
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background: #141413;
+        }
+        .hd-bar {
+            height: 32px;
+            padding: 0 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #1c1b19;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+            font-size: 11px;
+            color: #b0aea5;
+            flex-shrink: 0;
+        }
+        .hd-lights { display: flex; gap: 6px; }
+        .hd-lights i {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            display: block;
+            background: #3a3935;
+        }
+        .hd-lights i:nth-child(1) { background: #e06c60; }
+        .hd-lights i:nth-child(2) { background: #e5b567; }
+        .hd-lights i:nth-child(3) { background: #78b86a; }
+        .hd-tabs { display: flex; gap: 2px; flex: 1; min-width: 0; }
+        .hd-tab {
+            padding: 4px 10px;
+            border-radius: 5px;
+            color: #828078;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: background 180ms, color 180ms;
+            font-weight: 600;
+        }
+        .hd-tab.on {
+            background: rgba(255, 255, 255, 0.08);
+            color: #faf9f5;
+        }
+        .hd-bar-r {
+            margin-left: auto;
+            font-size: 10px;
+            letter-spacing: 0.02em;
+            color: #fbbf24;
+            font-weight: 700;
+        }
+        .hd-stage {
+            position: absolute;
+            top: 0; left: 0;
+            width: 1200px;
+            height: 750px;
+            transform-origin: 0 0;
+            transform: scale(var(--k, 0.4467));
+            will-change: transform;
+        }
+        .hd-step {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 260ms ease;
+        }
+        .hd-step.on { opacity: 1; }
+        .hd-cursor {
+            position: absolute;
+            top: 0; left: 0;
+            width: 24px; height: 24px;
+            pointer-events: none;
+            z-index: 90;
+            opacity: 0;
+            transition: opacity 180ms ease;
+            will-change: transform;
+            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.45));
+        }
+        .hd-cursor.on { opacity: 1; }
+        .hd-cursor svg {
+            width: 100%; height: 100%;
+            display: block;
+            transition: transform 90ms ease;
+            transform-origin: 4px 3px;
+        }
+        .hd-cursor.press svg { transform: scale(0.84); }
+        .hd-cursor-ring {
+            position: absolute;
+            top: -7px; left: -5px;
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            border: 2px solid #d97757;
+            opacity: 0;
+            transform: scale(0.4);
+        }
+        .hd-cursor.press .hd-cursor-ring {
+            opacity: 0.9;
+            transform: scale(1.35);
+            transition: transform 260ms ease-out, opacity 260ms ease-out;
+        }
+        .hd-steps {
+            height: 24px;
+            padding: 0 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #181715;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            flex-shrink: 0;
+        }
+        .hd-step-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 6px;
+            border: 0;
+            border-radius: 4px;
+            background: transparent;
+            color: #7c7a72;
+            font: inherit;
+            font-size: 9.5px;
+            text-align: left;
+            cursor: pointer;
+        }
+        .hd-step-btn.on { color: #faf9f5; }
+        .hd-step-num {
+            font-variant-numeric: tabular-nums;
+            font-weight: 700;
+            color: #d97757;
+            opacity: 0.55;
+        }
+        .hd-step-btn.on .hd-step-num { opacity: 1; }
+        .hd-step-lbl {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .hd-step-bar {
+            margin-left: auto;
+            width: 26px;
+            height: 2px;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .hd-step-fill {
+            height: 100%;
+            width: 0%;
+            background: #d97757;
+        }
+
+        /* Special borderless relic card for #hd-win-2 */
+        #hd-win-2 .hd-win {
+            background: #0a0908;
+            box-shadow:
+                0 30px 70px -15px rgba(0, 0, 0, 0.9),
+                0 0 0 1.5px rgba(212, 168, 88, 0.42),
+                0 0 48px -8px rgba(212, 168, 88, 0.22);
+        }
+        #hd-win-2 .hd-bar,
+        #hd-win-2 .hd-steps {
+            display: none;
+        }
+
+        /* Center Hero Title Overlay in 3D Showcase */
+        .hd-hero-center {
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            text-align: center;
+            padding: 0 24px;
+        }
+        .hd-hero-center::before {
+            content: '';
+            position: absolute;
+            width: 68%;
+            height: 44%;
+            border-radius: 50%;
+            background: radial-gradient(ellipse at center, rgba(4, 6, 14, 0.82) 0%, rgba(4, 6, 14, 0.48) 46%, transparent 76%);
+            filter: blur(18px);
+            z-index: -1;
+        }
+        .hd-hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.82);
+            border: 1px solid rgba(251, 191, 36, 0.45);
+            color: #fbbf24;
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-size: clamp(11px, 1.05vw, 14px);
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.65), 0 0 24px rgba(251, 191, 36, 0.2);
+        }
+        .hd-hero-title {
+            font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 900;
+            font-size: clamp(32px, 4.3vw, 66px);
+            line-height: 1.1;
+            letter-spacing: -0.025em;
+            color: #ffffff;
+            text-shadow:
+                0 2px 12px rgba(0, 0, 0, 0.9),
+                0 12px 44px rgba(0, 0, 0, 0.95),
+                0 0 80px rgba(0, 0, 0, 0.85);
+        }
+        .hd-hero-title .line-2 {
+            display: block;
+            margin-top: 8px;
+            font-size: clamp(16px, 2.0vw, 28px);
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            color: rgba(226, 234, 248, 0.86);
+        }
+        .hd-hero-cta-wrap {
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            pointer-events: auto;
+        }
+        .hd-hero-enter-btn {
+            padding: 14px 34px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #ea580c 100%);
+            color: #ffffff;
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-weight: 900;
+            font-size: clamp(13px, 1.25vw, 17px);
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            border: 2px solid rgba(255, 255, 255, 0.85);
+            box-shadow: 0 12px 35px rgba(245, 158, 11, 0.55), 0 0 40px rgba(245, 158, 11, 0.35);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .hd-hero-enter-btn:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 16px 45px rgba(245, 158, 11, 0.75), 0 0 55px rgba(251, 191, 36, 0.6);
+        }
+        .hd-hero-hint {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-size: 11.5px;
+            font-weight: 600;
+            color: rgba(203, 213, 225, 0.85);
+            background: rgba(10, 14, 26, 0.72);
+            padding: 4px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        /* Scrubber HUD inside 3D Showcase */
+        .hd-hud-bar {
+            position: absolute;
+            left: 50%;
+            bottom: 16px;
+            transform: translateX(-50%);
+            z-index: 25;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 7px 14px;
+            border-radius: 999px;
+            background: rgba(16, 18, 26, 0.82);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+            font-size: 12px;
+            color: #d6dae6;
+        }
+        .hd-hud-btn {
+            width: 26px; height: 26px;
+            border-radius: 50%;
+            border: 0;
+            background: #3b82f6;
+            color: #fff;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            padding: 0;
+        }
+        .hd-hud-btn:hover { filter: brightness(1.12); }
+        .hd-hud-range {
+            width: 160px;
+            accent-color: #3b82f6;
+            cursor: pointer;
+        }
+        .hd-hud-time {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 11px;
+            color: #9aa3b8;
+            min-width: 78px;
+            text-align: right;
+        }
+
+        /* ===== INTERNAL STYLES FOR THE 6 3D WINDOWS (W1..W6) ===== */
+        #hdShowcaseOverlay .w1 {
+            width: 100%; height: 100%;
+            display: grid;
+            grid-template-columns: 200px 1fr 220px;
+            grid-template-rows: 40px 1fr;
+            background: #0d0f15;
+            color: #e4e7f0;
+            font-size: 12px;
+        }
+        #hdShowcaseOverlay .w1-top {
+            grid-column: 1 / -1;
+            display: flex; align-items: center; gap: 14px;
+            padding: 0 16px;
+            background: #13161f;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        #hdShowcaseOverlay .w1-top .brand { font-weight: 700; color: #fff; display: flex; align-items: center; gap: 8px; }
+        #hdShowcaseOverlay .w1-top .brand-dot { width: 10px; height: 10px; border-radius: 3px; background: linear-gradient(135deg, #3b82f6, #60a5fa); }
+        #hdShowcaseOverlay .w1-top .crumb { color: #7c8399; font-size: 11.5px; }
+        #hdShowcaseOverlay .w1-top .pill {
+            margin-left: auto;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: #2563eb;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        #hdShowcaseOverlay .w1-side {
+            background: #10131b;
+            border-right: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 12px 10px;
+            display: flex; flex-direction: column; gap: 3px;
+        }
+        #hdShowcaseOverlay .w1-sec { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: #5d6478; padding: 6px 8px 4px; font-weight: 700; }
+        #hdShowcaseOverlay .w1-layer {
+            padding: 6px 9px;
+            border-radius: 6px;
+            color: #9aa2b8;
+            display: flex; align-items: center; gap: 8px;
+            font-size: 11.5px;
+        }
+        #hdShowcaseOverlay .w1-layer.sel { background: rgba(59, 130, 246, 0.18); color: #fff; font-weight: 600; }
+        #hdShowcaseOverlay .w1-layer i { width: 7px; height: 7px; border-radius: 2px; background: #4b5563; display: inline-block; }
+        #hdShowcaseOverlay .w1-layer.sel i { background: #60a5fa; }
+        #hdShowcaseOverlay .w1-canvas {
+            position: relative;
+            background: radial-gradient(circle at 50% 35%, #171c2b 0%, #0b0d14 75%);
+            padding: 20px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            overflow: hidden;
+        }
+        #hdShowcaseOverlay .w1-artboard {
+            width: 100%; height: 100%;
+            border-radius: 12px;
+            background: #0f1320;
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            padding: 12px;
+            display: flex; flex-direction: column; gap: 10px;
+            position: relative;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+            overflow: hidden;
+        }
+        #hdShowcaseOverlay .w1-select-box {
+            position: absolute;
+            border: 2px solid #3b82f6;
+            border-radius: 10px;
+            pointer-events: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.22), inset 0 0 20px rgba(59, 130, 246, 0.15);
+            transition: all 220ms ease;
+            z-index: 5;
+        }
+        #hdShowcaseOverlay .w1-select-tag {
+            position: absolute; top: -20px; left: -2px;
+            padding: 2px 7px; border-radius: 4px;
+            background: #3b82f6; color: #fff;
+            font-size: 9.5px; font-weight: 700;
+            white-space: nowrap;
+        }
+        #hdShowcaseOverlay .w1-insp {
+            background: #10131b;
+            border-left: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 12px;
+            display: flex; flex-direction: column; gap: 10px;
+        }
+        #hdShowcaseOverlay .w1-prop {
+            background: #151925;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 7px;
+            padding: 8px 10px;
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 11px; color: #9aa2b8;
+        }
+        #hdShowcaseOverlay .w1-prop b { color: #fff; font-family: ui-monospace, monospace; font-weight: 600; }
+        #hdShowcaseOverlay .w1-prompt-bar {
+            position: absolute; left: 22px; right: 22px; bottom: 16px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(18, 22, 34, 0.94);
+            border: 1px solid rgba(96, 165, 250, 0.45);
+            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.65);
+            display: flex; align-items: center; gap: 10px;
+            padding: 0 14px;
+            font-size: 12px; color: #e5edff;
+            z-index: 8;
+        }
+        #hdShowcaseOverlay .w1-prompt-bar .spark { color: #60a5fa; font-weight: 700; }
+
+        /* WINDOW 2: AI SCANLINE REVEAL */
+        #hdShowcaseOverlay .w2 {
+            width: 100%; height: 100%;
+            display: grid;
+            grid-template-columns: 230px 1fr;
+            grid-template-rows: 42px 1fr;
+            background: #111015;
+            color: #ece8f4;
+            font-size: 12px;
+        }
+        #hdShowcaseOverlay .w2-top {
+            grid-column: 1 / -1;
+            display: flex; align-items: center; gap: 12px;
+            padding: 0 16px;
+            background: #17151d;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
+        #hdShowcaseOverlay .w2-credit {
+            margin-left: auto;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.38);
+            color: #fbbf24;
+            font-size: 11px; font-weight: 600;
+        }
+        #hdShowcaseOverlay .w2-side {
+            background: #14121a;
+            border-right: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 14px;
+            display: flex; flex-direction: column; gap: 10px;
+        }
+        #hdShowcaseOverlay .w2-box {
+            background: #1c1924;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 11.5px; color: #cbc4dc;
+            line-height: 1.45;
+            min-height: 76px;
+        }
+        #hdShowcaseOverlay .w2-gen-btn {
+            margin-top: auto;
+            padding: 10px 12px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #2563eb, #4f46e5);
+            color: #fff;
+            font-weight: 700; text-align: center;
+            font-size: 12px;
+            box-shadow: 0 8px 22px rgba(59, 130, 246, 0.38);
+        }
+        #hdShowcaseOverlay .w2-stage {
+            position: relative;
+            padding: 18px;
+            display: grid;
+            grid-template-columns: 1fr 140px;
+            gap: 14px;
+            background: #0d0c11;
+        }
+        #hdShowcaseOverlay .w2-art-wrap {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #17151f;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+        }
+        #hdShowcaseOverlay .w2-art-base {
+            position: absolute; inset: 0;
+            background-size: cover;
+            background-position: center;
+            filter: blur(20px) brightness(0.55) saturate(0.8);
+            transform: scale(1.06);
+        }
+        #hdShowcaseOverlay .w2-art-reveal {
+            position: absolute; inset: 0;
+            background-size: cover;
+            background-position: center;
+        }
+        #hdShowcaseOverlay .w2-scanline {
+            position: absolute; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #60a5fa, #fff, #fbbf24, transparent);
+            box-shadow: 0 0 22px 4px rgba(96, 165, 250, 0.85);
+            pointer-events: none;
+        }
+        #hdShowcaseOverlay .w2-thumbs {
+            display: flex; flex-direction: column; gap: 10px;
+        }
+        #hdShowcaseOverlay .w2-thumb {
+            flex: 1;
+            border-radius: 9px;
+            background-size: cover;
+            background-position: center;
+            border: 1.5px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        #hdShowcaseOverlay .w2-thumb.on {
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.32);
+        }
+
+        /* WINDOW 3: GOLDEN RELIC CARD */
+        #hdShowcaseOverlay .w3 {
+            width: 100%; height: 100%;
+            position: relative;
+            background: radial-gradient(ellipse at 50% 42%, #241b0e 0%, #0d0a06 62%, #050403 100%);
+            overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+        }
+        #hdShowcaseOverlay .w3-frame {
+            position: absolute; inset: 18px;
+            border: 1.5px solid rgba(218, 175, 92, 0.52);
+            border-radius: 10px;
+            box-shadow: inset 0 0 40px rgba(218, 175, 92, 0.14);
+            pointer-events: none;
+            z-index: 4;
+        }
+        #hdShowcaseOverlay .w3-art {
+            position: absolute; inset: 28px;
+            border-radius: 8px;
+            background-size: cover;
+            background-position: center;
+            filter: contrast(1.06) saturate(1.08);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
+        }
+        #hdShowcaseOverlay .w3-glint {
+            position: absolute; inset: -20%;
+            background: linear-gradient(115deg, transparent 42%, rgba(255, 224, 150, 0.28) 49%, rgba(255, 248, 220, 0.5) 50%, rgba(255, 224, 150, 0.28) 51%, transparent 58%);
+            pointer-events: none;
+            mix-blend-mode: screen;
+            z-index: 5;
+        }
+        #hdShowcaseOverlay .w3-caption {
+            position: absolute; left: 40px; right: 40px; bottom: 36px;
+            z-index: 6;
+            display: flex; justify-content: space-between; align-items: flex-end;
+            color: #f5deb3;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.95);
+            background: rgba(10, 8, 5, 0.72);
+            backdrop-filter: blur(8px);
+            padding: 12px 18px;
+            border-radius: 10px;
+            border: 1px solid rgba(218, 175, 92, 0.45);
+        }
+        #hdShowcaseOverlay .w3-title {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 24px;
+            letter-spacing: 0.04em;
+            color: #fff3d1;
+            font-weight: 700;
+        }
+        #hdShowcaseOverlay .w3-sub {
+            font-size: 11px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #d6b26d;
+        }
+
+        /* WINDOW 4: EDITORIAL SLIDE SYSTEM BOARD */
+        #hdShowcaseOverlay .w4 {
+            width: 100%; height: 100%;
+            background: #e9e4d8;
+            color: #1c1a16;
+            padding: 22px 26px;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            gap: 14px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        #hdShowcaseOverlay .w4-head {
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid rgba(28, 26, 22, 0.14);
+            padding-bottom: 10px;
+            font-size: 12px; color: #5a554c;
+            font-weight: 700;
+        }
+        #hdShowcaseOverlay .w4-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        #hdShowcaseOverlay .w4-card {
+            border-radius: 10px;
+            padding: 10px;
+            display: flex; flex-direction: column; justify-content: space-between;
+            border: 1px solid rgba(28, 26, 22, 0.12);
+            background: #f5f1e6;
+            position: relative;
+            overflow: hidden;
+            transition: transform 240ms ease, box-shadow 240ms ease;
+        }
+        #hdShowcaseOverlay .w4-card.hi {
+            outline: 2.5px solid #2563eb;
+            box-shadow: 0 16px 34px rgba(37, 99, 235, 0.22);
+            transform: translateY(-4px);
+        }
+        #hdShowcaseOverlay .w4-banner {
+            border-radius: 10px;
+            background: #181612;
+            color: #f4efe2;
+            padding: 14px 20px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        #hdShowcaseOverlay .w4-banner-big {
+            font-family: Georgia, serif;
+            font-size: 28px;
+            letter-spacing: -0.02em;
+            font-weight: 700;
+        }
+
+        /* WINDOW 5: QUIZ WORKFLOW NODE GRAPH */
+        #hdShowcaseOverlay .w5 {
+            width: 100%; height: 100%;
+            position: relative;
+            background:
+                radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.08) 1px, transparent 0) 0 0 / 22px 22px,
+                #0e1017;
+            color: #e5e7ef;
+            overflow: hidden;
+        }
+        #hdShowcaseOverlay .w5-node {
+            position: absolute;
+            width: 225px;
+            border-radius: 11px;
+            background: #171b26;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+            font-size: 11.5px;
+        }
+        #hdShowcaseOverlay .w5-node.active {
+            border-color: #60a5fa;
+            box-shadow: 0 18px 42px rgba(0, 0, 0, 0.7), 0 0 0 2px rgba(96, 165, 250, 0.28);
+        }
+        #hdShowcaseOverlay .w5-node-h {
+            padding: 7px 11px;
+            background: #1f2433;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+            display: flex; align-items: center; gap: 7px;
+            font-weight: 600; font-size: 11px;
+        }
+        #hdShowcaseOverlay .w5-dot { width: 8px; height: 8px; border-radius: 50%; background: #60a5fa; }
+        #hdShowcaseOverlay .w5-node-b { padding: 10px; color: #9da5bc; font-size: 11px; line-height: 1.4; }
+        #hdShowcaseOverlay .w5-thumb {
+            height: 104px;
+            border-radius: 7px;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 7px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        /* WINDOW 6: SPLIT LIVE SLIDE SITE PREVIEW */
+        #hdShowcaseOverlay .w6 {
+            width: 100%; height: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1.15fr;
+            background: #0f121a;
+            color: #e5e8f2;
+        }
+        #hdShowcaseOverlay .w6-left {
+            padding: 18px;
+            border-right: 1px solid rgba(255, 255, 255, 0.07);
+            display: flex; flex-direction: column; gap: 12px;
+            background: #121621;
+        }
+        #hdShowcaseOverlay .w6-right {
+            padding: 18px;
+            background: #0b0d14;
+            display: flex; flex-direction: column; gap: 12px;
+            overflow: hidden;
+        }
+        #hdShowcaseOverlay .w6-site {
+            flex: 1;
+            border-radius: 10px;
+            background: #090b11;
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            padding: 16px;
+            display: flex; flex-direction: column; gap: 12px;
+            position: relative;
+            overflow: hidden;
         }
 
         /* ===== NÚT CHỌN ĐÁP ÁN TƯƠNG TÁC TRÊN SLIDE TRẮC NGHIỆM GDĐP ===== */
@@ -1805,8 +2660,89 @@
         </div>
     </div>
 
-    <!-- MÀN 4: THUYẾT TRÌNH SLIDE (NHÚNG 16 SLIDE CHUYÊN NGHIỆP) -->
+    <!-- MÀN 4: THUYẾT TRÌNH SLIDE (NHÚNG SLIDE CHUYÊN NGHIỆP + HIỆU ỨNG 3D MULTI-WINDOW SHOWCASE) -->
     <div class="screen hidden" id="presentScreen">
+        <!-- COSMIC NEBULA & WARP RAYS BACKDROP (HTML-DEMO-INTRO) -->
+        <div class="hd-cosmos-bg">
+            <div class="hd-cosmos-nebula"></div>
+            <svg class="hd-cosmos-rays" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                    <linearGradient id="hdRayGrad" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#9ec5ff" stop-opacity="0"/>
+                        <stop offset="50%" stop-color="#9ec5ff" stop-opacity="0.32"/>
+                        <stop offset="100%" stop-color="#9ec5ff" stop-opacity="0"/>
+                    </linearGradient>
+                    <linearGradient id="hdRayWarm" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#ffdca8" stop-opacity="0"/>
+                        <stop offset="50%" stop-color="#ffdca8" stop-opacity="0.22"/>
+                        <stop offset="100%" stop-color="#ffdca8" stop-opacity="0"/>
+                    </linearGradient>
+                </defs>
+                <g id="hd-warp-lines" stroke-linecap="round">
+                    <line x1="120" y1="80" x2="290" y2="180" stroke="url(#hdRayGrad)" stroke-width="1.4"/>
+                    <line x1="1580" y1="120" x2="1790" y2="240" stroke="url(#hdRayGrad)" stroke-width="1.2"/>
+                    <line x1="340" y1="880" x2="540" y2="990" stroke="url(#hdRayGrad)" stroke-width="1.3"/>
+                    <line x1="1420" y1="820" x2="1680" y2="960" stroke="url(#hdRayWarm)" stroke-width="1.5"/>
+                    <line x1="780" y1="60" x2="960" y2="150" stroke="url(#hdRayGrad)" stroke-width="1.1"/>
+                    <line x1="90" y1="540" x2="250" y2="630" stroke="url(#hdRayWarm)" stroke-width="1.2"/>
+                    <line x1="1680" y1="520" x2="1860" y2="620" stroke="url(#hdRayGrad)" stroke-width="1.3"/>
+                    <circle cx="240" cy="190" r="1.4" fill="#cfe2ff" opacity="0.65"/>
+                    <circle cx="480" cy="110" r="1.1" fill="#cfe2ff" opacity="0.45"/>
+                    <circle cx="1520" cy="180" r="1.6" fill="#ffe4b8" opacity="0.6"/>
+                    <circle cx="1710" cy="420" r="1.2" fill="#cfe2ff" opacity="0.5"/>
+                    <circle cx="180" cy="780" r="1.5" fill="#cfe2ff" opacity="0.55"/>
+                    <circle cx="1360" cy="910" r="1.3" fill="#ffe4b8" opacity="0.5"/>
+                    <circle cx="980" cy="940" r="1.1" fill="#cfe2ff" opacity="0.4"/>
+                    <circle cx="690" cy="210" r="1.2" fill="#cfe2ff" opacity="0.45"/>
+                    <circle cx="1220" cy="140" r="1.4" fill="#cfe2ff" opacity="0.5"/>
+                </g>
+            </svg>
+        </div>
+        <div class="hd-vignette"></div>
+        <div class="hd-bottom-haze"></div>
+
+        <!-- 3D FLOATING 6-WINDOW SHOWCASE OVERLAY (HTML-DEMO-INTRO EFFECT) -->
+        <div id="hdShowcaseOverlay">
+            <div class="hd-plane-wrap">
+                <div class="hd-window-grid" id="hd-grid">
+                    <div class="hd-win-slot" data-slot="0" onclick="closeHdShowcase(1)" title="Bấm để mở Slide Mở Đầu"><div id="hd-win-0"></div></div>
+                    <div class="hd-win-slot" data-slot="1" onclick="closeHdShowcase(4)" title="Bấm để mở Slide Phân Tích"><div id="hd-win-1"></div></div>
+                    <div class="hd-win-slot" data-slot="2" onclick="closeHdShowcase(8)" title="Bấm để mở Slide Tư Liệu"><div id="hd-win-2"></div></div>
+                    <div class="hd-win-slot" data-slot="3" onclick="closeHdShowcase(11)" title="Bấm để mở Slide Hệ Thống"><div id="hd-win-3"></div></div>
+                    <div class="hd-win-slot" data-slot="4" onclick="closeHdShowcase(12)" title="Bấm để mở Slide Câu Hỏi Trắc Nghiệm"><div id="hd-win-4"></div></div>
+                    <div class="hd-win-slot" data-slot="5" onclick="closeHdShowcase(17)" title="Bấm để mở Slide Tương Tác Trực Tiếp"><div id="hd-win-5"></div></div>
+                </div>
+            </div>
+
+            <!-- CENTER HERO HEADLINE & ACTION BUTTON -->
+            <div class="hd-hero-center">
+                <div class="hd-hero-eyebrow" id="hdHeroEyebrow">✦ BỘ MÔN GDĐP · CÔ THUÝ NGÂN ✦</div>
+                <h1 class="hd-hero-title">
+                    <span id="hdHeroTitleMain">THUYẾT TRÌNH GDĐP</span>
+                    <span class="line-2" id="hdHeroTitleSub">Hồ sơ chọn thủ phủ Hà Nội &amp; 10 câu hỏi trắc nghiệm Đông Dương.</span>
+                </h1>
+                <div class="hd-hero-cta-wrap">
+                    <button type="button" class="hd-hero-enter-btn" onclick="closeHdShowcase()">
+                        <span>🚀 VÀO TRÌNH CHIẾU SLIDE</span>
+                        <span>▶</span>
+                    </button>
+                    <div class="hd-hero-hint">Nhấn phím <b>Enter / Space</b> hoặc <b>click vào bất kỳ cửa sổ 3D nào</b> để phóng tới Slide đó</div>
+                </div>
+            </div>
+
+            <!-- BOTTOM 3D TIMELINE SCRUBBER HUD -->
+            <div class="hd-hud-bar" onclick="event.stopPropagation()">
+                <button class="hd-hud-btn" id="hdPlayBtn" title="Tạm dừng / Phát chuyển động 3D">
+                    <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor" id="hdPlayIcon">
+                        <rect x="2" y="1.5" width="3" height="9" rx="0.8"/>
+                        <rect x="7" y="1.5" width="3" height="9" rx="0.8"/>
+                    </svg>
+                </button>
+                <input class="hd-hud-range" id="hdClockRange" type="range" min="0" max="18" step="0.02" value="0" />
+                <span class="hd-hud-time" id="hdClockLabel">0.0s / 18.0s</span>
+            </div>
+        </div>
+
         <div class="slide-deck-container" id="slideDeck">
 
             <!-- SLIDE 1 -->
@@ -1891,6 +2827,7 @@
 
         <!-- SLIDE TOOLBAR (BOTTOM RIGHT) -->
         <div class="slide-nav-bar">
+            <button class="slide-btn" id="hdToggleBtn" onclick="toggleHdShowcase()" style="color:#60A5FA;" title="Bật / Tắt màn hình 3D 6 cửa sổ">🌌 3D INTRO</button>
             <button class="slide-btn" onclick="prevDeckSlide()">◀ TRƯỚC</button>
             <div class="slide-num-tag"><span id="deckSlideNum">1</span> / <span id="deckTotalSlides">14</span></div>
             <button class="slide-btn" onclick="nextDeckSlide()">TIẾP ▶</button>
@@ -5512,6 +6449,10 @@
             if(numEl) numEl.textContent = '1';
             const totalEl = document.getElementById('deckTotalSlides');
             if(totalEl) totalEl.textContent = totalDeckSlides;
+
+            if(typeof rebuildHdShowcaseForDeck === 'function'){
+                rebuildHdShowcaseForDeck(deckId, slides);
+            }
         }
 
         // CHỌN → Mở modal lựa chọn Boss & Kho Slide
@@ -7359,11 +8300,798 @@
                     countdownTimer=null;
                     pixelateTransition(()=>{
                         showScreen('present');
-                        goToDeckSlide(1);
+                        goToDeckSlide(1, false);
+                        openHdShowcase(true);
                     });
                 }
             },1000);
         }
+
+        // ===== ENGINE HIỆU ỨNG 3D MULTI-WINDOW SHOWCASE (HTML-DEMO-INTRO) =====
+        const hdEase = (t, a, b) => {
+            if (b <= a) return t >= b ? 1 : 0;
+            const x = Math.min(1, Math.max(0, (t - a) / (b - a)));
+            return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+        };
+        const hdTyped = (text, t, a, b) => {
+            const p = Math.min(1, Math.max(0, (t - a) / Math.max(0.001, b - a)));
+            return text.slice(0, Math.round(text.length * p));
+        };
+        const hdGlide = (t, path, clicks = []) => {
+            if (!path || !path.length) return { x: 0, y: 0, press: false };
+            let x = path[0][2], y = path[0][3];
+            for (const [from, to, nx, ny] of path) {
+                if (t <= from) break;
+                const k = hdEase(t, from, to);
+                x = x + (nx - x) * k;
+                y = y + (ny - y) * k;
+            }
+            const press = clicks.some((c) => t >= c && t <= c + 0.24);
+            return { x, y, press };
+        };
+        const HD_CURSOR_SVG = `<svg viewBox="0 0 24 24" fill="none"><path d="M4 2.5L20 11.2L12.2 13L9.3 20.5L4 2.5Z" fill="#141413" stroke="#faf9f5" stroke-width="1.8" stroke-linejoin="round"/></svg><div class="hd-cursor-ring"></div>`;
+
+        function mountHdWindow(el, cfg) {
+            if (!el) return null;
+            const steps = cfg.steps || [];
+            const tabs = cfg.tabs || steps.map((s) => s.tab || s.title);
+            el.innerHTML = `
+                <div class="hd-win">
+                    <div class="hd-bar">
+                        <div class="hd-lights"><i></i><i></i><i></i></div>
+                        <div class="hd-tabs">${tabs.map((t, j) => `<div class="hd-tab" data-tab="${j}">${t}</div>`).join('')}</div>
+                        <div class="hd-bar-r">${cfg.label || ''}</div>
+                    </div>
+                    <div class="hd-view">
+                        <div class="hd-stage">
+                            ${steps.map((s, j) => `<div class="hd-step" data-step="${j}">${s.html || ''}</div>`).join('')}
+                            <div class="hd-cursor">${HD_CURSOR_SVG}</div>
+                        </div>
+                    </div>
+                    <div class="hd-steps">
+                        ${steps.map((s, j) => `
+                            <button type="button" class="hd-step-btn" data-go="${j}">
+                                <span class="hd-step-num">0${j + 1}</span>
+                                <span class="hd-step-lbl">${s.title || ''}</span>
+                                <span class="hd-step-bar"><span class="hd-step-fill"></span></span>
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            const view = el.querySelector('.hd-view');
+            const cursorEl = el.querySelector('.hd-cursor');
+            const stepEls = [...el.querySelectorAll('.hd-step')];
+            const tabEls = [...el.querySelectorAll('.hd-tab')];
+            const btnEls = [...el.querySelectorAll('.hd-step-btn')];
+            const fillEls = [...el.querySelectorAll('.hd-step-fill')];
+
+            const kCache = stepEls.map((se) => {
+                const map = {};
+                se.querySelectorAll('[data-k]').forEach((node) => {
+                    map[node.getAttribute('data-k')] = node;
+                });
+                return map;
+            });
+
+            const updateScale = () => {
+                const w = view.clientWidth || 536;
+                view.style.setProperty('--k', (w / 1200).toFixed(4));
+            };
+            updateScale();
+            if (typeof ResizeObserver !== 'undefined') {
+                new ResizeObserver(updateScale).observe(view);
+            }
+
+            let idx = -1;
+            let t = 0;
+
+            const setCursor = (c) => {
+                if (!c || c.on === false) {
+                    cursorEl.classList.remove('on', 'press');
+                    return;
+                }
+                cursorEl.classList.add('on');
+                cursorEl.classList.toggle('press', !!c.press);
+                cursorEl.style.transform = `translate(${c.x}px, ${c.y}px)`;
+            };
+
+            const activate = (next) => {
+                idx = ((next % steps.length) + steps.length) % steps.length;
+                t = 0;
+                stepEls.forEach((se, j) => se.classList.toggle('on', j === idx));
+                const activeTab = steps[idx].tabIdx ?? Math.min(idx, tabEls.length - 1);
+                tabEls.forEach((te, j) => te.classList.toggle('on', j === activeTab));
+                btnEls.forEach((be, j) => {
+                    be.classList.toggle('on', j === idx);
+                    fillEls[j].style.width = j < idx ? '100%' : '0%';
+                });
+            };
+
+            const render = () => {
+                const s = steps[idx];
+                if (!s) return;
+                const dur = s.dur || 6;
+                const map = kCache[idx];
+                const $ = (k) => map[k] || stepEls[idx].querySelector(`[data-k="${k}"]`);
+                if (s.draw) s.draw(t, $, stepEls[idx]);
+                if (s.cursor) {
+                    const c = typeof s.cursor === 'function' ? s.cursor(t) : s.cursor;
+                    setCursor(c);
+                } else {
+                    setCursor({ on: false });
+                }
+                if (fillEls[idx]) {
+                    fillEls[idx].style.width = `${Math.min(100, (t / dur) * 100).toFixed(1)}%`;
+                }
+            };
+
+            activate(0);
+            render();
+
+            return {
+                updateScale,
+                seek(globalSec) {
+                    let rem = Math.max(0, globalSec);
+                    for (let j = 0; j < steps.length; j++) {
+                        const d = steps[j].dur || 6;
+                        if (rem < d || j === steps.length - 1) {
+                            if (idx !== j) activate(j);
+                            t = Math.min(d, rem);
+                            render();
+                            return;
+                        }
+                        rem -= d;
+                    }
+                }
+            };
+        }
+
+        let hdMountedWindows = [];
+        let hdShowcasePlaying = true;
+        let hdShowcaseClock = 0;
+        let hdShowcaseLastTs = performance.now();
+        const HD_TOTAL_SEC = 18;
+
+        function rebuildHdShowcaseForDeck(deckId, slidesArr) {
+            const deck = slideRepository[deckId] || slideRepository.gddp || slideRepository.cocoon;
+            const boss = bossList[selectedPresentationBoss] || bossList.gddp || bossList.media;
+
+            // Cập nhật tiêu đề trung tâm của 3D Showcase
+            const eyebrowEl = document.getElementById('hdHeroEyebrow');
+            if (eyebrowEl && boss) {
+                eyebrowEl.textContent = `✦ ${boss.subject} · ${boss.name} ✦`;
+            }
+            const mainTitleEl = document.getElementById('hdHeroTitleMain');
+            if (mainTitleEl && deck) {
+                mainTitleEl.textContent = deck.name;
+            }
+            const subTitleEl = document.getElementById('hdHeroTitleSub');
+            if (subTitleEl && deck) {
+                subTitleEl.textContent = `${deck.desc} (${slidesArr.length} trang slide tương tác)`;
+            }
+
+            const pickSlide = (n) => {
+                if (!slidesArr || !slidesArr.length) return 'images/mode_thuyettrinh/gddp_slides/slide_1.png';
+                const clamped = Math.min(Math.max(1, n), slidesArr.length);
+                return slidesArr[clamped - 1];
+            };
+
+            // Cập nhật slide đích khi click vào 6 cửa sổ 3D
+            const slotTargets = [1, Math.min(4, slidesArr.length), Math.min(8, slidesArr.length), Math.min(11, slidesArr.length), Math.min(12, slidesArr.length), Math.min(17, slidesArr.length)];
+            document.querySelectorAll('#hd-grid .hd-win-slot').forEach((slotEl, i) => {
+                const targetS = slotTargets[i] || 1;
+                slotEl.setAttribute('onclick', `closeHdShowcase(${targetS})`);
+                slotEl.setAttribute('title', `Bấm để phóng thẳng tới Slide ${targetS}`);
+            });
+
+            const s1 = pickSlide(1);
+            const s2 = pickSlide(2);
+            const s3 = pickSlide(3);
+            const s4 = pickSlide(4);
+            const s5 = pickSlide(5);
+            const s6 = pickSlide(6);
+            const s7 = pickSlide(7);
+            const s8 = pickSlide(8);
+            const s10 = pickSlide(10);
+            const s11 = pickSlide(11);
+            const s12 = pickSlide(12);
+            const s15 = pickSlide(15);
+            const s17 = pickSlide(17);
+            const s22 = pickSlide(22);
+
+            // CỬA SỐ 0: TRÌNH THIẾT KẾ & PHÂN TÍCH SLIDE MỞ ĐẦU
+            const w1Markup = `
+                <div class="w1">
+                    <div class="w1-top">
+                        <div class="brand"><span class="brand-dot"></span>${deck.name} · Studio</div>
+                        <div class="crumb">/ Chuyên đề / Slide 01 — 03</div>
+                        <div class="pill">Đang trình chiếu</div>
+                    </div>
+                    <div class="w1-side">
+                        <div class="w1-sec">Cấu trúc Slide</div>
+                        <div class="w1-layer" data-k="l0"><i></i>Slide 01 · Mở Đầu</div>
+                        <div class="w1-layer sel" data-k="l1"><i></i>Slide 02 · Bối Cảnh</div>
+                        <div class="w1-layer" data-k="l2"><i></i>Slide 03 · Tư Liệu</div>
+                        <div class="w1-layer" data-k="l3"><i></i>Slide 04 · Phân Tích</div>
+                        <div class="w1-sec" style="margin-top:10px">Tài nguyên</div>
+                        <div class="w1-layer"><i></i>61_Slide_GDDP.deck</div>
+                        <div class="w1-layer"><i></i>Am_Thanh_Chuyen.wav</div>
+                    </div>
+                    <div class="w1-canvas">
+                        <div class="w1-artboard">
+                            <div data-k="slide-bg" style="width:100%;height:100%;border-radius:8px;background:url('${s1}') center/cover no-repeat;transition:background-image 0.3s ease;"></div>
+                            <div class="w1-select-box" data-k="w1-box" style="left:24px;top:24px;width:440px;height:260px;">
+                                <div class="w1-select-tag" data-k="w1-tag">Slide 01 · Trang Bìa</div>
+                            </div>
+                        </div>
+                        <div class="w1-prompt-bar">
+                            <span class="spark">✦ AI</span>
+                            <span data-k="w1-prompt">Phân tích bố cục & tư liệu lịch sử Hà Nội...</span>
+                        </div>
+                    </div>
+                    <div class="w1-insp">
+                        <div class="w1-sec">Thuộc tính</div>
+                        <div class="w1-prop"><span>Tỷ lệ</span><b>16 : 9 HD</b></div>
+                        <div class="w1-prop"><span>Độ phân giải</span><b data-k="p-pad">1920 × 1080</b></div>
+                        <div class="w1-prop"><span>Hiệu ứng</span><b data-k="p-rad">3D Perspective</b></div>
+                        <div class="w1-prop"><span>Âm thanh</span><b data-k="p-sh">6 Whoosh SFX</b></div>
+                        <div class="w1-prop"><span>Tương tác</span><b style="color:#60a5fa">10 Câu A/B/C/D</b></div>
+                    </div>
+                </div>
+            `;
+
+            // CỬA SỔ 1: AI SCANLINE REVEAL SLIDE
+            const w2Markup = `
+                <div class="w2">
+                    <div class="w2-top">
+                        <div style="font-weight:700;color:#fff">✦ GDĐP Visual Engine</div>
+                        <div style="font-size:11px;color:#8c84a0">Chế độ kết xuất · 4K Slide</div>
+                        <div class="w2-credit">⚡ <span data-k="cred">2,400</span> điểm</div>
+                    </div>
+                    <div class="w2-side">
+                        <div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#7a7290;font-weight:700">Nội dung Slide</div>
+                        <div class="w2-box" data-k="prompt"></div>
+                        <div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#7a7290;font-weight:700">Thông số</div>
+                        <div style="padding:8px 10px;border-radius:7px;background:#1c1924;font-size:11.5px;color:#e5def5">Hồ sơ Đông Dương · v3</div>
+                        <div class="w2-gen-btn" data-k="genbtn">Quét độ nét Slide</div>
+                    </div>
+                    <div class="w2-stage">
+                        <div class="w2-art-wrap">
+                            <div class="w2-art-base" style="background-image:url('${s4}')"></div>
+                            <div class="w2-art-reveal" data-k="reveal" style="background-image:url('${s4}');clip-path:inset(0 0 100% 0)"></div>
+                            <div class="w2-scanline" data-k="scan" style="top:0%;opacity:0"></div>
+                        </div>
+                        <div class="w2-thumbs">
+                            <div class="w2-thumb on" data-k="th0" style="background-image:url('${s4}')"></div>
+                            <div class="w2-thumb" data-k="th1" style="background-image:url('${s5}')"></div>
+                            <div class="w2-thumb" data-k="th2" style="background-image:url('${s6}')"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // CỬA SỔ 2: GOLDEN RELIC CARD (ẤN PHẨM VÀNG)
+            const w3Markup = `
+                <div class="w3">
+                    <div class="w3-art" data-k="art" style="background-image:url('${s8}')"></div>
+                    <div class="w3-glint" data-k="glint"></div>
+                    <div class="w3-frame"></div>
+                    <svg viewBox="0 0 1200 750" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:5" data-k="sparks">
+                        <circle cx="240" cy="600" r="3" fill="#ffd98a" opacity="0.75"/>
+                        <circle cx="460" cy="540" r="2.2" fill="#ffefc2" opacity="0.6"/>
+                        <circle cx="820" cy="580" r="2.8" fill="#ffd98a" opacity="0.7"/>
+                        <circle cx="980" cy="480" r="2" fill="#ffefc2" opacity="0.55"/>
+                        <circle cx="620" cy="620" r="2.5" fill="#ffd98a" opacity="0.65"/>
+                    </svg>
+                    <div class="w3-caption">
+                        <div>
+                            <div class="w3-sub">Tư Liệu Lịch Sử · Trang 08</div>
+                            <div class="w3-title">${deck.name}</div>
+                        </div>
+                        <div style="font-size:11px;color:#d6b26d;font-family:ui-monospace,monospace">SLIDE #08 / ${slidesArr.length}</div>
+                    </div>
+                </div>
+            `;
+
+            // CỬA SỔ 3: BẢNG HỆ THỐNG CHUYÊN ĐỀ (4 SLIDE CARDS)
+            const w4Markup = `
+                <div class="w4">
+                    <div class="w4-head">
+                        <span>${deck.name} — Hệ Thống Chuyên Đề</span>
+                        <span>BỘ MÔN GDĐP · ${slidesArr.length} SLIDE</span>
+                    </div>
+                    <div class="w4-grid">
+                        <div class="w4-card" data-k="c0">
+                            <div style="font-size:10px;opacity:.65;font-weight:700">01 / MỞ ĐẦU</div>
+                            <div style="flex:1;margin:8px 0;border-radius:6px;background:url('${s1}') center/cover no-repeat;border:1px solid rgba(0,0,0,0.1)"></div>
+                            <div style="font-size:11px;font-weight:700">Trang Bìa Chuyên Đề</div>
+                        </div>
+                        <div class="w4-card hi" data-k="c1">
+                            <div style="font-size:10px;opacity:.65;font-weight:700">02 / NỘI DUNG</div>
+                            <div style="flex:1;margin:8px 0;border-radius:6px;background:url('${s7}') center/cover no-repeat;border:1px solid rgba(0,0,0,0.1)"></div>
+                            <div style="font-size:11px;font-weight:700">Phân Tích Thủ Phủ</div>
+                        </div>
+                        <div class="w4-card" data-k="c2">
+                            <div style="font-size:10px;opacity:.65;font-weight:700">03 / TỔNG KẾT</div>
+                            <div style="flex:1;margin:8px 0;border-radius:6px;background:url('${s10}') center/cover no-repeat;border:1px solid rgba(0,0,0,0.1)"></div>
+                            <div style="font-size:11px;font-weight:700">Tư Liệu Đông Dương</div>
+                        </div>
+                        <div class="w4-card" data-k="c3">
+                            <div style="font-size:10px;opacity:.65;font-weight:700">04 / TRẮC NGHIỆM</div>
+                            <div style="flex:1;margin:8px 0;border-radius:6px;background:url('${s11}') center/cover no-repeat;border:1px solid rgba(0,0,0,0.1)"></div>
+                            <div style="font-size:11px;font-weight:700">Mở Đầu 10 Câu Hỏi</div>
+                        </div>
+                    </div>
+                    <div class="w4-banner">
+                        <div>
+                            <div style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#a89f8c">Chuyên đề thuyết trình tương tác</div>
+                            <div class="w4-banner-big" data-k="ban">Giáo Dục Địa Phương — Cô Thuý Ngân</div>
+                        </div>
+                        <div style="padding:7px 14px;border-radius:999px;background:#f4efe2;color:#181612;font-size:11px;font-weight:800">Xem Slide 11 ▶</div>
+                    </div>
+                </div>
+            `;
+
+            // CỬA SỔ 4: SƠ ĐỒ LUỒNG 10 CÂU HỎI TRẮC NGHIỆM (NODE GRAPH)
+            const w5Markup = `
+                <div class="w5">
+                    <svg viewBox="0 0 1200 750" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none">
+                        <path d="M 305 210 C 390 210, 410 340, 490 340" stroke="#3b82f6" stroke-width="2.5" fill="none" stroke-dasharray="6 5" data-k="edge1"/>
+                        <path d="M 715 340 C 790 340, 810 220, 890 220" stroke="#10b981" stroke-width="2.5" fill="none" stroke-dasharray="6 5" data-k="edge2"/>
+                        <path d="M 715 380 C 790 380, 810 510, 890 510" stroke="#f59e0b" stroke-width="2.2" fill="none" stroke-dasharray="6 5" data-k="edge3"/>
+                    </svg>
+                    <div class="w5-node" style="left:80px;top:120px" data-k="n0">
+                        <div class="w5-node-h"><span class="w5-dot"></span>Slide 12 · Câu Hỏi 01</div>
+                        <div class="w5-node-b">
+                            <div class="w5-thumb" style="background-image:url('${s12}')"></div>
+                            Hiển thị 4 nút chọn đáp án tương tác <b>A, B, C, D</b> ngay đầu dòng.
+                        </div>
+                    </div>
+                    <div class="w5-node active" style="left:490px;top:245px" data-k="n1">
+                        <div class="w5-node-h"><span class="w5-dot" style="background:#fbbf24"></span>Bộ Định Tuyến Đáp Án</div>
+                        <div class="w5-node-b">
+                            <div class="w5-thumb" style="background-image:url('${s15}')"></div>
+                            Kiểm tra đáp án người thuyết trình chọn + phát Sound Effect chuyển trang.
+                        </div>
+                    </div>
+                    <div class="w5-node" style="left:890px;top:120px" data-k="n2">
+                        <div class="w5-node-h"><span class="w5-dot" style="background:#34d399"></span>Đúng → Sang Câu Tiếp</div>
+                        <div class="w5-node-b">
+                            <div class="w5-thumb" style="background-image:url('${s17}')"></div>
+                            Chuyển thẳng tới Slide 17 (Câu 2), Slide 22 (Câu 3)... đến hết Câu 10.
+                        </div>
+                    </div>
+                    <div class="w5-node" style="left:890px;top:430px" data-k="n3">
+                        <div class="w5-node-h"><span class="w5-dot" style="background:#ef4444"></span>Sai → Quay Lại Câu Hỏi</div>
+                        <div class="w5-node-b">
+                            Hiện trang giải thích vì sao sai, sau đó quay về trang câu hỏi để chọn lại.
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // CỬA SỔ 5: SPLIT LIVE SLIDE PREVIEW
+            const w6Markup = `
+                <div class="w6">
+                    <div class="w6-left">
+                        <div style="font-size:11px;color:#7d869e;font-weight:700;text-transform:uppercase;letter-spacing:.08em">Trình Chiếu Tương Tác</div>
+                        <div style="flex:1;border-radius:9px;background:#0c0f17;border:1px solid rgba(255,255,255,0.07);padding:14px;display:flex;flex-direction:column;gap:10px">
+                            <div style="height:12px;width:58%;border-radius:4px;background:#263149"></div>
+                            <div style="flex:1;border-radius:7px;background:url('${s12}') center/cover no-repeat;border:1px solid rgba(96,165,250,0.35)"></div>
+                            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">
+                                <div style="padding:6px;border-radius:6px;background:#854d0e;color:#fef3c7;text-align:center;font-weight:900;font-size:11px">A</div>
+                                <div style="padding:6px;border-radius:6px;background:#854d0e;color:#fef3c7;text-align:center;font-weight:900;font-size:11px">B</div>
+                                <div style="padding:6px;border-radius:6px;background:#10b981;color:#ffffff;text-align:center;font-weight:900;font-size:11px">C ✓</div>
+                                <div style="padding:6px;border-radius:6px;background:#854d0e;color:#fef3c7;text-align:center;font-weight:900;font-size:11px">D</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w6-right">
+                        <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:#8b95ad">
+                            <span style="width:8px;height:8px;border-radius:50%;background:#34d399"></span>
+                            <span>tccm.online/thuyet-trinh-gddp</span>
+                            <span style="margin-left:auto;color:#60a5fa;font-weight:600">61 Slide Live</span>
+                        </div>
+                        <div class="w6-site">
+                            <div data-k="scroll" style="display:flex;flex-direction:column;gap:12px;will-change:transform">
+                                <div style="height:195px;border-radius:8px;background:url('${s17}') center/cover no-repeat;border:1px solid rgba(255,255,255,0.12)"></div>
+                                <div style="height:195px;border-radius:8px;background:url('${s22}') center/cover no-repeat;border:1px solid rgba(255,255,255,0.12)"></div>
+                                <div style="height:195px;border-radius:8px;background:url('${s1}') center/cover no-repeat;border:1px solid rgba(255,255,255,0.12)"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            const win0 = mountHdWindow(document.getElementById('hd-win-0'), {
+                label: 'SLIDE 01 — 03',
+                tabs: ['Slide 01 · Mở Đầu', 'Slide 02 · Bối Cảnh', 'Phân Tích AI'],
+                steps: [
+                    {
+                        title: 'Chọn Slide Mở Đầu', dur: 6, tabIdx: 0, html: w1Markup,
+                        cursor: (t) => hdGlide(t, [[0, 0.9, 520, 260], [1.2, 2.4, 360, 190], [2.8, 4.2, 1060, 220]], [0.95, 2.45]),
+                        draw(t, $) {
+                            const p = hdEase(t, 1.0, 2.4);
+                            const box = $('w1-box');
+                            if (box) {
+                                box.style.left = `${24 + p * 30}px`;
+                                box.style.top = `${24 + p * 18}px`;
+                                box.style.width = `${440 - p * 40}px`;
+                                box.style.height = `${260 - p * 20}px`;
+                            }
+                            if ($('w1-prompt')) $('w1-prompt').textContent = hdTyped('Phân tích bối cảnh lịch sử chọn Hà Nội làm thủ phủ...', t, 0.4, 4.6);
+                        }
+                    },
+                    {
+                        title: 'Chuyển sang Slide 02', dur: 6, tabIdx: 1, html: w1Markup,
+                        cursor: (t) => hdGlide(t, [[0, 1.0, 110, 148], [1.3, 2.6, 510, 290], [3.0, 4.4, 1060, 260]], [1.0, 2.65]),
+                        draw(t, $) {
+                            const bg = $('slide-bg');
+                            if (bg) bg.style.backgroundImage = `url('${s2}')`;
+                            if ($('w1-tag')) $('w1-tag').textContent = 'Slide 02 · Bối Cảnh Đông Dương';
+                            if ($('w1-prompt')) $('w1-prompt').textContent = hdTyped('Đồng bộ hiệu ứng âm thanh chuyển trang Whoosh SFX...', t, 0.3, 4.5);
+                        }
+                    },
+                    {
+                        title: 'Chuyển sang Slide 03', dur: 6, tabIdx: 2, html: w1Markup,
+                        cursor: (t) => hdGlide(t, [[0, 1.1, 460, 560], [1.5, 3.0, 620, 260]], [1.15]),
+                        draw(t, $) {
+                            const bg = $('slide-bg');
+                            if (bg) bg.style.backgroundImage = `url('${s3}')`;
+                            if ($('w1-tag')) $('w1-tag').textContent = 'Slide 03 · Tư Liệu Lịch Sử';
+                            if ($('w1-prompt')) $('w1-prompt').textContent = '✓ Đã sẵn sàng trình chiếu 61 trang Slide GDĐP';
+                        }
+                    }
+                ]
+            });
+
+            const win1 = mountHdWindow(document.getElementById('hd-win-1'), {
+                label: 'SLIDE 04 — 06',
+                tabs: ['Tạo Cảnh Slide', 'Lịch Sử', 'Thư Viện'],
+                steps: [
+                    {
+                        title: 'Nhập nội dung Slide', dur: 6, tabIdx: 0, html: w2Markup,
+                        cursor: (t) => hdGlide(t, [[0, 0.8, 120, 140], [1.2, 2.6, 120, 520]], [0.85, 2.65]),
+                        draw(t, $) {
+                            if ($('prompt')) $('prompt').textContent = hdTyped('Bản đồ quy hoạch & kiến trúc Đông Dương trên Slide 04 — 06, độ phân giải cao.', t, 0.3, 3.4);
+                            const rev = $('reveal');
+                            const scan = $('scan');
+                            const p = hdEase(t, 2.7, 5.6);
+                            if (rev) rev.style.clipPath = `inset(0 0 ${(1 - p * 0.45) * 100}% 0)`;
+                            if (scan) {
+                                scan.style.opacity = t > 2.65 ? '1' : '0';
+                                scan.style.top = `${p * 45}%`;
+                            }
+                        }
+                    },
+                    {
+                        title: 'Quét nét Slide 4K', dur: 6, tabIdx: 0, html: w2Markup,
+                        cursor: (t) => hdGlide(t, [[0, 1.4, 620, 380], [2.0, 3.6, 1080, 220]], []),
+                        draw(t, $) {
+                            if ($('prompt')) $('prompt').textContent = 'Bản đồ quy hoạch & kiến trúc Đông Dương trên Slide 04 — 06, độ phân giải cao.';
+                            const p = 0.45 + hdEase(t, 0, 4.6) * 0.55;
+                            const rev = $('reveal');
+                            const scan = $('scan');
+                            if (rev) rev.style.clipPath = `inset(0 0 ${(1 - p) * 100}% 0)`;
+                            if (scan) {
+                                scan.style.opacity = p < 0.99 ? '1' : '0';
+                                scan.style.top = `${p * 100}%`;
+                            }
+                            if ($('cred')) $('cred').textContent = (2400 - Math.round(p * 7)).toLocaleString();
+                        }
+                    },
+                    {
+                        title: 'Duyệt bộ Slide', dur: 6, tabIdx: 2, html: w2Markup,
+                        cursor: (t) => hdGlide(t, [[0, 1.1, 1090, 360], [1.6, 3.0, 640, 360]], [1.15, 3.05]),
+                        draw(t, $) {
+                            if ($('prompt')) $('prompt').textContent = 'Bản đồ quy hoạch & kiến trúc Đông Dương trên Slide 04 — 06, độ phân giải cao.';
+                            if ($('reveal')) $('reveal').style.clipPath = 'inset(0 0 0% 0)';
+                            if ($('scan')) $('scan').style.opacity = '0';
+                            const sel = t > 1.15 ? 1 : 0;
+                            ['th0', 'th1', 'th2'].forEach((k, i) => {
+                                const el = $(k);
+                                if (el) el.classList.toggle('on', i === sel);
+                            });
+                        }
+                    }
+                ]
+            });
+
+            const win2 = mountHdWindow(document.getElementById('hd-win-2'), {
+                label: 'SLIDE 08',
+                tabs: ['Tư Liệu Vàng'],
+                steps: [
+                    {
+                        title: 'Ánh kim lướt qua', dur: 6, tabIdx: 0, html: w3Markup,
+                        draw(t, $) {
+                            const p = hdEase(t, 0.3, 5.4);
+                            const g = $('glint');
+                            if (g) g.style.transform = `translateX(${-55 + p * 110}%)`;
+                            const sp = $('sparks');
+                            if (sp) sp.style.transform = `translateY(${-t * 6}px)`;
+                        }
+                    },
+                    {
+                        title: 'Phóng cận cảnh tư liệu', dur: 6, tabIdx: 0, html: w3Markup,
+                        draw(t, $) {
+                            const p = hdEase(t, 0, 5.5);
+                            const art = $('art');
+                            if (art) art.style.transform = `scale(${1 + p * 0.045})`;
+                            const g = $('glint');
+                            if (g) g.style.transform = `translateX(${55 - p * 110}%)`;
+                        }
+                    },
+                    {
+                        title: 'Hạt sáng cổ điển', dur: 6, tabIdx: 0, html: w3Markup,
+                        draw(t, $) {
+                            const p = hdEase(t, 0, 5.5);
+                            const art = $('art');
+                            if (art) art.style.transform = `scale(${1.045 - p * 0.045})`;
+                            const g = $('glint');
+                            if (g) g.style.transform = `translateX(${-40 + p * 80}%)`;
+                        }
+                    }
+                ]
+            });
+
+            const win3 = mountHdWindow(document.getElementById('hd-win-3'), {
+                label: 'SLIDE 01 — 11',
+                tabs: ['Tổng Quan', 'Chuyên Đề', 'Bố Cục'],
+                steps: [
+                    {
+                        title: 'Duyệt thẻ Chuyên đề', dur: 6, tabIdx: 0, html: w4Markup,
+                        cursor: (t) => hdGlide(t, [[0, 1.2, 430, 290], [1.6, 3.2, 720, 290], [3.5, 5.0, 980, 290]], [1.25, 3.25]),
+                        draw(t, $) {
+                            const hi = t < 1.5 ? 1 : t < 3.4 ? 2 : 3;
+                            ['c0', 'c1', 'c2', 'c3'].forEach((k, i) => {
+                                const el = $(k);
+                                if (el) el.classList.toggle('hi', i === hi);
+                            });
+                        }
+                    },
+                    {
+                        title: 'Tiêu đề Chuyên đề', dur: 6, tabIdx: 1, html: w4Markup,
+                        cursor: (t) => hdGlide(t, [[0, 1.4, 520, 620], [1.8, 3.6, 980, 620]], [1.45]),
+                        draw(t, $) {
+                            const ban = $('ban');
+                            if (ban) {
+                                const p = hdEase(t, 0.6, 3.6);
+                                ban.style.letterSpacing = `${(-0.02 + p * 0.025).toFixed(3)}em`;
+                            }
+                        }
+                    },
+                    {
+                        title: 'Sẵn sàng vào Trắc nghiệm', dur: 6, tabIdx: 2, html: w4Markup,
+                        cursor: (t) => hdGlide(t, [[0, 1.2, 180, 290], [1.6, 3.4, 1020, 620]], [3.45]),
+                        draw(t, $) {
+                            ['c0', 'c1', 'c2', 'c3'].forEach((k, i) => {
+                                const el = $(k);
+                                if (el) el.classList.toggle('hi', i === 3);
+                            });
+                        }
+                    }
+                ]
+            });
+
+            const win4 = mountHdWindow(document.getElementById('hd-win-4'), {
+                label: 'SLIDE 12 — 61',
+                tabs: ['Sơ Đồ 10 Câu Hỏi', 'Luồng Đáp Án'],
+                steps: [
+                    {
+                        title: 'Luồng chọn đáp án A/B/C/D', dur: 6, tabIdx: 0, html: w5Markup,
+                        cursor: (t) => hdGlide(t, [[0, 1.2, 200, 220], [1.5, 3.1, 600, 350], [3.4, 4.8, 1000, 220]], [1.25, 3.15]),
+                        draw(t, $) {
+                            ['edge1', 'edge2', 'edge3'].forEach((k) => {
+                                const el = $(k);
+                                if (el) el.style.strokeDashoffset = `${(-t * 24).toFixed(1)}`;
+                            });
+                        }
+                    },
+                    {
+                        title: 'Kiểm tra Đúng / Sai', dur: 6, tabIdx: 0, html: w5Markup,
+                        cursor: (t) => hdGlide(t, [[0, 1.4, 600, 350], [1.8, 3.4, 1000, 500]], [1.45, 3.45]),
+                        draw(t, $) {
+                            ['edge1', 'edge2', 'edge3'].forEach((k) => {
+                                const el = $(k);
+                                if (el) el.style.strokeDashoffset = `${(-t * 24).toFixed(1)}`;
+                            });
+                            if ($('n2')) $('n2').classList.toggle('active', t > 1.6);
+                        }
+                    },
+                    {
+                        title: 'Chuyển sang Câu kế tiếp', dur: 6, tabIdx: 1, html: w5Markup,
+                        cursor: (t) => hdGlide(t, [[0, 1.5, 1000, 220], [2.0, 3.8, 600, 350]], [1.55]),
+                        draw(t, $) {
+                            ['edge1', 'edge2', 'edge3'].forEach((k) => {
+                                const el = $(k);
+                                if (el) el.style.strokeDashoffset = `${(-t * 24).toFixed(1)}`;
+                            });
+                        }
+                    }
+                ]
+            });
+
+            const win5 = mountHdWindow(document.getElementById('hd-win-5'), {
+                label: 'LIVE PREVIEW',
+                tabs: ['Trình Chiếu Trực Tiếp', 'Kiểm Thử'],
+                steps: [
+                    {
+                        title: 'Cuộn xem trước các Slide', dur: 6, tabIdx: 0, html: w6Markup,
+                        cursor: (t) => hdGlide(t, [[0, 1.2, 860, 260], [1.6, 3.8, 860, 480]], [1.25]),
+                        draw(t, $) {
+                            const sc = $('scroll');
+                            if (sc) {
+                                const p = hdEase(t, 1.0, 4.8);
+                                sc.style.transform = `translateY(${-p * 110}px)`;
+                            }
+                        }
+                    },
+                    {
+                        title: 'Kiểm tra nút A, B, C, D', dur: 6, tabIdx: 1, html: w6Markup,
+                        cursor: (t) => hdGlide(t, [[0, 1.4, 300, 540], [1.8, 3.6, 860, 300]], [1.45]),
+                        draw(t, $) {
+                            const sc = $('scroll');
+                            if (sc) {
+                                const p = 1 - hdEase(t, 0.6, 4.4);
+                                sc.style.transform = `translateY(${-p * 110}px)`;
+                            }
+                        }
+                    },
+                    {
+                        title: 'Hoàn tất đồng bộ', dur: 6, tabIdx: 0, html: w6Markup,
+                        cursor: (t) => hdGlide(t, [[0, 1.4, 920, 220], [1.8, 3.6, 420, 320]], [1.5]),
+                        draw() {}
+                    }
+                ]
+            });
+
+            hdMountedWindows = [
+                { ctrl: win0, offset: 0.0 },
+                { ctrl: win1, offset: 2.2 },
+                { ctrl: win2, offset: 4.1 },
+                { ctrl: win3, offset: 1.3 },
+                { ctrl: win4, offset: 3.4 },
+                { ctrl: win5, offset: 5.0 }
+            ];
+            renderHdShowcaseScene(hdShowcaseClock);
+        }
+
+        function renderHdShowcaseScene(s) {
+            const t = ((s % HD_TOTAL_SEC) + HD_TOTAL_SEC) % HD_TOTAL_SEC;
+            hdMountedWindows.forEach((m) => {
+                if (m.ctrl) m.ctrl.seek((s + m.offset) % HD_TOTAL_SEC);
+            });
+
+            const gridEl = document.getElementById('hd-grid');
+            if (gridEl) {
+                const vw = window.innerWidth;
+                const vh = window.innerHeight;
+                const baseScale = Math.min(vw / 1600, vh / 920) * 1.01;
+                const intro = hdEase(s, 0, 1.6);
+                const driftX = Math.sin((t / HD_TOTAL_SEC) * Math.PI * 2) * 10;
+                const driftY = Math.cos((t / HD_TOTAL_SEC) * Math.PI * 2) * 6;
+                const rotX = 20 + intro * 7 + Math.sin((t / HD_TOTAL_SEC) * Math.PI * 2) * 1.1;
+                const rotY = (0 + intro * 4) + Math.cos((t / HD_TOTAL_SEC) * Math.PI * 2) * 1.1;
+                const rotZ = -8.5 + Math.sin((t / HD_TOTAL_SEC) * Math.PI * 2) * 0.45;
+                const scale = baseScale * (0.9 + intro * 0.1);
+                gridEl.style.transform = `translate3d(${driftX.toFixed(2)}px, ${(driftY - 6).toFixed(2)}px, 0px) scale(${scale.toFixed(4)}) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) rotateZ(${rotZ.toFixed(2)}deg)`;
+            }
+
+            const warpEl = document.getElementById('hd-warp-lines');
+            if (warpEl) {
+                const wx = (s * 7) % 42;
+                const wy = (s * 4) % 25;
+                warpEl.style.transform = `translate(${wx.toFixed(1)}px, ${wy.toFixed(1)}px)`;
+            }
+
+            const rangeEl = document.getElementById('hdClockRange');
+            const labelEl = document.getElementById('hdClockLabel');
+            if (rangeEl) rangeEl.value = t.toFixed(2);
+            if (labelEl) labelEl.textContent = `${t.toFixed(1)}s / ${HD_TOTAL_SEC.toFixed(1)}s`;
+        }
+
+        function isHdShowcaseOpen() {
+            const ps = document.getElementById('presentScreen');
+            return !!(ps && ps.classList.contains('hd-showcase-open'));
+        }
+
+        function openHdShowcase(resetClock = false) {
+            const ps = document.getElementById('presentScreen');
+            if (!ps) return;
+            if (!hdMountedWindows.length) {
+                const deck = slideRepository[currentSelectedDeckId] || slideRepository.gddp;
+                const slides = [];
+                if (currentSelectedDeckId === 'custom' && customUploadedSlides.length > 0) {
+                    slides.push(...customUploadedSlides);
+                } else if (deck) {
+                    for (let i = 1; i <= deck.count; i++) slides.push(`${deck.prefix}${i}${deck.suffix}`);
+                }
+                rebuildHdShowcaseForDeck(currentSelectedDeckId, slides);
+            }
+            if (resetClock) {
+                hdShowcaseClock = 0;
+                hdShowcasePlaying = true;
+            }
+            ps.classList.add('hd-showcase-open');
+            const toggleBtn = document.getElementById('hdToggleBtn');
+            if (toggleBtn) {
+                toggleBtn.innerHTML = '🎯 VÀO SLIDE';
+                toggleBtn.style.color = '#FBBF24';
+            }
+            hdMountedWindows.forEach((m) => m.ctrl && m.ctrl.updateScale && m.ctrl.updateScale());
+            renderHdShowcaseScene(hdShowcaseClock);
+        }
+
+        function closeHdShowcase(targetSlide = null) {
+            const ps = document.getElementById('presentScreen');
+            if (!ps) return;
+            const wasOpen = ps.classList.contains('hd-showcase-open');
+            ps.classList.remove('hd-showcase-open');
+            const toggleBtn = document.getElementById('hdToggleBtn');
+            if (toggleBtn) {
+                toggleBtn.innerHTML = '🌌 3D INTRO';
+                toggleBtn.style.color = '#60A5FA';
+            }
+            if (targetSlide !== null && targetSlide >= 1) {
+                goToDeckSlide(targetSlide, false);
+            }
+            if (wasOpen) {
+                playSlideTransitionSfx();
+            }
+        }
+
+        function toggleHdShowcase() {
+            if (isHdShowcaseOpen()) {
+                closeHdShowcase();
+            } else {
+                playSlideTransitionSfx();
+                openHdShowcase(true);
+            }
+        }
+
+        // Khởi tạo điều khiển HUD & vòng lặp 60fps cho hiệu ứng 3D Showcase
+        (function initHdShowcaseLoop() {
+            const playBtn = document.getElementById('hdPlayBtn');
+            const playIcon = document.getElementById('hdPlayIcon');
+            const rangeEl = document.getElementById('hdClockRange');
+            const setPlayIcon = () => {
+                if (!playIcon) return;
+                playIcon.innerHTML = hdShowcasePlaying
+                    ? '<rect x="2" y="1.5" width="3" height="9" rx="0.8"/><rect x="7" y="1.5" width="3" height="9" rx="0.8"/>'
+                    : '<path d="M3 1.8L10.2 6L3 10.2V1.8Z"/>';
+            };
+            if (playBtn) {
+                playBtn.addEventListener('click', () => {
+                    hdShowcasePlaying = !hdShowcasePlaying;
+                    setPlayIcon();
+                });
+            }
+            if (rangeEl) {
+                rangeEl.addEventListener('input', () => {
+                    hdShowcasePlaying = false;
+                    setPlayIcon();
+                    hdShowcaseClock = parseFloat(rangeEl.value) || 0;
+                    renderHdShowcaseScene(hdShowcaseClock);
+                });
+            }
+            window.addEventListener('resize', () => {
+                if (currentScreen === 'present') {
+                    renderHdShowcaseScene(hdShowcaseClock);
+                }
+            });
+
+            function tickHd(now) {
+                const dt = Math.min(0.1, (now - hdShowcaseLastTs) / 1000);
+                hdShowcaseLastTs = now;
+                if (currentScreen === 'present' && hdShowcasePlaying) {
+                    hdShowcaseClock = (hdShowcaseClock + dt) % HD_TOTAL_SEC;
+                    renderHdShowcaseScene(hdShowcaseClock);
+                }
+                requestAnimationFrame(tickHd);
+            }
+            requestAnimationFrame(tickHd);
+        })();
 
         // SLIDE DECK LOGIC
         function goToDeckSlide(n, playSfx = true){
@@ -7391,6 +9119,10 @@
         }
 
         function nextDeckSlide(){
+            if(isHdShowcaseOpen()){
+                closeHdShowcase();
+                return;
+            }
             if(currentSelectedDeckId === 'gddp'){
                 // Nếu đang ở trang nhận xét đáp án (Đúng / Sai)
                 const fb = gddpQuizFeedbackMap[currentDeckSlide];
@@ -7422,6 +9154,10 @@
         }
 
         function prevDeckSlide(){
+            if(isHdShowcaseOpen()){
+                closeHdShowcase();
+                return;
+            }
             if(currentSelectedDeckId === 'gddp'){
                 const fb = gddpQuizFeedbackMap[currentDeckSlide];
                 if(fb){
@@ -7433,7 +9169,12 @@
                     return;
                 }
             }
-            if(currentDeckSlide > 1) goToDeckSlide(currentDeckSlide - 1);
+            if(currentDeckSlide > 1) {
+                goToDeckSlide(currentDeckSlide - 1);
+            } else {
+                playSlideTransitionSfx();
+                openHdShowcase(true);
+            }
         }
 
         function goToEndingScreen(){
@@ -7634,7 +9375,15 @@
                 if(e.key==='Escape')goBackToMenu();
             }else if(currentScreen==='present'){
                 if(e.key==='Escape'){goBackToMenu();charConfirmed=false;}
-                else if(currentSelectedDeckId === 'gddp' && gddpQuizConfig[currentDeckSlide] && ['a','A','1','b','B','2','c','C','3','d','D','4'].includes(e.key)){
+                else if(e.key==='0'||e.key==='i'||e.key==='I'){
+                    e.preventDefault();
+                    toggleHdShowcase();
+                }
+                else if(isHdShowcaseOpen() && (e.key==='Enter'||e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' ')){
+                    e.preventDefault();
+                    closeHdShowcase();
+                }
+                else if(!isHdShowcaseOpen() && currentSelectedDeckId === 'gddp' && gddpQuizConfig[currentDeckSlide] && ['a','A','1','b','B','2','c','C','3','d','D','4'].includes(e.key)){
                     e.preventDefault();
                     const keyMap = { a:'A', A:'A', '1':'A', b:'B', B:'B', '2':'B', c:'C', C:'C', '3':'C', d:'D', D:'D', '4':'D' };
                     selectGddpAnswer(currentDeckSlide, keyMap[e.key]);
