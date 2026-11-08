@@ -1,7 +1,7 @@
 /**
- * MINIGAMES & YU-GI-OH DUEL SYSTEM CHO ĐẠI HỌC HẢI PHÒNG
+ * MINIGAMES & YU-GI-OH DUEL SYSTEM CHO TRƯỜNG THPT CAO BÁ QUÁT
  * Chứa:
- * 1. Đấu Thẻ Bài Sinh Viên ĐH Hải Phòng (Yu-Gi-Oh Card Battle)
+ * 1. Đấu Thẻ Bài THPT Cao Bá Quát (Yu-Gi-Oh Card Battle)
  * 2. Vòng Quay Né Deadline & Thoát Nợ Quỹ (Lucky Wheel)
  * 3. Bộ lọc & Tự động chuyển đổi sự kiện theo ngày (Event Theme Auto-Switcher)
  */
@@ -58,11 +58,11 @@ function setManualEventTheme(themeKey) {
     localStorage.setItem('QL_EVENT_THEME_OVERRIDE', themeKey);
     const active = themeKey === 'auto' ? getAutoEventTheme() : themeKey;
     applyEventTheme(active);
-    showNotify(themeKey === 'auto' ? '⚡ Đã bật Chế độ Tự động theo lịch sự kiện!' : `🎉 Đã chọn giao diện: ${themeKey === 'quockhanh' ? 'Quốc Khánh 2/9' : 'ĐH Hải Phòng'}`);
+    showNotify(themeKey === 'auto' ? '⚡ Đã bật Chế độ Tự động theo lịch sự kiện!' : `🎉 Đã chọn giao diện: ${themeKey === 'quockhanh' ? 'Quốc Khánh 2/9' : 'THPT Cao Bá Quát'}`);
 }
 
 // ==========================================
-// 2. YU-GI-OH CARD BATTLE SYSTEM (ĐH HẢI PHÒNG)
+// 2. YU-GI-OH CARD BATTLE SYSTEM (THPT CAO BÁ QUÁT)
 // ==========================================
 
 // --- YGO SPRITE ANIMATION SYSTEM ---
@@ -287,7 +287,7 @@ const YGO_CARDS_DATABASE = [
     {
         id: "c_thaytruong",
         name: "THẦY TRƯỜNG",
-        title: "Tiền Đạo Media ĐHHP",
+        title: "Tiền Đạo Media THPT Cao Bá Quát",
         type: "monster",
         stars: 7,
         atk: 2800,
@@ -791,7 +791,7 @@ function ygoShowResultOverlay(isWin) {
     const icon = isWin ? '🏆' : '💀';
     const title = isWin ? 'CHIẾN THẮNG!' : 'THẤT BẠI!';
     const subtitle = isWin
-        ? 'BẠN ĐÃ ĐÁNH BẠI ĐỐI THỦ TRÊN ĐẤU TRƯỜNG THẺ BÀI ĐH HẢI PHÒNG!'
+        ? 'BẠN ĐÃ ĐÁNH BẠI ĐỐI THỦ TRÊN ĐẤU TRƯỜNG THẺ BÀI THPT CAO BÁ QUÁT!'
         : 'BẠN ĐÃ HẾT ĐIỂM LP! THỬ LẠI TRẬN ĐẤU MỚI.';
     const btnColor = isWin ? 'from-emerald-500 to-green-600' : 'from-rose-600 to-red-700';
 

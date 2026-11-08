@@ -174,7 +174,7 @@ function renderNeuHandwritten() {
             <!-- Vùng hiển thị ảnh vở thật -->
             <div class="lg:w-1/2 flex flex-col items-center">
                 <div class="relative group w-full bg-slate-900 rounded-2xl overflow-hidden shadow-inner cursor-pointer" onclick="openNeuLightbox(${globalIndex})">
-                    <img src="${imgSrc}" alt="${page.title}" class="w-full h-auto max-h-[560px] object-contain mx-auto transition-transform duration-300 group-hover:scale-[1.02]">
+                    <img src="${imgSrc}" alt="${page.title}" loading="lazy" decoding="async" class="w-full h-auto max-h-[560px] object-contain mx-auto transition-transform duration-300 group-hover:scale-[1.02]">
                     <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-3">
                         <span class="px-4 py-2 rounded-xl bg-white text-gray-950 font-black text-xs shadow-lg flex items-center gap-2">
                             <i class="fa-solid fa-magnifying-glass-plus"></i> Nhấp để phóng to
@@ -328,7 +328,5 @@ document.addEventListener("keydown", function(e) {
     }
 });
 
-// Tự động khởi tạo khi DOM tải xong
-document.addEventListener("DOMContentLoaded", () => {
-    initNeuHandwritten();
-});
+// Chỉ khởi tạo khi mở viewNeuHandwritten để tránh tải ảnh nặng khi vừa mở trang
+

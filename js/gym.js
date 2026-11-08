@@ -94,7 +94,7 @@ function renderGymWorkout() {
 
             <!-- Khung hiển thị ảnh GIF chuyển động lặp -->
             <div class="bg-slate-950 p-2 sm:p-3 flex items-center justify-center">
-                <img src="${item.gifUrl}" alt="${item.name}" class="w-full h-auto max-h-[420px] object-contain rounded-2xl">
+                <img src="${item.gifUrl}" alt="${item.name}" loading="lazy" decoding="async" class="w-full h-auto max-h-[420px] object-contain rounded-2xl">
             </div>
         </div>
         `;
@@ -103,7 +103,5 @@ function renderGymWorkout() {
     container.innerHTML = html;
 }
 
-// Tự động render khi tải trang
-document.addEventListener('DOMContentLoaded', () => {
-    renderGymWorkout();
-});
+// Chỉ render khi người dùng mở tab Gym Workout (switchView('viewGymWorkout')) để tránh tải 14MB GIF khi mở trang
+

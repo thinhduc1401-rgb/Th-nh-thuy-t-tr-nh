@@ -221,6 +221,7 @@ function switchView(viewId) {
     if (viewId === "viewOnlineClass") renderOnlineClasses();
     if (viewId === "viewFoodNearby" && typeof renderFoodNearby === "function") renderFoodNearby();
     if (viewId === "viewGymWorkout" && typeof renderGymWorkout === "function") renderGymWorkout();
+    if (viewId === "viewNeuHandwritten" && typeof renderNeuHandwritten === "function") renderNeuHandwritten();
     if (viewId === "viewSoundboard" && typeof renderSoundboardGrid === "function") renderSoundboardGrid();
     if (typeof updateSbBottomBarVisibility === "function") updateSbBottomBarVisibility(viewId === "viewSoundboard");
     window.scrollTo({ top: 0, behavior: "smooth" });

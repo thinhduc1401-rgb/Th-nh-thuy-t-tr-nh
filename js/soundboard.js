@@ -713,11 +713,10 @@
         }
     }
 
-    // Init on DOM ready
+    // Init on DOM ready (lazy render grid when viewSoundboard opens)
     function initSoundboard() {
         loadFavorites();
         updateCategoryCountBadges();
-        renderSoundboardGrid();
         initBottomSliderUI();
 
         // Keyboard navigation (Space to pause/play, Escape to stop)

@@ -1011,7 +1011,7 @@
                 <div class="relative w-full aspect-[16/9] bg-black rounded-2xl overflow-hidden border border-slate-700/80 mb-3.5 group cursor-pointer shadow-inner" 
                      onclick="openTextLightbox('${item.imgSrc}', '${escapeJsString(item.name)}', '${escapeJsString(item.code)}')"
                      title="Bấm để phóng to xem Full HD">
-                    <img src="${item.imgSrc}" alt="${item.name}" 
+                    <img src="${item.imgSrc}" alt="${item.name}" loading="lazy" decoding="async"
                          class="w-full h-full object-contain p-2 transition-transform duration-300 group-hover:scale-105"
                          onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'500\\' height=\\'280\\' fill=\\'%231e293b\\'><rect width=\\'100%\\' height=\\'100%\\'/><text x=\\'50%\\' y=\\'50%\\' fill=\\'%2364748b\\' text-anchor=\\'middle\\'>${item.name}</text></svg>'">
                     <div class="absolute bottom-2.5 right-2.5 px-3 py-1 rounded-xl bg-black/85 text-xs text-white/95 font-mono font-bold border border-white/20 backdrop-blur-md">
@@ -1514,18 +1514,32 @@
         }
     };
 
-    // Init on load
-    function initEditorResources() {
+    let editorInitialized = false;
+    function ensureEditorRendered() {
+        if (editorInitialized) return;
+        editorInitialized = true;
         loadSfxFavorites();
         updateSfxFavoriteBadges();
         renderText3DGrid();
         renderSFXGrid();
-        switchEditorTab('text3d');
+        switchEditorTab(EditorState.activeTab || 'text3d');
     }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initEditorResources);
-    } else {
-        initEditorResources();
-    }
+    const origSwitchEditorTab = switchEditorTab;
+    window.switchEditorTab = function(tabName) {
+        if (!editorInitialized) {
+            editorInitialized = true;
+            loadSfxFavorites();
+            updateSfxFavoriteBadges();
+            renderText3DGrid();
+            renderSFXGrid();
+        }
+        origSwitchEditorTab(tabName);
+    };
+
+    const prevUpdateSbBottomBar = window.updateSbBottomBarVisibility;
+    window.updateSbBottomBarVisibility = function(show) {
+        if (show) ensureEditorRendered();
+        if (prevUpdateSbBottomBar) prevUpdateSbBottomBar(show);
+    };
 })();

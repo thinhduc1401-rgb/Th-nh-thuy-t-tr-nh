@@ -2532,13 +2532,13 @@
     </style>
 </head>
 <body>
-    <video class="bg-video" id="mitchumBgVideo" autoplay muted loop playsinline style="display:none;object-fit:cover;width:100%;height:100%;position:fixed;inset:0;z-index:0;">
+    <video class="bg-video" id="mitchumBgVideo" muted loop playsinline preload="none" style="display:none;object-fit:cover;width:100%;height:100%;position:fixed;inset:0;z-index:0;">
         <source src="images/mode_thuyettrinh/dhhp_bg_video.mp4" type="video/mp4">
     </video>
-    <video class="bg-video" id="defaultBgVideo" autoplay muted loop playsinline style="display:none;"><source src="images/mode_quockhanh/bg-video.mp4?v=5" type="video/mp4"></video>
+    <video class="bg-video" id="defaultBgVideo" muted loop playsinline preload="none" style="display:none;"><source src="images/mode_quockhanh/bg-video.mp4?v=5" type="video/mp4"></video>
     
     <img class="bg-video" id="mainBgImg" src="images/bg-school-cbq.jpg" alt="THPT Cao Bá Quát Background" style="display:block;object-fit:cover;width:100%;height:100%;position:fixed;inset:0;z-index:0;">
-    <img class="bg-video" id="soloBgImg" src="images/bg-school-cbq.jpg" alt="THPT Cao Bá Quát Background" style="display:none;object-fit:cover;width:100%;height:100%;position:fixed;inset:0;z-index:0;">
+    <img class="bg-video" id="soloBgImg" src="images/bg-school-cbq.jpg" loading="lazy" decoding="async" alt="THPT Cao Bá Quát Background" style="display:none;object-fit:cover;width:100%;height:100%;position:fixed;inset:0;z-index:0;">
     <div class="overlay" id="mainOverlay"></div>
     <div class="scanlines"></div>
     
@@ -2564,10 +2564,10 @@
 
     <!-- MÀN 1: MAIN MENU (HỖ TRỢ THPT CAO BÁ QUÁT & QUỐC KHÁNH 2/9) -->
     <div class="screen hidden" id="menuScreen" style="display:flex;flex-direction:column;justify-content:flex-end;align-items:center;padding-bottom:100px;">
-        <!-- BLOCK 1: ĐH HẢI PHÒNG · ĐẲNG CẤP THUYẾT TRÌNH -->
+        <!-- BLOCK 1: TRƯỜNG THPT CAO BÁ QUÁT · ĐẲNG CẤP THUYẾT TRÌNH -->
         <div class="w-full max-w-sm sm:max-w-md px-4 mx-auto text-center" id="menuContentDhhp" style="display:flex;flex-direction:column;align-items:center;">
-            <!-- TIÊU ĐỀ NỔI BẬT: ĐH HẢI PHÒNG · ĐẲNG CẤP THUYẾT TRÌNH -->
-            <div class="text-xs font-black tracking-widest text-amber-300 uppercase mb-1 drop-shadow-md">TRƯỜNG ĐẠI HỌC HẢI PHÒNG</div>
+            <!-- TIÊU ĐỀ NỔI BẬT: TRƯỜNG THPT CAO BÁ QUÁT · ĐẲNG CẤP THUYẾT TRÌNH -->
+            <div class="text-xs font-black tracking-widest text-amber-300 uppercase mb-1 drop-shadow-md">TRƯỜNG THPT CAO BÁ QUÁT</div>
             <h1 class="text-2xl sm:text-3xl font-black uppercase tracking-wider leading-tight mb-5" style="color: #fbbf24; text-shadow: 0 0 20px rgba(245,158,11,0.7), 0 2px 8px rgba(0,0,0,0.9); white-space:nowrap;">
                 ĐẲNG CẤP THUYẾT TRÌNH
             </h1>
@@ -2718,89 +2718,13 @@
             </div>
         </div>
 
-        <div class="slide-deck-container" id="slideDeck">
-
-            <!-- SLIDE 1 -->
-            <div class="deck-slide active" id="deck-s-1">
-                <img src="images/mode_thuyettrinh/pp_slides/slide_1.png?v=v5_clean" class="slide-full-img" alt="Slide 1">
-            </div>
-
-            <!-- SLIDE 2 -->
-            <div class="deck-slide" id="deck-s-2">
-                <img src="images/mode_thuyettrinh/pp_slides/slide_2.png?v=v5_clean" class="slide-full-img" alt="Slide 2">
-            </div>
-
-            <!-- SLIDE 3 -->
-            <div class="deck-slide" id="deck-s-3">
-                <img src="images/mode_thuyettrinh/pp_slides/slide_3.png?v=v5_clean" class="slide-full-img" alt="Slide 3">
-            </div>
-
-            <!-- SLIDE 4 -->
-            <div class="deck-slide" id="deck-s-4">
-                <img src="images/mode_thuyettrinh/pp_slides/slide_4.png?v=v5_clean" class="slide-full-img" alt="Slide 4">
-            </div>
-
-            <!-- SLIDE 5 -->
-            <div class="deck-slide" id="deck-s-5">
-                <img src="images/mode_thuyettrinh/pp_slides/slide_5.png?v=v5_clean" class="slide-full-img" alt="Slide 5">
-            </div>
-
-            <!-- SLIDE 6 -->
-            <div class="deck-slide" id="deck-s-6">
-                <img src="images/mode_thuyettrinh/pp_slides/slide_6.png?v=v5_clean" class="slide-full-img" alt="Slide 6">
-            </div>
-
-            <!-- SLIDE 7 -->
-            <div class="deck-slide" id="deck-s-7">
-                <img src="images/mode_thuyettrinh/pp_slides/slide_7.png?v=v5_clean" class="slide-full-img" alt="Slide 7">
-            </div>
-
-            <!-- SLIDE 8 -->
-            <div class="deck-slide" id="deck-s-8">
-                <img src="images/mode_thuyettrinh/pp_slides/slide_8.png?v=v5_clean" class="slide-full-img" alt="Slide 8">
-            </div>
-
-            <!-- SLIDE 9 -->
-            <div class="deck-slide" id="deck-s-9">
-                <img src="images/mode_thuyettrinh/pp_slides/slide_9.png?v=v5_clean" class="slide-full-img" alt="Slide 9">
-            </div>
-
-            <!-- SLIDE 10 -->
-            <div class="deck-slide" id="deck-s-10">
-                <img src="images/mode_thuyettrinh/pp_slides/slide_10.png?v=v5_clean" class="slide-full-img" alt="Slide 10">
-            </div>
-
-            <!-- SLIDE 11 -->
-            <div class="deck-slide" id="deck-s-11">
-                <img src="images/mode_thuyettrinh/pp_slides/slide_11.png?v=v5_clean" class="slide-full-img" alt="Slide 11">
-            </div>
-
-            <!-- SLIDE 12 -->
-            <div class="deck-slide" id="deck-s-12">
-                <img src="images/mode_thuyettrinh/pp_slides/slide_12.png?v=v5_clean" class="slide-full-img" alt="Slide 12">
-            </div>
-
-            <!-- SLIDE 13 -->
-            <div class="deck-slide" id="deck-s-13">
-                <img src="images/mode_thuyettrinh/pp_slides/slide_13.png?v=v5_clean" class="slide-full-img" alt="Slide 13">
-            </div>
-
-            <!-- SLIDE 14 -->
-            <div class="deck-slide" id="deck-s-14">
-                <img src="images/mode_thuyettrinh/pp_slides/slide_14.png?v=v5_clean" class="slide-full-img" alt="Slide 14">
-            </div>
-
-        </div>
+        <div class="slide-deck-container" id="slideDeck"></div>
     </div>
 
     <!-- MÀN 5: CẢNH KẾT THÚC (ENDING) -->
     <div class="screen hidden" id="endingScreen" style="background:transparent;">
-        <!-- Video nền -->
-        <video class="bg-video" id="endingVideo" loop playsinline autoplay muted>
-            <source src="images/mode_thuyettrinh/mixi_ending.mp4" type="video/mp4">
-            <source src="images/mode_thuyettrinh/ending_video.mp4" type="video/mp4">
-            <source src="images/mode_quockhanh/quockhanh_ending.mp4?v=cut5s" type="video/mp4">
-        </video>
+        <!-- Video nền (chỉ nạp khi vào màn kết thúc để không gây lag lúc mở trang) -->
+        <video class="bg-video" id="endingVideo" loop playsinline muted preload="none"></video>
         <div class="overlay" style="background:radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);"></div>
 
         <style>
@@ -2874,8 +2798,8 @@
             <!-- CHẾ ĐỘ 2: THPT CAO BÁ QUÁT (ĐẲNG CẤP THUYẾT TRÌNH & SỰ KIỆN TỰ ĐỘNG) -->
             <div class="mode-card" id="modeCardMitchum" onclick="selectGameMode('mitchum')" style="border:2px solid #00D7FF;background:rgba(0,25,50,0.85);box-shadow:0 0 25px rgba(0,215,255,0.35);">
                 <div class="mode-info">
-                    <div class="mode-name" style="color:#00D7FF;text-shadow:0 0 10px #00D7FF;">🏛️ ĐẲNG CẤP THUYẾT TRÌNH · CỔNG TRƯỜNG ĐH HẢI PHÒNG</div>
-                    <div class="mode-desc" style="color:#A0E8FF;">Chiếu slide Công điện & Thuyết trình đối đầu Boss · Background video Cổng trường ĐH Hải Phòng</div>
+                    <div class="mode-name" style="color:#00D7FF;text-shadow:0 0 10px #00D7FF;">🏛️ ĐẲNG CẤP THUYẾT TRÌNH · TRƯỜNG THPT CAO BÁ QUÁT</div>
+                    <div class="mode-desc" style="color:#A0E8FF;">Chiếu slide Thuyết Trình GDĐP đối đầu Boss · Sân trường THPT Cao Bá Quát</div>
                     
                     <!-- LỰA CHỌN SỰ KIỆN GIAO DIỆN -->
                     <div class="mt-3 pt-2.5 border-t border-cyan-500/20 flex flex-wrap items-center gap-2" onclick="event.stopPropagation()">
@@ -2884,7 +2808,7 @@
                             TỰ ĐỘNG THEO NGÀY
                         </button>
                         <button onclick="setManualEventTheme('dhhp')" class="px-2.5 py-1 rounded-lg bg-blue-900/60 hover:bg-blue-800 text-blue-200 text-[10px] font-bold border border-blue-400/40">
-                            CỔNG TRƯỜNG ĐHHP
+                            THPT CAO BÁ QUÁT
                         </button>
                         <button onclick="setManualEventTheme('quockhanh')" class="px-2.5 py-1 rounded-lg bg-amber-900/60 hover:bg-amber-800 text-amber-200 text-[10px] font-bold border border-amber-400/40">
                             QUỐC KHÁNH 2/9
@@ -2898,7 +2822,7 @@
             <div class="mode-card solo" id="modeCardSolo" onclick="selectGameMode('gamehub')" style="border:2px solid #FF5500;background:rgba(40,10,0,0.85);box-shadow:0 0 25px rgba(255,85,0,0.3);">
                 <div class="mode-info">
                     <div class="mode-name" style="color:#FF8800;text-shadow:0 0 10px #FF5500;">🎮 SẢNH TRÒ CHƠI GIẢI TRÍ THPT CAO BÁ QUÁT</div>
-                    <div class="mode-desc" style="color:#FFCC99;">Kho game sinh viên: Giải Quyết Ân Oán 1vs1, Đấu Thẻ Bài ĐHHP (phong cách Yu-Gi-Oh!), Vòng Quay Né Deadline 🔥</div>
+                    <div class="mode-desc" style="color:#FFCC99;">Kho game học đường: Giải Quyết Ân Oán 1vs1, Đấu Thẻ Bài THPT Cao Bá Quát (Yu-Gi-Oh!), Vòng Quay Né Deadline 🔥</div>
                 </div>
                 <div class="mode-badge badge-hot" style="background:#FF5500;color:#FFF;font-weight:900;box-shadow:0 0 15px rgba(255,85,0,0.7);">🔥 MỞ KHÓA</div>
             </div>
@@ -4704,7 +4628,7 @@
                         </div>
                         <div>
                             <div class="font-extrabold text-gray-900 group-hover:text-blue-700 transition-colors">Đẳng Cấp Thuyết Trình</div>
-                            <div class="text-xs text-gray-500 font-medium">Chiếu Slide Media Thầy Trường & Sảnh Cổng Trường ĐHHP</div>
+                            <div class="text-xs text-gray-500 font-medium">Chiếu Slide Thuyết Trình GDĐP & Trường THPT Cao Bá Quát</div>
                         </div>
                     </div>
                     <span class="px-3.5 py-2 rounded-xl bg-blue-600 text-white font-bold text-xs shadow-sm flex items-center gap-1.5">
@@ -4720,7 +4644,7 @@
                         </div>
                         <div>
                             <div class="font-extrabold text-gray-900 group-hover:text-orange-700 transition-colors">Sảnh Trò Chơi Giải Trí</div>
-                            <div class="text-xs text-gray-500 font-medium">Giải Quyết Ân Oán 1vs1, Đấu Thẻ Bài ĐHHP (Yu-Gi-Oh!), Vòng Quay Né Deadline</div>
+                            <div class="text-xs text-gray-500 font-medium">Giải Quyết Ân Oán 1vs1, Đấu Thẻ Bài THPT Cao Bá Quát (Yu-Gi-Oh!), Vòng Quay Né Deadline</div>
                         </div>
                     </div>
                     <span class="px-3.5 py-2 rounded-xl bg-orange-500 text-white font-bold text-xs shadow-sm flex items-center gap-1.5">
@@ -5274,7 +5198,7 @@
                 </button>
                 <!-- 2. ĐẤU THẺ BÀI YU-GI-OH -->
                 <button class="py-3 px-5 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-black text-xs shadow-xl shadow-cyan-900/60 flex items-center justify-center cursor-pointer transition-all active:scale-95" onclick="startYuGiOhGame()">
-                    <span>ĐẤU THẺ BÀI ĐHHP (PHONG CÁCH YU-GI-OH)</span>
+                    <span>ĐẤU THẺ BÀI THPT CAO BÁ QUÁT (YU-GI-OH)</span>
                 </button>
                 <!-- 3. VÒNG QUAY MAY MẮN -->
                 <button class="py-3 px-5 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-black text-xs shadow-xl shadow-emerald-900/60 flex items-center justify-center cursor-pointer transition-all active:scale-95" onclick="startLuckyWheelGame()">
@@ -5284,7 +5208,7 @@
         </div>
     </div>
 
-    <!-- MÀN: ĐẤU THẺ BÀI ĐHHP (YU-GI-OH CARD BATTLE) -->
+    <!-- MÀN: ĐẤU THẺ BÀI THPT CAO BÁ QUÁT (YU-GI-OH CARD BATTLE) -->
     <div class="screen hidden" id="yugiohScreen" style="position:fixed;inset:0;z-index:110;background:linear-gradient(180deg, #0a0e27 0%, #1a1040 30%, #0d1b3e 60%, #051020 100%);display:flex;flex-direction:column;justify-content:space-between;padding:8px 12px;box-sizing:border-box;overflow:hidden;">
         
         <!-- Animated stars background -->
@@ -5338,7 +5262,7 @@
                 </div>
                 <div class="flex-1">
                     <div class="flex justify-between items-center text-[10px] font-black mb-1">
-                        <span class="text-cyan-400 uppercase tracking-wider">🎮 Sinh Viên ĐHHP</span>
+                        <span class="text-cyan-400 uppercase tracking-wider">🎮 Học Sinh THPT Cao Bá Quát</span>
                         <span class="text-cyan-300 font-mono">LP: <span id="ygoPlayerLp" class="text-cyan-200 text-sm">4000</span></span>
                     </div>
                     <div class="w-full h-2.5 bg-gray-900 rounded-full overflow-hidden border border-cyan-500/30">
@@ -5504,7 +5428,7 @@
                     CỔNG TRƯỜNG THPT CAO BÁ QUÁT
                 </div>
                 <div style="font-size:12px;color:#ccc;text-align:center;line-height:1.4;">
-                    Đại chiến trên đoạn đường bê tông trước cổng trường ĐHHP
+                    Đại chiến trên đoạn đường bê tông trước cổng trường THPT Cao Bá Quát
                 </div>
             </div>
 
@@ -5688,23 +5612,23 @@
             { key: "cophuong", name: "CÔ PHƯƠNG", cls: "★ CỐ VẤN HỌC TẬP TỐI CAO ★", str: 92, int: 99, spd: 90, mkt: 96, crt: 98, lck: 99, skill: "🌸 QUYỀN LỰC TỐI THƯỢNG · ĐIỂM DANH TẬN GỐC", img: "images/characters/char_cophuong.jpg", selectable: true },
             { key: "thaylong", name: "THẦY LONG", cls: "★ BẬC THẦY CONTENT MARKETING ★", str: 94, int: 98, spd: 93, mkt: 100, crt: 97, lck: 92, skill: "📝 VẠN LỜI SẮC BÉN · BẮT BẺ LOGIC", img: "images/characters/char_thaylong.jpg", selectable: true },
             { key: "thaytruong", name: "THẦY TRƯỜNG", cls: "★ TIỀN ĐẠO MEDIA XUẤT THẦN ★", str: 96, int: 95, spd: 99, mkt: 98, crt: 96, lck: 94, skill: "⚽ SÚT PHẢN BIỆN CHÁY LƯỚI · MEDIA ĐỈNH CAO", img: "images/characters/char_thaytruong.jpg", selectable: true },
-            { key: "comen", name: "CÔ MẾN", cls: "★ GIẢNG VIÊN FEBA · ĐH HẢI PHÒNG ★", str: 90, int: 100, spd: 92, mkt: 95, crt: 95, lck: 98, skill: "🎓 BẢO VỆ ĐỒ ÁN · KHOA KINH TẾ & QTKD", img: "images/characters/char_comen.jpg", selectable: true },
+            { key: "comen", name: "CÔ MẾN", cls: "★ GIÁO VIÊN · TRƯỜNG THPT CAO BÁ QUÁT ★", str: 90, int: 100, spd: 92, mkt: 95, crt: 95, lck: 98, skill: "🎓 HỘI ĐỒNG PHẢN BIỆN · TRƯỜNG THPT CAO BÁ QUÁT", img: "images/characters/char_comen.jpg", selectable: true },
             { key: "gddp", name: "THUÝ NGÂN", cls: "★ BỘ MÔN GDĐP ★", str: 95, int: 100, spd: 95, mkt: 98, crt: 98, lck: 99, skill: "📚 GIÁO VIÊN BỘ MÔN GDĐP · THPT CAO BÁ QUÁT", img: "images/characters/char_gddp.jpg", selectable: true }
         ];
 
         let selectedChar=0, currentScreen='menu', menuIndex=0, charConfirmed=true, countdownTimer=null;
         const total=charData.length, cols=4;
 
-        // Slide presentation variables (14 slides)
+        // Slide presentation variables (61 slides GDĐP)
         let currentDeckSlide = 1;
-        let totalDeckSlides = 14;
+        let totalDeckSlides = 61;
 
         // Build grid
         const grid=document.getElementById('charGrid');
         charData.forEach((c,i)=>{
             const cell=document.createElement('div');
             cell.className='char-cell' + (i===selectedChar?' active':'');
-            cell.innerHTML=`<img src="${c.img}" alt="${c.name}">`;
+            cell.innerHTML=`<img src="${c.img}" loading="lazy" decoding="async" alt="${c.name}">`;
             cell.onclick=()=>{
                 selectChar(i);
             };
@@ -5995,17 +5919,17 @@
             },
             comen: {
                 id: 'comen',
-                subject: 'GIÁO VIÊN FEBA',
+                subject: 'HỘI ĐỒNG PHẢN BIỆN',
                 name: 'CÔ MẾN',
                 img: 'images/characters/char_comen.jpg',
-                skill: '📊 GIẢNG VIÊN KHOA KINH TẾ & QTKD (FEBA) · ĐH HẢI PHÒNG'
+                skill: '📊 GIÁO VIÊN HỘI ĐỒNG PHẢN BIỆN · TRƯỜNG THPT CAO BÁ QUÁT'
             },
             covan: {
                 id: 'comen',
-                subject: 'GIÁO VIÊN FEBA',
+                subject: 'HỘI ĐỒNG PHẢN BIỆN',
                 name: 'CÔ MẾN',
                 img: 'images/characters/char_comen.jpg',
-                skill: '📊 GIẢNG VIÊN KHOA KINH TẾ & QTKD (FEBA) · ĐH HẢI PHÒNG'
+                skill: '📊 GIÁO VIÊN HỘI ĐỒNG PHẢN BIỆN · TRƯỜNG THPT CAO BÁ QUÁT'
             },
             content: {
                 id: 'content',
@@ -6038,67 +5962,8 @@
                 desc: 'Hồ sơ chọn thủ phủ Hà Nội & 10 câu hỏi trắc nghiệm Đông Dương',
                 count: 61,
                 prefix: 'images/mode_thuyettrinh/gddp_slides/slide_',
-                suffix: '.png',
+                suffix: '.webp',
                 recommendedBoss: 'gddp'
-            },
-            congdien: {
-                id: 'congdien',
-                name: 'VĂN BẢN CÔNG ĐIỆN',
-                subject: 'QUẢN TRỊ VĂN THƯ',
-                desc: 'Quy cách soạn thảo & Lý giải 3 câu hỏi theo Nghị định 30/2020',
-                count: 11,
-                prefix: 'images/mode_thuyettrinh/congdien_slides/slide_',
-                suffix: '.png',
-                recommendedBoss: 'comen'
-            },
-            cocoon: {
-                id: 'cocoon',
-                name: 'COCOON VIỆT NAM',
-                subject: 'MEDIA & TRUYỀN THÔNG',
-                desc: 'Chiến dịch truyền thông mỹ phẩm thuần chay',
-                count: 14,
-                prefix: 'images/mode_thuyettrinh/pp_slides/slide_',
-                suffix: '.png?v=v5_clean',
-                recommendedBoss: 'media'
-            },
-            dmx: {
-                id: 'dmx',
-                name: 'ĐIỆN MÁY XANH (MWG)',
-                subject: 'HỆ THỐNG ERP',
-                desc: 'Phân tích BPR & Hệ thống ERP tại Điện Máy Xanh',
-                count: 14,
-                prefix: 'images/mode_thuyettrinh/dmx_slides/slide_',
-                suffix: '.png',
-                recommendedBoss: 'content'
-            },
-            pushpull: {
-                id: 'pushpull',
-                name: 'CUỘC CHIẾN KÉO VÀ ĐẨY',
-                subject: 'CONTENT MARKETING',
-                desc: 'Chiến lược Content & Dẫn đạo không lực MWG',
-                count: 14,
-                prefix: 'images/mode_thuyettrinh/pushpull_slides/slide_',
-                suffix: '.png',
-                recommendedBoss: 'content'
-            },
-            bitis: {
-                id: 'bitis',
-                name: "BITI'S HUNTER",
-                subject: 'MKT TRUYỀN THỐNG',
-                desc: 'Đi Để Trở Về & Tái định vị thương hiệu',
-                count: 14,
-                prefix: 'images/mode_thuyettrinh/bitis_slides/slide_',
-                suffix: '.png',
-                recommendedBoss: 'cophuong'
-            },
-            custom: {
-                id: 'custom',
-                name: 'BỘ SLIDE CỦA BẠN',
-                subject: 'SLIDE TÙY CHỈNH',
-                desc: 'Được tải lên từ máy tính của bạn',
-                count: 0,
-                slides: [],
-                recommendedBoss: 'media'
             }
         };
 
@@ -6114,7 +5979,7 @@
         let slideTransitionSfxIndex = 0;
         const slideTransitionAudioPool = slideTransitionSfxFiles.map(src => {
             const a = new Audio(encodeURI(src));
-            a.preload = 'auto';
+            a.preload = 'none';
             a.volume = 0.85;
             return a;
         });
@@ -6233,65 +6098,13 @@
 
         function chooseBossCard(bossKey){
             selectedPresentationBoss = bossKey;
-            // Tự động gợi ý bộ slide tương ứng:
-            if(bossKey === 'gddp'){
-                currentSelectedDeckId = 'gddp';
-            } else if(bossKey === 'comen' || bossKey === 'covan'){
-                currentSelectedDeckId = 'congdien';
-            } else if(bossKey === 'content'){
-                currentSelectedDeckId = 'pushpull';
-            } else if(bossKey === 'media'){
-                currentSelectedDeckId = 'cocoon';
-            } else if(bossKey === 'cophuong'){
-                currentSelectedDeckId = 'bitis';
-            }
+            currentSelectedDeckId = 'gddp';
             updateBossModalUI();
         }
 
         function chooseSlideDeck(deckId){
-            if(deckId === 'custom' && customUploadedSlides.length === 0){
-                document.getElementById('customSlideInput').click();
-                return;
-            }
-            currentSelectedDeckId = deckId;
+            currentSelectedDeckId = 'gddp';
             updateBossModalUI();
-        }
-
-        function handleCustomSlideUpload(e){
-            const files = Array.from(e.target.files);
-            if(!files || files.length === 0) return;
-
-            files.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }));
-
-            customUploadedSlides = [];
-            let loadedCount = 0;
-
-            files.forEach((file, index) => {
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    customUploadedSlides[index] = event.target.result;
-                    loadedCount++;
-                    if(loadedCount === files.length){
-                        slideRepository.custom.count = files.length;
-                        slideRepository.custom.desc = `Đã nạp ${files.length} slide từ máy tính!`;
-                        currentSelectedDeckId = 'custom';
-                        
-                        // Cập nhật UI Card custom
-                        const thumbBox = document.getElementById('customThumbBox');
-                        if(thumbBox) thumbBox.innerHTML = `<img src="${customUploadedSlides[0]}" style="width:100%;height:100%;object-fit:cover;">`;
-                        const titleEl = document.getElementById('customDeckTitle');
-                        if(titleEl) titleEl.textContent = `SLIDE (${files.length} TRANG)`;
-                        const descEl = document.getElementById('customDeckDesc');
-                        if(descEl) descEl.textContent = `Đã nạp thành công! Bấm để chọn`;
-                        const badgeEl = document.getElementById('customDeckBadge');
-                        if(badgeEl) badgeEl.textContent = `${files.length} SLIDE SẴN SÀNG`;
-                        
-                        updateBossModalUI();
-                        showNotify(`✅ Đã nạp thành công ${files.length} slide vào kho dữ liệu!`);
-                    }
-                };
-                reader.readAsDataURL(file);
-            });
         }
 
         function updateBossModalUI(){
@@ -6305,14 +6118,12 @@
             });
 
             // Highlight Slide Deck card
-            ['gddp', 'congdien', 'cocoon', 'dmx', 'pushpull', 'bitis', 'custom'].forEach(d => {
-                const card = document.getElementById(`deckCard_${d}`);
-                if(card) card.classList.toggle('selected', d === currentSelectedDeckId);
-            });
+            const gddpCard = document.getElementById('deckCard_gddp');
+            if(gddpCard) gddpCard.classList.add('selected');
 
             // Update summary
-            const b = bossList[selectedPresentationBoss] || bossList.gddp || bossList.comen || bossList.media;
-            const deck = slideRepository[currentSelectedDeckId] || slideRepository.gddp || slideRepository.congdien || slideRepository.cocoon;
+            const b = bossList[selectedPresentationBoss] || bossList.gddp;
+            const deck = slideRepository.gddp;
             const summaryEl = document.getElementById('bossSelectSummaryTxt');
             if(summaryEl){
                 const bCol = b.id==='gddp' ? '#10b981' : (b.id==='content' ? '#FF8800' : (b.id==='cophuong' ? '#FF69B4' : (b.id==='media' ? '#00D7FF' : '#38bdf8')));
@@ -6354,28 +6165,45 @@
             }
         }
 
+        // Chỉ tải trước (lazy preload) các trang slide đang xem & kế cận để mở trang siêu mượt, không lag
+        function ensureDeckSlidesLoadedAround(centerSlide){
+            const toLoad = new Set([1, centerSlide - 1, centerSlide, centerSlide + 1, centerSlide + 2]);
+            if(gddpQuizConfig[centerSlide]){
+                for(let k = 1; k <= 5; k++) toLoad.add(centerSlide + k);
+            }
+            const fb = gddpQuizFeedbackMap[centerSlide];
+            if(fb){
+                toLoad.add(fb.questionSlide);
+                if(typeof fb.nextSlide === 'number') toLoad.add(fb.nextSlide);
+            }
+            toLoad.forEach(sNum => {
+                if(sNum < 1 || sNum > totalDeckSlides) return;
+                const sl = document.getElementById(`deck-s-${sNum}`);
+                if(!sl) return;
+                const img = sl.querySelector('img[data-src]');
+                if(img && !img.getAttribute('src')){
+                    img.src = img.dataset.src;
+                }
+            });
+        }
+
         function startPresentationWithBossAndDeck(){
             enterPresentationFullscreen();
             closeModal('bossSelectModal');
-            renderSlideDeckContainer(currentSelectedDeckId);
+            renderSlideDeckContainer('gddp');
             goToVS();
         }
 
-        function renderSlideDeckContainer(deckId){
+        function renderSlideDeckContainer(deckId = 'gddp'){
             const container = document.getElementById('slideDeck');
             if(!container) return;
             container.innerHTML = '';
 
-            let slides = [];
-            if(deckId === 'custom' && customUploadedSlides.length > 0){
-                slides = customUploadedSlides;
-                totalDeckSlides = slides.length;
-            } else {
-                const deck = slideRepository[deckId] || slideRepository.gddp || slideRepository.cocoon;
-                totalDeckSlides = deck.count;
-                for(let i = 1; i <= deck.count; i++){
-                    slides.push(`${deck.prefix}${i}${deck.suffix}`);
-                }
+            const deck = slideRepository.gddp;
+            totalDeckSlides = deck.count;
+            const slides = [];
+            for(let i = 1; i <= deck.count; i++){
+                slides.push(`${deck.prefix}${i}${deck.suffix}`);
             }
 
             slides.forEach((src, idx) => {
@@ -6384,7 +6212,9 @@
                 div.className = 'deck-slide' + (idx === 0 ? ' active' : '');
                 div.id = `deck-s-${slideNum}`;
                 const img = document.createElement('img');
-                img.src = src;
+                img.dataset.src = src;
+                img.decoding = 'async';
+                if(slideNum <= 3) img.src = src;
                 img.className = 'slide-full-img';
                 img.alt = `Slide ${slideNum}`;
                 div.appendChild(img);
@@ -7247,7 +7077,7 @@
             soloCharData.forEach((c, i)=>{
                 const cell = document.createElement('div');
                 cell.className = 'char-cell' + (i===selectedSoloChar?' active':'');
-                cell.innerHTML = `<img src="${c.img}" alt="${c.name}">`;
+                cell.innerHTML = `<img src="${c.img}" loading="lazy" decoding="async" alt="${c.name}">`;
                 cell.onclick = () => selectSoloChar(i);
                 grid.appendChild(cell);
             });
@@ -7286,8 +7116,8 @@
             },
             {
                 id: 'dhhp',
-                name: 'CỔNG TRƯỜNG ĐẠI HỌC HẢI PHÒNG',
-                desc: 'Đại chiến trên đoạn đường bê tông trước cổng trường ĐHHP',
+                name: 'CỔNG TRƯỜNG THPT CAO BÁ QUÁT',
+                desc: 'Đại chiến trên đoạn đường bê tông trước cổng trường THPT Cao Bá Quát',
                 img: 'images/dhhp_stage_bg.jpg',
                 bottomY: 105,
                 minX: 180,
@@ -8477,7 +8307,7 @@
             }
 
             const pickSlide = (n) => {
-                if (!slidesArr || !slidesArr.length) return 'images/mode_thuyettrinh/gddp_slides/slide_1.png';
+                if (!slidesArr || !slidesArr.length) return 'images/mode_thuyettrinh/gddp_slides/slide_1.webp';
                 const clamped = Math.min(Math.max(1, n), slidesArr.length);
                 return slidesArr[clamped - 1];
             };
@@ -9001,18 +8831,39 @@
             return !!(ps && ps.classList.contains('hd-showcase-open'));
         }
 
+        let hdRafId = null;
+        function startHdShowcaseRaf() {
+            if (hdRafId !== null) return;
+            hdShowcaseLastTs = performance.now();
+            function tickHd(now) {
+                if (currentScreen !== 'present' || !isHdShowcaseOpen() || !hdShowcasePlaying) {
+                    hdRafId = null;
+                    return;
+                }
+                const dt = Math.min(0.1, (now - hdShowcaseLastTs) / 1000);
+                hdShowcaseLastTs = now;
+                hdShowcaseClock = (hdShowcaseClock + dt) % HD_TOTAL_SEC;
+                renderHdShowcaseScene(hdShowcaseClock);
+                hdRafId = requestAnimationFrame(tickHd);
+            }
+            hdRafId = requestAnimationFrame(tickHd);
+        }
+
+        function stopHdShowcaseRaf() {
+            if (hdRafId !== null) {
+                cancelAnimationFrame(hdRafId);
+                hdRafId = null;
+            }
+        }
+
         function openHdShowcase(resetClock = false) {
             const ps = document.getElementById('presentScreen');
             if (!ps) return;
             if (!hdMountedWindows.length) {
-                const deck = slideRepository[currentSelectedDeckId] || slideRepository.gddp;
+                const deck = slideRepository.gddp;
                 const slides = [];
-                if (currentSelectedDeckId === 'custom' && customUploadedSlides.length > 0) {
-                    slides.push(...customUploadedSlides);
-                } else if (deck) {
-                    for (let i = 1; i <= deck.count; i++) slides.push(`${deck.prefix}${i}${deck.suffix}`);
-                }
-                rebuildHdShowcaseForDeck(currentSelectedDeckId, slides);
+                for (let i = 1; i <= deck.count; i++) slides.push(`${deck.prefix}${i}${deck.suffix}`);
+                rebuildHdShowcaseForDeck('gddp', slides);
             }
             if (resetClock) {
                 hdShowcaseClock = 0;
@@ -9026,10 +8877,12 @@
             }
             hdMountedWindows.forEach((m) => m.ctrl && m.ctrl.updateScale && m.ctrl.updateScale());
             renderHdShowcaseScene(hdShowcaseClock);
+            startHdShowcaseRaf();
         }
 
         function closeHdShowcase(targetSlide = null) {
             enterPresentationFullscreen();
+            stopHdShowcaseRaf();
             const ps = document.getElementById('presentScreen');
             if (!ps) return;
             const wasOpen = ps.classList.contains('hd-showcase-open');
@@ -9056,47 +8909,13 @@
             }
         }
 
-        // Khởi tạo điều khiển HUD & vòng lặp 60fps cho hiệu ứng 3D Showcase
+        // Khởi tạo điều khiển HUD & sự kiện resize cho hiệu ứng 3D Showcase (chỉ chạy RAF khi mở Showcase)
         (function initHdShowcaseLoop() {
-            const playBtn = document.getElementById('hdPlayBtn');
-            const playIcon = document.getElementById('hdPlayIcon');
-            const rangeEl = document.getElementById('hdClockRange');
-            const setPlayIcon = () => {
-                if (!playIcon) return;
-                playIcon.innerHTML = hdShowcasePlaying
-                    ? '<rect x="2" y="1.5" width="3" height="9" rx="0.8"/><rect x="7" y="1.5" width="3" height="9" rx="0.8"/>'
-                    : '<path d="M3 1.8L10.2 6L3 10.2V1.8Z"/>';
-            };
-            if (playBtn) {
-                playBtn.addEventListener('click', () => {
-                    hdShowcasePlaying = !hdShowcasePlaying;
-                    setPlayIcon();
-                });
-            }
-            if (rangeEl) {
-                rangeEl.addEventListener('input', () => {
-                    hdShowcasePlaying = false;
-                    setPlayIcon();
-                    hdShowcaseClock = parseFloat(rangeEl.value) || 0;
-                    renderHdShowcaseScene(hdShowcaseClock);
-                });
-            }
             window.addEventListener('resize', () => {
-                if (currentScreen === 'present') {
+                if (currentScreen === 'present' && isHdShowcaseOpen()) {
                     renderHdShowcaseScene(hdShowcaseClock);
                 }
             });
-
-            function tickHd(now) {
-                const dt = Math.min(0.1, (now - hdShowcaseLastTs) / 1000);
-                hdShowcaseLastTs = now;
-                if (currentScreen === 'present' && hdShowcasePlaying) {
-                    hdShowcaseClock = (hdShowcaseClock + dt) % HD_TOTAL_SEC;
-                    renderHdShowcaseScene(hdShowcaseClock);
-                }
-                requestAnimationFrame(tickHd);
-            }
-            requestAnimationFrame(tickHd);
         })();
 
         // SLIDE DECK LOGIC
@@ -9105,6 +8924,8 @@
             if(n > totalDeckSlides) n = totalDeckSlides;
             const changed = (currentDeckSlide !== n);
             currentDeckSlide = n;
+
+            ensureDeckSlidesLoadedAround(currentDeckSlide);
 
             for(let i=1; i<=totalDeckSlides; i++){
                 const sl = document.getElementById(`deck-s-${i}`);
@@ -9465,13 +9286,11 @@
             setTimeout(()=>sc=false,200);
         }, { passive: true });
 
-        buildSoloCharGrid();
         updateDynamicQkYears();
         selMenu(0);
 
-        // Khởi động mặc định vào Chế độ Thu Quỹ Lớp (hoặc theo param URL)
+        // Khởi động mặc định vào Chế độ Thu Quỹ Lớp (hoặc theo param URL) - Không tải trước 61 slide khi mở trang
         document.addEventListener('DOMContentLoaded', () => {
-            renderSlideDeckContainer('gddp');
             const params = new URLSearchParams(window.location.search);
             const m = params.get('mode');
             selectGameMode(m || 'thuquy', false);
@@ -9551,19 +9370,19 @@
             <button onclick="closeModal('bossSelectModal')" style="position:absolute;top:14px;right:16px;background:rgba(255,255,255,0.1);border:2px solid #00D7FF;color:#00D7FF;font-size:18px;cursor:pointer;font-weight:900;transition:all 0.2s ease;z-index:10;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);" onmouseover="this.style.transform='scale(1.15)';this.style.background='#00D7FF';this.style.color='#000'" onmouseout="this.style.transform='scale(1)';this.style.background='rgba(255,255,255,0.1)';this.style.color='#00D7FF'">✕</button>
             
             <div style="color:#FFD700;font-family:'Be Vietnam Pro',sans-serif;font-weight:900;font-size:12px;letter-spacing:3px;margin-bottom:4px;text-transform:uppercase;">
-                ★ ĐẠI HỌC CAO BÁ QUÁT · HỘI ĐỒNG BẢO VỆ ĐỒ ÁN ★
+                ★ TRƯỜNG THPT CAO BÁ QUÁT · HỘI ĐỒNG THUYẾT TRÌNH ★
             </div>
             <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:26px;font-weight:900;color:#00D7FF;text-shadow:0 0 20px rgba(0,215,255,0.7);margin-bottom:4px;letter-spacing:1.5px;text-transform:uppercase;">
                 THIẾT LẬP PHIÊN THUYẾT TRÌNH
             </div>
             <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:12px;color:#A0E8FF;letter-spacing:0.8px;margin-bottom:18px;font-weight:600;">
-                Chọn Giảng viên Phản biện & Bộ Slide trong kho dữ liệu trước khi bước vào phòng bảo vệ
+                Chọn Giáo viên Phản biện trước khi bước vào bài thuyết trình GDĐP
             </div>
 
             <!-- PHẦN 1: CHỌN GIẢNG VIÊN PHẢN BIỆN (BOSS) -->
             <div style="text-align:left;font-family:'Be Vietnam Pro',sans-serif;font-weight:900;font-size:13px;color:#FFD700;letter-spacing:1px;margin-bottom:10px;display:flex;align-items:center;gap:8px;">
-                <span>1. CHỌN GIẢNG VIÊN PHẢN BIỆN (BOSS):</span>
-                <span style="font-size:11px;color:#88AACC;font-weight:500;">(Bấm để chọn giảng viên đối đầu)</span>
+                <span>1. CHỌN GIÁO VIÊN PHẢN BIỆN (BOSS):</span>
+                <span style="font-size:11px;color:#88AACC;font-weight:500;">(Bấm để chọn giáo viên đối đầu)</span>
             </div>
 
             <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:18px;">
@@ -9575,7 +9394,7 @@
                         📚 BỘ MÔN GDĐP
                     </div>
                     <div style="width:66px;height:66px;border-radius:50%;border:2px solid #10b981;overflow:hidden;margin-bottom:6px;box-shadow:0 0 16px rgba(16,185,129,0.45);background:#000;">
-                        <img src="images/characters/char_gddp.jpg" alt="Thuý Ngân" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+                        <img src="images/characters/char_gddp.jpg" loading="lazy" decoding="async" alt="Thuý Ngân" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
                     </div>
                     <div style="font-family:'Be Vietnam Pro',sans-serif;font-weight:900;font-size:15px;color:#34d399;letter-spacing:0.8px;margin-bottom:1px;text-shadow:0 0 8px rgba(52,211,153,0.6);">
                         THUÝ NGÂN
@@ -9591,27 +9410,27 @@
                     </div>
                 </div>
 
-                <!-- BOSS 1: CÔ MẾN (GIÁO VIÊN FEBA · ĐH HẢI PHÒNG) -->
+                <!-- BOSS 1: CÔ MẾN (TRƯỜNG THPT CAO BÁ QUÁT) -->
                 <div class="boss-card comen-boss" id="bossCard_comen" onclick="chooseBossCard('comen')">
                     <div style="position:absolute;top:6px;right:8px;background:#3b82f6;color:#FFF;font-size:8px;font-weight:900;padding:2px 6px;border-radius:8px;display:none;letter-spacing:0.5px;box-shadow:0 0 8px #3b82f6;" id="badge_comen">✓ ĐÃ CHỌN</div>
                     
                     <div style="background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#FFF;font-size:8.5px;font-weight:900;padding:2px 8px;border-radius:10px;letter-spacing:0.5px;margin-bottom:6px;box-shadow:0 0 8px rgba(59,130,246,0.5);text-transform:uppercase;">
-                        🎓 GIÁO VIÊN FEBA
+                        🎓 HỘI ĐỒNG PHẢN BIỆN
                     </div>
                     <div style="width:66px;height:66px;border-radius:50%;border:2px solid #3b82f6;overflow:hidden;margin-bottom:6px;box-shadow:0 0 16px rgba(59,130,246,0.45);background:#000;">
-                        <img src="images/characters/char_comen.jpg" alt="Cô Mến" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+                        <img src="images/characters/char_comen.jpg" loading="lazy" decoding="async" alt="Cô Mến" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
                     </div>
                     <div style="font-family:'Be Vietnam Pro',sans-serif;font-weight:900;font-size:15px;color:#38bdf8;letter-spacing:0.8px;margin-bottom:1px;text-shadow:0 0 8px rgba(56,189,248,0.6);">
                         CÔ MẾN
                     </div>
                     <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:8.5px;font-weight:800;color:#93c5fd;margin-bottom:5px;letter-spacing:0.3px;">
-                        ★ KHOA KINH TẾ & QTKD · ĐHHP ★
+                        ★ TRƯỜNG THPT CAO BÁ QUÁT ★
                     </div>
                     <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:9px;color:#dbeafe;line-height:1.3;margin-bottom:6px;font-style:italic;background:rgba(0,0,0,0.35);padding:4px 6px;border-radius:6px;border-left:2.5px solid #3b82f6;width:100%;box-sizing:border-box;min-height:36px;display:flex;align-items:center;justify-content:center;">
-                        "Hội đồng đánh giá rất cao sự logic & chuẩn mực trong đồ án!"
+                        "Hội đồng đánh giá rất cao sự logic & chuẩn mực trong bài thuyết trình!"
                     </div>
                     <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:8.5px;font-weight:800;color:#38bdf8;letter-spacing:0.3px;">
-                        📊 BẢO VỆ ĐỒ ÁN · CHUẨN MỰC
+                        📊 PHẢN BIỆN · CHUẨN MỰC
                     </div>
                 </div>
 
@@ -9623,7 +9442,7 @@
                         ⚔ BOSS MÔN CONTENT
                     </div>
                     <div style="width:66px;height:66px;border-radius:50%;border:2px solid #FF8800;overflow:hidden;margin-bottom:6px;box-shadow:0 0 16px rgba(255,136,0,0.45);background:#000;">
-                        <img src="images/characters/char_thaylong.jpg?v=5" alt="Thầy Long" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+                        <img src="images/characters/char_thaylong.jpg?v=5" loading="lazy" decoding="async" alt="Thầy Long" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
                     </div>
                     <div style="font-family:'Be Vietnam Pro',sans-serif;font-weight:900;font-size:15px;color:#FFD700;letter-spacing:0.8px;margin-bottom:1px;text-shadow:0 0 8px rgba(255,136,0,0.6);">
                         THẦY LONG
@@ -9647,7 +9466,7 @@
                         ⚔ BOSS MÔN MEDIA
                     </div>
                     <div style="width:66px;height:66px;border-radius:50%;border:2px solid #00D7FF;overflow:hidden;margin-bottom:6px;box-shadow:0 0 16px rgba(0,215,255,0.45);background:#000;">
-                        <img src="images/characters/char_thaytruong.jpg?v=6" alt="Thầy Trường" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+                        <img src="images/characters/char_thaytruong.jpg?v=6" loading="lazy" decoding="async" alt="Thầy Trường" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
                     </div>
                     <div style="font-family:'Be Vietnam Pro',sans-serif;font-weight:900;font-size:15px;color:#00D7FF;letter-spacing:0.8px;margin-bottom:1px;text-shadow:0 0 8px rgba(0,215,255,0.6);">
                         THẦY TRƯỜNG
@@ -9671,7 +9490,7 @@
                         ⚔ CỐ VẤN HỌC TẬP
                     </div>
                     <div style="width:66px;height:66px;border-radius:50%;border:2px solid #FF69B4;overflow:hidden;margin-bottom:6px;box-shadow:0 0 16px rgba(255,105,180,0.45);background:#000;">
-                        <img src="images/characters/char_cophuong.jpg?v=1" alt="Cô Phương" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+                        <img src="images/characters/char_cophuong.jpg?v=1" loading="lazy" decoding="async" alt="Cô Phương" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
                     </div>
                     <div style="font-family:'Be Vietnam Pro',sans-serif;font-weight:900;font-size:15px;color:#FF69B4;letter-spacing:0.8px;margin-bottom:1px;text-shadow:0 0 8px rgba(255,105,180,0.6);">
                         CÔ PHƯƠNG
@@ -9688,125 +9507,25 @@
                 </div>
             </div>
 
-            <!-- PHẦN 2: KHO DỮ LIỆU SLIDE THUYẾT TRÌNH -->
+            <!-- PHẦN 2: BỘ SLIDE THUYẾT TRÌNH GDĐP DUY NHẤT -->
             <div style="text-align:left;font-family:'Be Vietnam Pro',sans-serif;font-weight:900;font-size:13px;color:#00FFCC;letter-spacing:1px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
-                <span>2. KHO DỮ LIỆU SLIDE BÁO CÁO (CHỌN BỘ SLIDE CHIẾU):</span>
-                <label for="customSlideInput" style="font-size:11px;color:#FFD700;cursor:pointer;background:rgba(255,215,0,0.12);border:1px dashed #FFD700;padding:4px 10px;border-radius:8px;font-weight:800;transition:all 0.2s ease;">
-                    📁 TẢI SLIDE CỦA BẠN LÊN (MÁY TÍNH) ⬆
-                </label>
-                <input type="file" id="customSlideInput" multiple accept="image/*" style="display:none;" onchange="handleCustomSlideUpload(event)">
+                <span>2. BỘ SLIDE TRÌNH CHIẾU CHÍNH THỨC:</span>
             </div>
 
             <div style="display:flex;gap:12px;justify-content:center;align-items:stretch;margin-bottom:18px;flex-wrap:wrap;">
                 <!-- DECK GDDP: THUYẾT TRÌNH GDĐP (61 SLIDE + 10 CÂU TRẮC NGHIỆM) -->
-                <div class="slide-deck-card selected" id="deckCard_gddp" onclick="chooseSlideDeck('gddp')">
+                <div class="slide-deck-card selected" id="deckCard_gddp" onclick="chooseSlideDeck('gddp')" style="max-width:340px;width:100%;">
                     <div class="slide-deck-thumb">
-                        <img src="images/mode_thuyettrinh/gddp_slides/slide_1.png" alt="Thuyết trình GDĐP Slides">
+                        <img src="images/mode_thuyettrinh/gddp_slides/slide_1.webp" loading="lazy" decoding="async" alt="Thuyết trình GDĐP Slides">
                     </div>
                     <div style="background:rgba(16,185,129,0.2);color:#34d399;font-size:9px;font-weight:900;padding:2px 6px;border-radius:4px;margin-bottom:4px;border:1px solid rgba(16,185,129,0.45);letter-spacing:0.5px;">
-                        61 SLIDE · BỘ MÔN GDĐP
+                        61 SLIDE · BỘ MÔN GDĐP · TRƯỜNG THPT CAO BÁ QUÁT
                     </div>
-                    <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:12px;font-weight:900;color:#FFF;margin-bottom:2px;line-height:1.25;">
+                    <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:13px;font-weight:900;color:#FFF;margin-bottom:2px;line-height:1.25;">
                         THUYẾT TRÌNH GDĐP
                     </div>
-                    <div style="font-size:9px;color:#A7F3D0;line-height:1.3;">
-                        Hồ sơ chọn thủ phủ Hà Nội & 10 câu hỏi tương tác
-                    </div>
-                </div>
-
-                <!-- DECK 0: VĂN BẢN CÔNG ĐIỆN - NHÓM 4 -->
-                <div class="slide-deck-card" id="deckCard_congdien" onclick="chooseSlideDeck('congdien')">
-                    <div class="slide-deck-thumb">
-                        <img src="images/mode_thuyettrinh/congdien_slides/slide_1.png" alt="Công Điện Nhóm 4 Slides">
-                    </div>
-                    <div style="background:rgba(220,38,38,0.18);color:#EF4444;font-size:9px;font-weight:900;padding:2px 6px;border-radius:4px;margin-bottom:4px;border:1px solid rgba(220,38,38,0.4);letter-spacing:0.5px;">
-                        11 SLIDE · NHÓM 4 · NĐ 30/2020
-                    </div>
-                    <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:12px;font-weight:900;color:#FFF;margin-bottom:2px;line-height:1.25;">
-                        VĂN BẢN CÔNG ĐIỆN
-                    </div>
-                    <div style="font-size:9px;color:#88AACC;line-height:1.3;">
-                        Quy cách soạn thảo & Lý giải thể thức 3 câu hỏi
-                    </div>
-                </div>
-
-                <!-- DECK 1: COCOON MEDIA -->
-                <div class="slide-deck-card" id="deckCard_cocoon" onclick="chooseSlideDeck('cocoon')">
-                    <div class="slide-deck-thumb">
-                        <img src="images/mode_thuyettrinh/pp_slides/slide_1.png?v=v5_clean" alt="Cocoon Slides">
-                    </div>
-                    <div style="background:rgba(0,215,255,0.18);color:#00D7FF;font-size:9px;font-weight:900;padding:2px 6px;border-radius:4px;margin-bottom:4px;border:1px solid rgba(0,215,255,0.4);letter-spacing:0.5px;">
-                        14 SLIDE · MÔN MEDIA
-                    </div>
-                    <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:12px;font-weight:900;color:#FFF;margin-bottom:2px;line-height:1.25;">
-                        COCOON VIỆT NAM
-                    </div>
-                    <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:#88AACC;line-height:1.3;margin-top:auto;">
-                        Chiến lược truyền thông mỹ phẩm thuần chay
-                    </div>
-                </div>
-
-                <!-- DECK 2: DMX HỆ THỐNG ERP -->
-                <div class="slide-deck-card" id="deckCard_dmx" onclick="chooseSlideDeck('dmx')">
-                    <div class="slide-deck-thumb">
-                        <img src="images/mode_thuyettrinh/dmx_slides/slide_1.png" alt="DMX ERP Slides">
-                    </div>
-                    <div style="background:rgba(0,180,255,0.18);color:#00B4FF;font-size:9px;font-weight:900;padding:2px 6px;border-radius:4px;margin-bottom:4px;border:1px solid rgba(0,180,255,0.4);letter-spacing:0.5px;">
-                        14 SLIDE · HỆ THỐNG ERP
-                    </div>
-                    <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:12px;font-weight:900;color:#FFF;margin-bottom:2px;line-height:1.25;">
-                        ĐIỆN MÁY XANH (MWG)
-                    </div>
-                    <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:#AADDFF;line-height:1.3;margin-top:auto;">
-                        Phân tích BPR & Hệ thống ERP Điện Máy Xanh
-                    </div>
-                </div>
-
-                <!-- DECK 3: CUỘC CHIẾN KÉO VÀ ĐẨY (MÔN CONTENT) -->
-                <div class="slide-deck-card" id="deckCard_pushpull" onclick="chooseSlideDeck('pushpull')">
-                    <div class="slide-deck-thumb">
-                        <img src="images/mode_thuyettrinh/pushpull_slides/slide_1.png" alt="PushPull Slides">
-                    </div>
-                    <div style="background:rgba(255,136,0,0.18);color:#FF8800;font-size:9px;font-weight:900;padding:2px 6px;border-radius:4px;margin-bottom:4px;border:1px solid rgba(255,136,0,0.4);letter-spacing:0.5px;">
-                        14 SLIDE · MÔN CONTENT
-                    </div>
-                    <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:12px;font-weight:900;color:#FFF;margin-bottom:2px;line-height:1.25;">
-                        CUỘC CHIẾN KÉO VÀ ĐẨY
-                    </div>
-                    <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:#FFE0B2;line-height:1.3;margin-top:auto;">
-                        Chiến lược Content & Dẫn đạo không lực MWG
-                    </div>
-                </div>
-
-                <!-- DECK 4: BITI'S HUNTER (MKT TRUYỀN THỐNG) -->
-                <div class="slide-deck-card" id="deckCard_bitis" onclick="chooseSlideDeck('bitis')">
-                    <div class="slide-deck-thumb">
-                        <img src="images/mode_thuyettrinh/bitis_slides/slide_1.png" alt="Biti's Hunter Slides">
-                    </div>
-                    <div style="background:rgba(255,87,34,0.18);color:#FF5722;font-size:9px;font-weight:900;padding:2px 6px;border-radius:4px;margin-bottom:4px;border:1px solid rgba(255,87,34,0.4);letter-spacing:0.5px;">
-                        14 SLIDE · MKT TRUYỀN THỐNG
-                    </div>
-                    <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:12px;font-weight:900;color:#FFF;margin-bottom:2px;line-height:1.25;">
-                        BITI'S HUNTER
-                    </div>
-                    <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:#FFCCBC;line-height:1.3;margin-top:auto;">
-                        Đi Để Trở Về & Tái định vị thương hiệu
-                    </div>
-                </div>
-
-                <!-- DECK 5: CUSTOM UPLOADED -->
-                <div class="slide-deck-card" id="deckCard_custom" onclick="chooseSlideDeck('custom')" style="border-style:dashed;">
-                    <div class="slide-deck-thumb" id="customThumbBox" style="background:linear-gradient(135deg,#121b2d,#1a2840);">
-                        <span style="font-size:28px;">📁</span>
-                    </div>
-                    <div style="background:rgba(255,215,0,0.18);color:#FFD700;font-size:9px;font-weight:900;padding:2px 6px;border-radius:4px;margin-bottom:4px;border:1px solid rgba(255,215,0,0.4);letter-spacing:0.5px;" id="customDeckBadge">
-                        TÙY CHỌN
-                    </div>
-                    <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:12px;font-weight:900;color:#FFF;margin-bottom:2px;line-height:1.25;" id="customDeckTitle">
-                        SLIDE CỦA BẠN
-                    </div>
-                    <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:10px;color:#FFD700;line-height:1.3;margin-top:auto;" id="customDeckDesc">
-                        Bấm để nạp từ máy ⬆
+                    <div style="font-size:10px;color:#A7F3D0;line-height:1.3;">
+                        Hồ sơ chọn thủ phủ Hà Nội & 10 câu hỏi trắc nghiệm tương tác
                     </div>
                 </div>
             </div>
