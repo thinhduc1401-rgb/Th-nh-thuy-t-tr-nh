@@ -527,29 +527,31 @@
         .countdown-bar{width:300px;height:6px;background:rgba(255,255,255,0.1);border-radius:3px;margin-top:8px;overflow:hidden;}
         .countdown-fill{height:100%;background:linear-gradient(90deg,#FFD700,#FF0000);border-radius:3px;transition:width 1s linear;}
 
-        /* ===== MÀN 4: SLIDE THUYẾT TRÌNH CAO CẤP + HIỆU ỨNG 3D MULTI-WINDOW SHOWCASE ===== */
+        /* ===== MÀN 4: SLIDE THUYẾT TRÌNH FULL MÀN HÌNH + HIỆU ỨNG 3D MULTI-WINDOW SHOWCASE ===== */
         #presentScreen{
             background: #05060b;
-            padding: 12px;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
+            position: fixed;
+            inset: 0;
             perspective: 1500px;
             perspective-origin: 50% 48%;
             overflow: hidden;
         }
 
         .slide-deck-container {
-            width: min(100%, calc((100vh - 30px) * 16 / 9));
-            height: auto;
-            max-width: 1360px;
-            max-height: calc(100vh - 30px);
-            aspect-ratio: 16 / 9;
-            background: #FFFFFF;
-            border-radius: 14px;
+            width: 100vw;
+            height: 100vh;
+            max-width: 100vw;
+            max-height: 100vh;
+            background: #05060b;
+            border-radius: 0;
             overflow: hidden;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.85), 0 0 0 1px rgba(255,215,0,0.28), 0 0 60px rgba(59,130,246,0.18);
+            box-shadow: none;
             position: relative;
             z-index: 6;
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -2558,14 +2560,6 @@
     <div id="gameNotify"></div>
     <div id="toastContainer" class="fixed top-5 right-5 z-[99999] flex flex-col gap-2 pointer-events-none"></div>
 
-    <!-- NÚT QUAY LẠI CÔNG VIỆC HẰNG NGÀY CỐ ĐỊNH KHI VÀO GAME/THUYẾT TRÌNH/GIẢI TRÍ -->
-    <div id="persistentGameBackBtn" class="fixed top-4 left-4 z-[9999] hidden">
-        <button onclick="selectGameMode('thuquy', false)" class="px-4 py-2.5 rounded-2xl bg-white/95 hover:bg-white text-gray-900 font-black text-xs shadow-2xl backdrop-blur-md border border-white/80 flex items-center gap-2 transition-all active:scale-95 cursor-pointer hover:shadow-indigo-300/50">
-            <i class="fa-solid fa-arrow-left text-sm text-indigo-600"></i>
-            <span>Về Công Việc Hằng Ngày</span>
-        </button>
-    </div>
-
 
 
     <!-- MÀN 1: MAIN MENU (HỖ TRỢ THPT CAO BÁ QUÁT & QUỐC KHÁNH 2/9) -->
@@ -2702,44 +2696,25 @@
         <div class="hd-bottom-haze"></div>
 
         <!-- 3D FLOATING 6-WINDOW SHOWCASE OVERLAY (HTML-DEMO-INTRO EFFECT) -->
-        <div id="hdShowcaseOverlay">
+        <div id="hdShowcaseOverlay" onclick="closeHdShowcase()" style="cursor:pointer;">
             <div class="hd-plane-wrap">
                 <div class="hd-window-grid" id="hd-grid">
-                    <div class="hd-win-slot" data-slot="0" onclick="closeHdShowcase(1)" title="Bấm để mở Slide Mở Đầu"><div id="hd-win-0"></div></div>
-                    <div class="hd-win-slot" data-slot="1" onclick="closeHdShowcase(4)" title="Bấm để mở Slide Phân Tích"><div id="hd-win-1"></div></div>
-                    <div class="hd-win-slot" data-slot="2" onclick="closeHdShowcase(8)" title="Bấm để mở Slide Tư Liệu"><div id="hd-win-2"></div></div>
-                    <div class="hd-win-slot" data-slot="3" onclick="closeHdShowcase(11)" title="Bấm để mở Slide Hệ Thống"><div id="hd-win-3"></div></div>
-                    <div class="hd-win-slot" data-slot="4" onclick="closeHdShowcase(12)" title="Bấm để mở Slide Câu Hỏi Trắc Nghiệm"><div id="hd-win-4"></div></div>
-                    <div class="hd-win-slot" data-slot="5" onclick="closeHdShowcase(17)" title="Bấm để mở Slide Tương Tác Trực Tiếp"><div id="hd-win-5"></div></div>
+                    <div class="hd-win-slot" data-slot="0" onclick="event.stopPropagation(); closeHdShowcase(1)" title="Bấm để mở Slide Mở Đầu"><div id="hd-win-0"></div></div>
+                    <div class="hd-win-slot" data-slot="1" onclick="event.stopPropagation(); closeHdShowcase(4)" title="Bấm để mở Slide Phân Tích"><div id="hd-win-1"></div></div>
+                    <div class="hd-win-slot" data-slot="2" onclick="event.stopPropagation(); closeHdShowcase(8)" title="Bấm để mở Slide Tư Liệu"><div id="hd-win-2"></div></div>
+                    <div class="hd-win-slot" data-slot="3" onclick="event.stopPropagation(); closeHdShowcase(11)" title="Bấm để mở Slide Hệ Thống"><div id="hd-win-3"></div></div>
+                    <div class="hd-win-slot" data-slot="4" onclick="event.stopPropagation(); closeHdShowcase(12)" title="Bấm để mở Slide Câu Hỏi Trắc Nghiệm"><div id="hd-win-4"></div></div>
+                    <div class="hd-win-slot" data-slot="5" onclick="event.stopPropagation(); closeHdShowcase(17)" title="Bấm để mở Slide Tương Tác Trực Tiếp"><div id="hd-win-5"></div></div>
                 </div>
             </div>
 
-            <!-- CENTER HERO HEADLINE & ACTION BUTTON -->
+            <!-- CENTER HERO HEADLINE -->
             <div class="hd-hero-center">
                 <div class="hd-hero-eyebrow" id="hdHeroEyebrow">✦ BỘ MÔN GDĐP · CÔ THUÝ NGÂN ✦</div>
                 <h1 class="hd-hero-title">
                     <span id="hdHeroTitleMain">THUYẾT TRÌNH GDĐP</span>
                     <span class="line-2" id="hdHeroTitleSub">Hồ sơ chọn thủ phủ Hà Nội &amp; 10 câu hỏi trắc nghiệm Đông Dương.</span>
                 </h1>
-                <div class="hd-hero-cta-wrap">
-                    <button type="button" class="hd-hero-enter-btn" onclick="closeHdShowcase()">
-                        <span>🚀 VÀO TRÌNH CHIẾU SLIDE</span>
-                        <span>▶</span>
-                    </button>
-                    <div class="hd-hero-hint">Nhấn phím <b>Enter / Space</b> hoặc <b>click vào bất kỳ cửa sổ 3D nào</b> để phóng tới Slide đó</div>
-                </div>
-            </div>
-
-            <!-- BOTTOM 3D TIMELINE SCRUBBER HUD -->
-            <div class="hd-hud-bar" onclick="event.stopPropagation()">
-                <button class="hd-hud-btn" id="hdPlayBtn" title="Tạm dừng / Phát chuyển động 3D">
-                    <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor" id="hdPlayIcon">
-                        <rect x="2" y="1.5" width="3" height="9" rx="0.8"/>
-                        <rect x="7" y="1.5" width="3" height="9" rx="0.8"/>
-                    </svg>
-                </button>
-                <input class="hd-hud-range" id="hdClockRange" type="range" min="0" max="18" step="0.02" value="0" />
-                <span class="hd-hud-time" id="hdClockLabel">0.0s / 18.0s</span>
             </div>
         </div>
 
@@ -2815,23 +2790,6 @@
                 <img src="images/mode_thuyettrinh/pp_slides/slide_14.png?v=v5_clean" class="slide-full-img" alt="Slide 14">
             </div>
 
-        </div>
-
-        <!-- PRESENTER AVATAR (BOTTOM LEFT) -->
-        <div class="presenter-avatar-box">
-            <div class="presenter-avatar">
-                <img src="images/characters/char9.jpg" id="presentCharImg" alt="Presenter">
-            </div>
-            <div class="presenter-tag" id="presenterTag">★ NGƯỜI THUYẾT TRÌNH: HÙNG TRẦN</div>
-        </div>
-
-        <!-- SLIDE TOOLBAR (BOTTOM RIGHT) -->
-        <div class="slide-nav-bar">
-            <button class="slide-btn" id="hdToggleBtn" onclick="toggleHdShowcase()" style="color:#60A5FA;" title="Bật / Tắt màn hình 3D 6 cửa sổ">🌌 3D INTRO</button>
-            <button class="slide-btn" onclick="prevDeckSlide()">◀ TRƯỚC</button>
-            <div class="slide-num-tag"><span id="deckSlideNum">1</span> / <span id="deckTotalSlides">14</span></div>
-            <button class="slide-btn" onclick="nextDeckSlide()">TIẾP ▶</button>
-            <button class="slide-btn" onclick="goBackToMenu()" style="color:#FF4444;">✕ MENU</button>
         </div>
     </div>
 
@@ -6362,7 +6320,42 @@
             }
         }
 
+        // ===== CHẾ ĐỘ THUYẾT TRÌNH FULL MÀN HÌNH (FULLSCREEN API) =====
+        function enterPresentationFullscreen(){
+            try {
+                const docEl = document.documentElement;
+                if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                    if (docEl.requestFullscreen) {
+                        docEl.requestFullscreen().catch(() => {});
+                    } else if (docEl.webkitRequestFullscreen) {
+                        docEl.webkitRequestFullscreen();
+                    }
+                }
+            } catch (e) {}
+        }
+
+        function exitPresentationFullscreen(){
+            try {
+                if (document.fullscreenElement || document.webkitFullscreenElement) {
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen().catch(() => {});
+                    } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                    }
+                }
+            } catch (e) {}
+        }
+
+        function togglePresentationFullscreen(){
+            if (document.fullscreenElement || document.webkitFullscreenElement) {
+                exitPresentationFullscreen();
+            } else {
+                enterPresentationFullscreen();
+            }
+        }
+
         function startPresentationWithBossAndDeck(){
+            enterPresentationFullscreen();
             closeModal('bossSelectModal');
             renderSlideDeckContainer(currentSelectedDeckId);
             goToVS();
@@ -6418,7 +6411,7 @@
                         div.appendChild(btn);
                     });
                 } else if(deckId === 'gddp' && gddpQuizFeedbackMap[slideNum]){
-                    // Trang nhận xét đáp án (Đúng / Sai) -> tạo nút điều hướng trực quan và cho phép bấm vào slide để đi tiếp
+                    // Trang nhận xét đáp án (Đúng / Sai) -> bấm vào slide hoặc nút để đi tiếp
                     const fb = gddpQuizFeedbackMap[slideNum];
                     const actionBtn = document.createElement('button');
                     actionBtn.type = 'button';
@@ -6438,6 +6431,16 @@
                     div.style.cursor = 'pointer';
                     div.addEventListener('click', () => {
                         nextDeckSlide();
+                    });
+                } else {
+                    // Các trang slide thông thường: Click chuột trái để sang trang tiếp, chuột phải để lùi trang
+                    div.style.cursor = 'pointer';
+                    div.addEventListener('click', () => {
+                        nextDeckSlide();
+                    });
+                    div.addEventListener('contextmenu', (ev) => {
+                        ev.preventDefault();
+                        prevDeckSlide();
                     });
                 }
 
@@ -8260,8 +8263,10 @@
             document.getElementById('vsPlayerImg').src=c.img;
             document.getElementById('vsPlayerName').textContent=c.name;
             document.getElementById('vsPlayerSkill').textContent=c.skill;
-            document.getElementById('presentCharImg').src=c.img;
-            document.getElementById('presenterTag').textContent='★ NGƯỜI THUYẾT TRÌNH: ' + c.name;
+            const pCharImg = document.getElementById('presentCharImg');
+            if(pCharImg) pCharImg.src=c.img;
+            const pTag = document.getElementById('presenterTag');
+            if(pTag) pTag.textContent='★ NGƯỜI THUYẾT TRÌNH: ' + c.name;
 
             // Cập nhật thông tin Boss đã chọn
             const b = bossList[selectedPresentationBoss] || bossList.media;
@@ -8481,7 +8486,7 @@
             const slotTargets = [1, Math.min(4, slidesArr.length), Math.min(8, slidesArr.length), Math.min(11, slidesArr.length), Math.min(12, slidesArr.length), Math.min(17, slidesArr.length)];
             document.querySelectorAll('#hd-grid .hd-win-slot').forEach((slotEl, i) => {
                 const targetS = slotTargets[i] || 1;
-                slotEl.setAttribute('onclick', `closeHdShowcase(${targetS})`);
+                slotEl.setAttribute('onclick', `event.stopPropagation(); closeHdShowcase(${targetS})`);
                 slotEl.setAttribute('title', `Bấm để phóng thẳng tới Slide ${targetS}`);
             });
 
@@ -9024,6 +9029,7 @@
         }
 
         function closeHdShowcase(targetSlide = null) {
+            enterPresentationFullscreen();
             const ps = document.getElementById('presentScreen');
             if (!ps) return;
             const wasOpen = ps.classList.contains('hd-showcase-open');
@@ -9268,6 +9274,7 @@
         }
 
         function goBackToMenu(){
+            exitPresentationFullscreen();
             if(countdownTimer) clearInterval(countdownTimer);
             const vid = document.getElementById('endingVideo');
             if(vid){
@@ -9375,6 +9382,10 @@
                 if(e.key==='Escape')goBackToMenu();
             }else if(currentScreen==='present'){
                 if(e.key==='Escape'){goBackToMenu();charConfirmed=false;}
+                else if(e.key==='f'||e.key==='F'){
+                    e.preventDefault();
+                    togglePresentationFullscreen();
+                }
                 else if(e.key==='0'||e.key==='i'||e.key==='I'){
                     e.preventDefault();
                     toggleHdShowcase();
